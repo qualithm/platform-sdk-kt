@@ -1,0 +1,17 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+# To regenerate this file, run: ./gradlew :dependencies --write-locks
+com.squareup.moshi:moshi-adapters:1.15.2=runtimeClasspath
+com.squareup.moshi:moshi-kotlin:1.15.2=runtimeClasspath
+com.squareup.moshi:moshi:1.15.2=runtimeClasspath
+com.squareup.okhttp3:okhttp-jvm:5.5.0=runtimeClasspath
+com.squareup.okhttp3:okhttp:5.5.0=runtimeClasspath
+com.squareup.okio:okio-jvm:3.18.1=runtimeClasspath
+com.squareup.okio:okio:3.18.1=runtimeClasspath
+org.jetbrains.kotlin:kotlin-reflect:2.4.21=runtimeClasspath
+org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.21=runtimeClasspath
+org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.21=runtimeClasspath
+org.jetbrains.kotlin:kotlin-stdlib:2.4.21=runtimeClasspath
+org.jetbrains:annotations:13.0=runtimeClasspath
+empty=

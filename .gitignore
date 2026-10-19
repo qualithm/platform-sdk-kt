@@ -1,0 +1,14 @@
+.DS_Store
+.env*
+.idea/
+.vscode/
+
+# Gradle build output, coverage reports included
+.gradle/
+.kotlin/
+build/
+local.properties
+*.iml
+
+# scripts/generate scratch output, moved into src/ when it succeeds
+.generated/

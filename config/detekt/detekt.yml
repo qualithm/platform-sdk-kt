@@ -1,0 +1,5 @@
+# Additions to detekt's defaults (buildUponDefaultConfig). ktfmt owns layout,
+# so no formatting rules are enabled here.
+style:
+  MagicNumber:
+    excludes: ["**/test/**", "**/examples/**"]

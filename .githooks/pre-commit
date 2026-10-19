@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Runs exactly the commands in .claude/checks.json. Enable with:
+#   git config core.hooksPath .githooks
+
+set -e
+
+echo "Running pre-commit checks..."
+
+echo "→ Running ktfmt..."
+./gradlew ktfmtCheck
+
+echo "→ Running detekt..."
+./gradlew detekt
+
+echo "→ Running CI's Test & Coverage, Build and Docs jobs..."
+python3 .claude/checks/ci-jobs.py --skip-ci-only test build docs
+
+echo "✓ All pre-commit checks passed!"

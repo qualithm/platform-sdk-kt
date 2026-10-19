@@ -1,0 +1,12 @@
+# Generator options for scripts/generate (Decision qualithm/pm#2394). The
+# generator version is the image pinned in scripts/generate.
+generatorName: kotlin
+library: jvm-okhttp4
+inputSpec: /local/openapi.json
+outputDir: /local/.generated
+additionalProperties:
+  packageName: com.qualithm.platform.generated
+  serializationLibrary: moshi
+  enumPropertyNaming: UPPERCASE
+  enumUnknownDefaultCase: true
+  explicitApi: true

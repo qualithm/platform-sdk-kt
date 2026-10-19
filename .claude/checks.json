@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "run": "./gradlew ktfmtCheck",
+      "timeout": "10m",
+      "dir": "."
+    },
+    {
+      "run": "./gradlew detekt",
+      "timeout": "10m",
+      "dir": "."
+    },
+    {
+      "run": "python3 .claude/checks/ci-jobs.py --skip-ci-only test build docs",
+      "timeout": "30m",
+      "dir": "."
+    }
+  ]
+}

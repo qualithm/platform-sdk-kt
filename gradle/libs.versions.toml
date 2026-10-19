@@ -1,0 +1,28 @@
+# The one place for dependency and plugin versions. The JDK is pinned by the
+# CI template's JAVA_VERSION and Gradle by the wrapper.
+[versions]
+kotlin = "2.4.21"
+okhttp = "5.5.0"
+moshi = "1.15.2"
+junit = "4.13.2"
+kover = "0.9.11"
+detekt = "2.0.0-alpha.6"
+ktfmt-plugin = "0.27.0"
+dokka = "2.2.0"
+maven-publish = "0.37.0"
+
+[libraries]
+# The generated client's runtime: OkHttp for transport, Moshi for JSON.
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshi" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+junit = { module = "junit:junit", version.ref = "junit" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
+ktfmt = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt-plugin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
