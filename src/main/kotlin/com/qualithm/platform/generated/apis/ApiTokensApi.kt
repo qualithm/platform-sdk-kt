@@ -57,7 +57,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
 
     /**
      * DELETE /api-tokens/{tokenId}
-     * Revoke an API token
+     * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
      * @param tokenId 
      * @return DeleteApiTokenResponse
@@ -89,7 +89,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
 
     /**
      * DELETE /api-tokens/{tokenId}
-     * Revoke an API token
+     * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
      * @param tokenId 
      * @return ApiResponse<DeleteApiTokenResponse?>
@@ -130,7 +130,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
 
     /**
      * GET /api-tokens
-     * List the team&#39;s API tokens
+     * List API tokens in this team: everyone&#39;s for an owner, otherwise the caller&#39;s own
      * 
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
@@ -163,7 +163,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
 
     /**
      * GET /api-tokens
-     * List the team&#39;s API tokens
+     * List API tokens in this team: everyone&#39;s for an owner, otherwise the caller&#39;s own
      * 
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
