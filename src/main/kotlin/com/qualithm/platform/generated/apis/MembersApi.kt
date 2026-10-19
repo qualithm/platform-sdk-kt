@@ -140,7 +140,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * DELETE /teams/{teamId}/members/{memberId}
      * Remove a member from the team
-     * A guest can remove only themselves; a manager only guests and themselves.
+     * A viewer can remove only themselves; a manager only viewers and themselves.
      * @param teamId 
      * @param memberId 
      * @return DeleteTeamMemberResponse
@@ -173,7 +173,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * DELETE /teams/{teamId}/members/{memberId}
      * Remove a member from the team
-     * A guest can remove only themselves; a manager only guests and themselves.
+     * A viewer can remove only themselves; a manager only viewers and themselves.
      * @param teamId 
      * @param memberId 
      * @return ApiResponse<DeleteTeamMemberResponse?>
