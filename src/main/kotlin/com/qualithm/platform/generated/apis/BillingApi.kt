@@ -59,7 +59,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /billing/summary
-     * Get the workspace&#39;s plan, usage and add-ons
+     * Get the workspace&#39;s plan, usage, price and add-ons
      * 
      * @return GetBillingSummaryResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -90,7 +90,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /billing/summary
-     * Get the workspace&#39;s plan, usage and add-ons
+     * Get the workspace&#39;s plan, usage, price and add-ons
      * 
      * @return ApiResponse<GetBillingSummaryResponse?>
      * @throws IllegalStateException If the request is not correctly configured

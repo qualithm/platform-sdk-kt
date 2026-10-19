@@ -56,7 +56,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * GET /usage
-     * Get the workspace&#39;s device and space counts
+     * Get the workspace&#39;s device and space counts and its plan quota
      * 
      * @return GetUsageResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -87,7 +87,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * GET /usage
-     * Get the workspace&#39;s device and space counts
+     * Get the workspace&#39;s device and space counts and its plan quota
      * 
      * @return ApiResponse<GetUsageResponse?>
      * @throws IllegalStateException If the request is not correctly configured
