@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * Values: OWNER,MANAGER,GUEST,UNKNOWN_DEFAULT_OPEN_API
+ * Values: OWNER,MANAGER,VIEWER,UNKNOWN_DEFAULT_OPEN_API
  */
 
 @JsonClass(generateAdapter = false)
@@ -42,8 +42,8 @@ public enum class MemberRole(public val value: kotlin.String) {
     @Json(name = "manager")
     MANAGER("manager"),
 
-    @Json(name = "guest")
-    GUEST("guest"),
+    @Json(name = "viewer")
+    VIEWER("viewer"),
 
     @Json(name = "unknown_default_open_api")
     UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
