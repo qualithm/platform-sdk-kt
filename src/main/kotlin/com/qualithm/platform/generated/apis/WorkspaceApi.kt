@@ -56,7 +56,7 @@ public open class WorkspaceApi(basePath: kotlin.String = defaultBasePath, client
 
     /**
      * GET /workspace
-     * Get the caller&#39;s current workspace
+     * Get the caller&#39;s current workspace and their effective permissions in it
      * 
      * @return GetWorkspaceResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -87,7 +87,7 @@ public open class WorkspaceApi(basePath: kotlin.String = defaultBasePath, client
 
     /**
      * GET /workspace
-     * Get the caller&#39;s current workspace
+     * Get the caller&#39;s current workspace and their effective permissions in it
      * 
      * @return ApiResponse<GetWorkspaceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
