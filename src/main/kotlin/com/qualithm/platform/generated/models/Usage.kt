@@ -23,6 +23,9 @@
 
 package com.qualithm.platform.generated.models
 
+import com.qualithm.platform.generated.models.BillingSummaryLimitGrace
+import com.qualithm.platform.generated.models.BillingSummaryLimits
+import com.qualithm.platform.generated.models.BillingSummaryUsage
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,6 +36,11 @@ import com.squareup.moshi.JsonClass
  * @param deviceTotal 
  * @param deviceMax The tier's device limit
  * @param spaceTotal 
+ * @param tier 
+ * @param month The month usage counts over: `YYYY-MM`, UTC
+ * @param limitGrace 
+ * @param limits 
+ * @param usage 
  */
 
 
@@ -46,10 +54,39 @@ public data class Usage (
     val deviceMax: kotlin.Long,
 
     @Json(name = "spaceTotal")
-    val spaceTotal: kotlin.Long
+    val spaceTotal: kotlin.Long,
+
+    @Json(name = "tier")
+    val tier: Usage.Tier,
+
+    /* The month usage counts over: `YYYY-MM`, UTC */
+    @Json(name = "month")
+    val month: kotlin.String,
+
+    @Json(name = "limitGrace")
+    val limitGrace: BillingSummaryLimitGrace?,
+
+    @Json(name = "limits")
+    val limits: BillingSummaryLimits,
+
+    @Json(name = "usage")
+    val usage: BillingSummaryUsage
 
 ) {
 
+    /**
+     * 
+     *
+     * Values: FREE,PLUS,PRO,MAX,UNKNOWN_DEFAULT_OPEN_API
+     */
+    @JsonClass(generateAdapter = false)
+    public enum class Tier(public val value: kotlin.String) {
+        @Json(name = "free") FREE("free"),
+        @Json(name = "plus") PLUS("plus"),
+        @Json(name = "pro") PRO("pro"),
+        @Json(name = "max") MAX("max"),
+        @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+    }
 
 }
 

@@ -35,11 +35,11 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param tier 
- * @param monthlyTotal The plan's monthly price with add-ons, in USD
  * @param month The month usage counts over: `YYYY-MM`, UTC
  * @param limitGrace 
  * @param limits 
  * @param usage 
+ * @param monthlyTotal The plan's monthly price with add-ons, in USD
  * @param addons 
  */
 
@@ -48,10 +48,6 @@ public data class BillingSummary (
 
     @Json(name = "tier")
     val tier: BillingSummary.Tier,
-
-    /* The plan's monthly price with add-ons, in USD */
-    @Json(name = "monthlyTotal")
-    val monthlyTotal: java.math.BigDecimal,
 
     /* The month usage counts over: `YYYY-MM`, UTC */
     @Json(name = "month")
@@ -65,6 +61,10 @@ public data class BillingSummary (
 
     @Json(name = "usage")
     val usage: BillingSummaryUsage,
+
+    /* The plan's monthly price with add-ons, in USD */
+    @Json(name = "monthlyTotal")
+    val monthlyTotal: java.math.BigDecimal,
 
     @Json(name = "addons")
     val addons: BillingSummaryAddons
