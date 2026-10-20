@@ -23,6 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
+import com.qualithm.platform.generated.models.MemberRole
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -35,6 +36,7 @@ import com.squareup.moshi.JsonClass
  * @param teamId 
  * @param name 
  * @param status 
+ * @param role The token's role ceiling; null means the creator's current role
  * @param expiresAt ISO 8601 time
  * @param lastUsedAt UTC time, `YYYY-MM-DD HH:MM:SS`
  * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
@@ -58,6 +60,10 @@ public data class ApiToken (
 
     @Json(name = "status")
     val status: ApiToken.Status,
+
+    /* The token's role ceiling; null means the creator's current role */
+    @Json(name = "role")
+    val role: MemberRole?,
 
     /* ISO 8601 time */
     @Json(name = "expiresAt")

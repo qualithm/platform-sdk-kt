@@ -80,6 +80,8 @@ public object SerializerHelper {
                 .withUnknownFallback(com.qualithm.platform.generated.models.TierChangePreview.From.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.TierChangePreview.To::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.TierChangePreview.To::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.TierChangePreview.To.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
+            .add(com.qualithm.platform.generated.models.Usage.Tier::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.Usage.Tier::class.java)
+                .withUnknownFallback(com.qualithm.platform.generated.models.Usage.Tier.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.ZoneId::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.ZoneId::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.ZoneId.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
     }
