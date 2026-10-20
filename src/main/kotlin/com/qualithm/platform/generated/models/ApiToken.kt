@@ -41,6 +41,7 @@ import com.squareup.moshi.JsonClass
  * @param lastUsedAt UTC time, `YYYY-MM-DD HH:MM:SS`
  * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
  * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param permissions What the token can do now: its creator's current role lowered to its ceiling. Listed tokens only.
  */
 
 
@@ -79,7 +80,11 @@ public data class ApiToken (
 
     /* UTC time, `YYYY-MM-DD HH:MM:SS` */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String
+    val updatedAt: kotlin.String,
+
+    /* What the token can do now: its creator's current role lowered to its ceiling. Listed tokens only. */
+    @Json(name = "permissions")
+    val permissions: kotlin.collections.List<ApiToken.Permissions>? = null
 
 ) {
 
@@ -92,6 +97,48 @@ public data class ApiToken (
     public enum class Status(public val value: kotlin.String) {
         @Json(name = "active") ACTIVE("active"),
         @Json(name = "revoked") REVOKED("revoked"),
+        @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+    }
+    /**
+     * What the token can do now: its creator's current role lowered to its ceiling. Listed tokens only.
+     *
+     * Values: TEAM_PERIOD_READ,TEAM_PERIOD_UPDATE,TEAM_PERIOD_DELETE,MEMBER_PERIOD_INVITE,MEMBER_PERIOD_UPDATE,MEMBER_PERIOD_REMOVE,BILLING_PERIOD_READ,BILLING_PERIOD_MANAGE,USAGE_PERIOD_READ,AUDIT_PERIOD_READ,TOKEN_PERIOD_READ,TOKEN_PERIOD_CREATE,TOKEN_PERIOD_REVOKE,TOKEN_PERIOD_REVOKE_ANY,SPACE_PERIOD_READ,SPACE_PERIOD_WRITE,DEVICE_PERIOD_READ,DEVICE_PERIOD_WRITE,DEVICE_PERIOD_COMMAND,CREDENTIAL_PERIOD_READ,CREDENTIAL_PERIOD_MANAGE,ENROLLMENT_PERIOD_READ,ENROLLMENT_PERIOD_MANAGE,AUTHORITY_PERIOD_READ,AUTHORITY_PERIOD_MANAGE,TELEMETRY_PERIOD_READ,CAPABILITY_PERIOD_READ,CAPABILITY_PERIOD_UPDATE,DASHBOARD_PERIOD_READ,DASHBOARD_PERIOD_WRITE,AUTOMATION_PERIOD_READ,AUTOMATION_PERIOD_WRITE,AUTOMATION_PERIOD_RUN,UNKNOWN_DEFAULT_OPEN_API
+     */
+    @JsonClass(generateAdapter = false)
+    public enum class Permissions(public val value: kotlin.String) {
+        @Json(name = "team.read") TEAM_PERIOD_READ("team.read"),
+        @Json(name = "team.update") TEAM_PERIOD_UPDATE("team.update"),
+        @Json(name = "team.delete") TEAM_PERIOD_DELETE("team.delete"),
+        @Json(name = "member.invite") MEMBER_PERIOD_INVITE("member.invite"),
+        @Json(name = "member.update") MEMBER_PERIOD_UPDATE("member.update"),
+        @Json(name = "member.remove") MEMBER_PERIOD_REMOVE("member.remove"),
+        @Json(name = "billing.read") BILLING_PERIOD_READ("billing.read"),
+        @Json(name = "billing.manage") BILLING_PERIOD_MANAGE("billing.manage"),
+        @Json(name = "usage.read") USAGE_PERIOD_READ("usage.read"),
+        @Json(name = "audit.read") AUDIT_PERIOD_READ("audit.read"),
+        @Json(name = "token.read") TOKEN_PERIOD_READ("token.read"),
+        @Json(name = "token.create") TOKEN_PERIOD_CREATE("token.create"),
+        @Json(name = "token.revoke") TOKEN_PERIOD_REVOKE("token.revoke"),
+        @Json(name = "token.revoke_any") TOKEN_PERIOD_REVOKE_ANY("token.revoke_any"),
+        @Json(name = "space.read") SPACE_PERIOD_READ("space.read"),
+        @Json(name = "space.write") SPACE_PERIOD_WRITE("space.write"),
+        @Json(name = "device.read") DEVICE_PERIOD_READ("device.read"),
+        @Json(name = "device.write") DEVICE_PERIOD_WRITE("device.write"),
+        @Json(name = "device.command") DEVICE_PERIOD_COMMAND("device.command"),
+        @Json(name = "credential.read") CREDENTIAL_PERIOD_READ("credential.read"),
+        @Json(name = "credential.manage") CREDENTIAL_PERIOD_MANAGE("credential.manage"),
+        @Json(name = "enrollment.read") ENROLLMENT_PERIOD_READ("enrollment.read"),
+        @Json(name = "enrollment.manage") ENROLLMENT_PERIOD_MANAGE("enrollment.manage"),
+        @Json(name = "authority.read") AUTHORITY_PERIOD_READ("authority.read"),
+        @Json(name = "authority.manage") AUTHORITY_PERIOD_MANAGE("authority.manage"),
+        @Json(name = "telemetry.read") TELEMETRY_PERIOD_READ("telemetry.read"),
+        @Json(name = "capability.read") CAPABILITY_PERIOD_READ("capability.read"),
+        @Json(name = "capability.update") CAPABILITY_PERIOD_UPDATE("capability.update"),
+        @Json(name = "dashboard.read") DASHBOARD_PERIOD_READ("dashboard.read"),
+        @Json(name = "dashboard.write") DASHBOARD_PERIOD_WRITE("dashboard.write"),
+        @Json(name = "automation.read") AUTOMATION_PERIOD_READ("automation.read"),
+        @Json(name = "automation.write") AUTOMATION_PERIOD_WRITE("automation.write"),
+        @Json(name = "automation.run") AUTOMATION_PERIOD_RUN("automation.run"),
         @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
     }
 
