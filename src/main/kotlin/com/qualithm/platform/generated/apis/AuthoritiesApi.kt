@@ -58,9 +58,10 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /authorities
+     * POST /v1/teams/{teamId}/authorities
      * Register a certificate authority
      * 
+     * @param teamId The team the request acts on
      * @param createAuthorityRequest 
      * @return CreateAuthorityResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -71,8 +72,8 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAuthority(createAuthorityRequest: CreateAuthorityRequest) : CreateAuthorityResponse {
-        val localVarResponse = createAuthorityWithHttpInfo(createAuthorityRequest = createAuthorityRequest)
+    public fun createAuthority(teamId: java.util.UUID, createAuthorityRequest: CreateAuthorityRequest) : CreateAuthorityResponse {
+        val localVarResponse = createAuthorityWithHttpInfo(teamId = teamId, createAuthorityRequest = createAuthorityRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateAuthorityResponse
@@ -90,9 +91,10 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /authorities
+     * POST /v1/teams/{teamId}/authorities
      * Register a certificate authority
      * 
+     * @param teamId The team the request acts on
      * @param createAuthorityRequest 
      * @return ApiResponse<CreateAuthorityResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -100,8 +102,8 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAuthorityWithHttpInfo(createAuthorityRequest: CreateAuthorityRequest) : ApiResponse<CreateAuthorityResponse?> {
-        val localVariableConfig = createAuthorityRequestConfig(createAuthorityRequest = createAuthorityRequest)
+    public fun createAuthorityWithHttpInfo(teamId: java.util.UUID, createAuthorityRequest: CreateAuthorityRequest) : ApiResponse<CreateAuthorityResponse?> {
+        val localVariableConfig = createAuthorityRequestConfig(teamId = teamId, createAuthorityRequest = createAuthorityRequest)
 
         return request<CreateAuthorityRequest, CreateAuthorityResponse>(
             localVariableConfig
@@ -111,10 +113,11 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation createAuthority
      *
+     * @param teamId The team the request acts on
      * @param createAuthorityRequest 
      * @return RequestConfig
      */
-    public fun createAuthorityRequestConfig(createAuthorityRequest: CreateAuthorityRequest) : RequestConfig<CreateAuthorityRequest> {
+    public fun createAuthorityRequestConfig(teamId: java.util.UUID, createAuthorityRequest: CreateAuthorityRequest) : RequestConfig<CreateAuthorityRequest> {
         val localVariableBody = createAuthorityRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -123,7 +126,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/authorities",
+            path = "/v1/teams/{teamId}/authorities".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -132,9 +135,10 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * DELETE /authorities/{authorityId}
+     * DELETE /v1/teams/{teamId}/authorities/{authorityId}
      * Revoke a certificate authority and every credential it issued
      * 
+     * @param teamId The team the request acts on
      * @param authorityId 
      * @return DeleteAuthorityResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -145,8 +149,8 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteAuthority(authorityId: java.util.UUID) : DeleteAuthorityResponse {
-        val localVarResponse = deleteAuthorityWithHttpInfo(authorityId = authorityId)
+    public fun deleteAuthority(teamId: java.util.UUID, authorityId: java.util.UUID) : DeleteAuthorityResponse {
+        val localVarResponse = deleteAuthorityWithHttpInfo(teamId = teamId, authorityId = authorityId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteAuthorityResponse
@@ -164,9 +168,10 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * DELETE /authorities/{authorityId}
+     * DELETE /v1/teams/{teamId}/authorities/{authorityId}
      * Revoke a certificate authority and every credential it issued
      * 
+     * @param teamId The team the request acts on
      * @param authorityId 
      * @return ApiResponse<DeleteAuthorityResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -174,8 +179,8 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteAuthorityWithHttpInfo(authorityId: java.util.UUID) : ApiResponse<DeleteAuthorityResponse?> {
-        val localVariableConfig = deleteAuthorityRequestConfig(authorityId = authorityId)
+    public fun deleteAuthorityWithHttpInfo(teamId: java.util.UUID, authorityId: java.util.UUID) : ApiResponse<DeleteAuthorityResponse?> {
+        val localVariableConfig = deleteAuthorityRequestConfig(teamId = teamId, authorityId = authorityId)
 
         return request<Unit, DeleteAuthorityResponse>(
             localVariableConfig
@@ -185,10 +190,11 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation deleteAuthority
      *
+     * @param teamId The team the request acts on
      * @param authorityId 
      * @return RequestConfig
      */
-    public fun deleteAuthorityRequestConfig(authorityId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteAuthorityRequestConfig(teamId: java.util.UUID, authorityId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -196,7 +202,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/authorities/{authorityId}".replace("{"+"authorityId"+"}", encodeURIComponent(authorityId.toString())),
+            path = "/v1/teams/{teamId}/authorities/{authorityId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"authorityId"+"}", encodeURIComponent(authorityId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -205,9 +211,10 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * GET /authorities
+     * GET /v1/teams/{teamId}/authorities
      * List the workspace&#39;s certificate authorities
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListAuthoritiesResponse
@@ -219,8 +226,8 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAuthorities(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuthoritiesResponse {
-        val localVarResponse = listAuthoritiesWithHttpInfo(page = page, limit = limit)
+    public fun listAuthorities(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuthoritiesResponse {
+        val localVarResponse = listAuthoritiesWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListAuthoritiesResponse
@@ -238,9 +245,10 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * GET /authorities
+     * GET /v1/teams/{teamId}/authorities
      * List the workspace&#39;s certificate authorities
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListAuthoritiesResponse?>
@@ -249,8 +257,8 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAuthoritiesWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuthoritiesResponse?> {
-        val localVariableConfig = listAuthoritiesRequestConfig(page = page, limit = limit)
+    public fun listAuthoritiesWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuthoritiesResponse?> {
+        val localVariableConfig = listAuthoritiesRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListAuthoritiesResponse>(
             localVariableConfig
@@ -260,11 +268,12 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation listAuthorities
      *
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listAuthoritiesRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAuthoritiesRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -280,7 +289,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/authorities",
+            path = "/v1/teams/{teamId}/authorities".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

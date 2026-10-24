@@ -54,9 +54,10 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * GET /events/stream
+     * GET /v1/teams/{teamId}/events
      * Stream the team&#39;s live events
      * 
+     * @param teamId The team the request acts on
      * @return kotlin.String
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -66,8 +67,8 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun streamEvents() : kotlin.String {
-        val localVarResponse = streamEventsWithHttpInfo()
+    public fun streamEvents(teamId: java.util.UUID) : kotlin.String {
+        val localVarResponse = streamEventsWithHttpInfo(teamId = teamId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.String
@@ -85,17 +86,18 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * GET /events/stream
+     * GET /v1/teams/{teamId}/events
      * Stream the team&#39;s live events
      * 
+     * @param teamId The team the request acts on
      * @return ApiResponse<kotlin.String?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun streamEventsWithHttpInfo() : ApiResponse<kotlin.String?> {
-        val localVariableConfig = streamEventsRequestConfig()
+    public fun streamEventsWithHttpInfo(teamId: java.util.UUID) : ApiResponse<kotlin.String?> {
+        val localVariableConfig = streamEventsRequestConfig(teamId = teamId)
 
         return request<Unit, kotlin.String>(
             localVariableConfig
@@ -105,9 +107,10 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * To obtain the request config of the operation streamEvents
      *
+     * @param teamId The team the request acts on
      * @return RequestConfig
      */
-    public fun streamEventsRequestConfig() : RequestConfig<Unit> {
+    public fun streamEventsRequestConfig(teamId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -115,7 +118,7 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/events/stream",
+            path = "/v1/teams/{teamId}/events".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

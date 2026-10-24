@@ -58,7 +58,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * POST /teams/{teamId}/invites
+     * POST /v1/teams/{teamId}/invites
      * Invite an account to the team by email
      * 
      * @param teamId 
@@ -91,7 +91,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * POST /teams/{teamId}/invites
+     * POST /v1/teams/{teamId}/invites
      * Invite an account to the team by email
      * 
      * @param teamId 
@@ -126,7 +126,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/teams/{teamId}/invites".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}/invites".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -135,7 +135,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * DELETE /teams/{teamId}/invites/{inviteId}
+     * DELETE /v1/teams/{teamId}/invites/{inviteId}
      * Revoke a pending invite
      * 
      * @param teamId 
@@ -168,7 +168,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * DELETE /teams/{teamId}/invites/{inviteId}
+     * DELETE /v1/teams/{teamId}/invites/{inviteId}
      * Revoke a pending invite
      * 
      * @param teamId 
@@ -202,7 +202,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/teams/{teamId}/invites/{inviteId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"inviteId"+"}", encodeURIComponent(inviteId.toString())),
+            path = "/v1/teams/{teamId}/invites/{inviteId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"inviteId"+"}", encodeURIComponent(inviteId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -211,7 +211,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /teams/{teamId}/invites
+     * GET /v1/teams/{teamId}/invites
      * List the team&#39;s pending invites
      * 
      * @param teamId 
@@ -245,7 +245,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /teams/{teamId}/invites
+     * GET /v1/teams/{teamId}/invites
      * List the team&#39;s pending invites
      * 
      * @param teamId 
@@ -289,7 +289,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/teams/{teamId}/invites".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}/invites".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

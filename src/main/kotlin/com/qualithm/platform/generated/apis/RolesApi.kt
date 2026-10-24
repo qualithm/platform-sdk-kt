@@ -55,7 +55,7 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /roles
+     * GET /v1/account/memberships
      * List the teams the caller belongs to and their role in each
      * 
      * @param page Page number, from 1. Default 1. (optional)
@@ -88,7 +88,7 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /roles
+     * GET /v1/account/memberships
      * List the teams the caller belongs to and their role in each
      * 
      * @param page Page number, from 1. Default 1. (optional)
@@ -130,7 +130,7 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/roles",
+            path = "/v1/account/memberships",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
