@@ -56,9 +56,10 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     }
 
     /**
-     * DELETE /api-tokens/{tokenId}
+     * DELETE /v1/teams/{teamId}/api-tokens/{tokenId}
      * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
+     * @param teamId The team the request acts on
      * @param tokenId 
      * @return DeleteApiTokenResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -69,8 +70,8 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteApiToken(tokenId: java.util.UUID) : DeleteApiTokenResponse {
-        val localVarResponse = deleteApiTokenWithHttpInfo(tokenId = tokenId)
+    public fun deleteApiToken(teamId: java.util.UUID, tokenId: java.util.UUID) : DeleteApiTokenResponse {
+        val localVarResponse = deleteApiTokenWithHttpInfo(teamId = teamId, tokenId = tokenId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteApiTokenResponse
@@ -88,9 +89,10 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     }
 
     /**
-     * DELETE /api-tokens/{tokenId}
+     * DELETE /v1/teams/{teamId}/api-tokens/{tokenId}
      * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
+     * @param teamId The team the request acts on
      * @param tokenId 
      * @return ApiResponse<DeleteApiTokenResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -98,8 +100,8 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteApiTokenWithHttpInfo(tokenId: java.util.UUID) : ApiResponse<DeleteApiTokenResponse?> {
-        val localVariableConfig = deleteApiTokenRequestConfig(tokenId = tokenId)
+    public fun deleteApiTokenWithHttpInfo(teamId: java.util.UUID, tokenId: java.util.UUID) : ApiResponse<DeleteApiTokenResponse?> {
+        val localVariableConfig = deleteApiTokenRequestConfig(teamId = teamId, tokenId = tokenId)
 
         return request<Unit, DeleteApiTokenResponse>(
             localVariableConfig
@@ -109,10 +111,11 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * To obtain the request config of the operation deleteApiToken
      *
+     * @param teamId The team the request acts on
      * @param tokenId 
      * @return RequestConfig
      */
-    public fun deleteApiTokenRequestConfig(tokenId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteApiTokenRequestConfig(teamId: java.util.UUID, tokenId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -120,7 +123,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/api-tokens/{tokenId}".replace("{"+"tokenId"+"}", encodeURIComponent(tokenId.toString())),
+            path = "/v1/teams/{teamId}/api-tokens/{tokenId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"tokenId"+"}", encodeURIComponent(tokenId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -129,9 +132,10 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     }
 
     /**
-     * GET /api-tokens
+     * GET /v1/teams/{teamId}/api-tokens
      * List API tokens in this team: everyone&#39;s for an owner, otherwise the caller&#39;s own
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListApiTokensResponse
@@ -143,8 +147,8 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listApiTokens(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListApiTokensResponse {
-        val localVarResponse = listApiTokensWithHttpInfo(page = page, limit = limit)
+    public fun listApiTokens(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListApiTokensResponse {
+        val localVarResponse = listApiTokensWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListApiTokensResponse
@@ -162,9 +166,10 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     }
 
     /**
-     * GET /api-tokens
+     * GET /v1/teams/{teamId}/api-tokens
      * List API tokens in this team: everyone&#39;s for an owner, otherwise the caller&#39;s own
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListApiTokensResponse?>
@@ -173,8 +178,8 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listApiTokensWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListApiTokensResponse?> {
-        val localVariableConfig = listApiTokensRequestConfig(page = page, limit = limit)
+    public fun listApiTokensWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListApiTokensResponse?> {
+        val localVariableConfig = listApiTokensRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListApiTokensResponse>(
             localVariableConfig
@@ -184,11 +189,12 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * To obtain the request config of the operation listApiTokens
      *
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listApiTokensRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listApiTokensRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -204,7 +210,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/api-tokens",
+            path = "/v1/teams/{teamId}/api-tokens".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

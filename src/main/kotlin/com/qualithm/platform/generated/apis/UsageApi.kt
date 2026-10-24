@@ -55,9 +55,10 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /usage
+     * GET /v1/teams/{teamId}/usage
      * Get the workspace&#39;s device and space counts and its plan quota
      * 
+     * @param teamId The team the request acts on
      * @return GetUsageResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -67,8 +68,8 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getUsage() : GetUsageResponse {
-        val localVarResponse = getUsageWithHttpInfo()
+    public fun getUsage(teamId: java.util.UUID) : GetUsageResponse {
+        val localVarResponse = getUsageWithHttpInfo(teamId = teamId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetUsageResponse
@@ -86,17 +87,18 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /usage
+     * GET /v1/teams/{teamId}/usage
      * Get the workspace&#39;s device and space counts and its plan quota
      * 
+     * @param teamId The team the request acts on
      * @return ApiResponse<GetUsageResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getUsageWithHttpInfo() : ApiResponse<GetUsageResponse?> {
-        val localVariableConfig = getUsageRequestConfig()
+    public fun getUsageWithHttpInfo(teamId: java.util.UUID) : ApiResponse<GetUsageResponse?> {
+        val localVariableConfig = getUsageRequestConfig(teamId = teamId)
 
         return request<Unit, GetUsageResponse>(
             localVariableConfig
@@ -106,9 +108,10 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation getUsage
      *
+     * @param teamId The team the request acts on
      * @return RequestConfig
      */
-    public fun getUsageRequestConfig() : RequestConfig<Unit> {
+    public fun getUsageRequestConfig(teamId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -116,7 +119,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/usage",
+            path = "/v1/teams/{teamId}/usage".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
