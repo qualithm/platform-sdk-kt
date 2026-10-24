@@ -74,6 +74,8 @@ public object SerializerHelper {
                 .withUnknownFallback(com.qualithm.platform.generated.models.MemberRole.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.PreviewTierChangeRequest.Tier::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.PreviewTierChangeRequest.Tier::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.PreviewTierChangeRequest.Tier.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
+            .add(com.qualithm.platform.generated.models.Team.Permissions::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.Team.Permissions::class.java)
+                .withUnknownFallback(com.qualithm.platform.generated.models.Team.Permissions.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.TeamInvite.Status::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.TeamInvite.Status::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.TeamInvite.Status.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.TeamMembership.Status::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.TeamMembership.Status::class.java)
@@ -84,8 +86,6 @@ public object SerializerHelper {
                 .withUnknownFallback(com.qualithm.platform.generated.models.TierChangePreview.To.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.Usage.Tier::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.Usage.Tier::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.Usage.Tier.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
-            .add(com.qualithm.platform.generated.models.Workspace.Permissions::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.Workspace.Permissions::class.java)
-                .withUnknownFallback(com.qualithm.platform.generated.models.Workspace.Permissions.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.ZoneId::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.ZoneId::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.ZoneId.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
     }

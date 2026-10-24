@@ -55,9 +55,10 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /audit
+     * GET /v1/teams/{teamId}/audit-events
      * List the workspace&#39;s audit trail, newest first
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListAuditEventsResponse
@@ -69,8 +70,8 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAuditEvents(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuditEventsResponse {
-        val localVarResponse = listAuditEventsWithHttpInfo(page = page, limit = limit)
+    public fun listAuditEvents(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuditEventsResponse {
+        val localVarResponse = listAuditEventsWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListAuditEventsResponse
@@ -88,9 +89,10 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /audit
+     * GET /v1/teams/{teamId}/audit-events
      * List the workspace&#39;s audit trail, newest first
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListAuditEventsResponse?>
@@ -99,8 +101,8 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAuditEventsWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuditEventsResponse?> {
-        val localVariableConfig = listAuditEventsRequestConfig(page = page, limit = limit)
+    public fun listAuditEventsWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuditEventsResponse?> {
+        val localVariableConfig = listAuditEventsRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListAuditEventsResponse>(
             localVariableConfig
@@ -110,11 +112,12 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation listAuditEvents
      *
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listAuditEventsRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAuditEventsRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -130,7 +133,7 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/audit",
+            path = "/v1/teams/{teamId}/audit-events".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

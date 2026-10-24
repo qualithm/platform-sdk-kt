@@ -58,9 +58,10 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /billing/summary
+     * GET /v1/teams/{teamId}/billing/summary
      * Get the workspace&#39;s plan, usage, price and add-ons
      * 
+     * @param teamId The team the request acts on
      * @return GetBillingSummaryResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -70,8 +71,8 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getBillingSummary() : GetBillingSummaryResponse {
-        val localVarResponse = getBillingSummaryWithHttpInfo()
+    public fun getBillingSummary(teamId: java.util.UUID) : GetBillingSummaryResponse {
+        val localVarResponse = getBillingSummaryWithHttpInfo(teamId = teamId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetBillingSummaryResponse
@@ -89,17 +90,18 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /billing/summary
+     * GET /v1/teams/{teamId}/billing/summary
      * Get the workspace&#39;s plan, usage, price and add-ons
      * 
+     * @param teamId The team the request acts on
      * @return ApiResponse<GetBillingSummaryResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getBillingSummaryWithHttpInfo() : ApiResponse<GetBillingSummaryResponse?> {
-        val localVariableConfig = getBillingSummaryRequestConfig()
+    public fun getBillingSummaryWithHttpInfo(teamId: java.util.UUID) : ApiResponse<GetBillingSummaryResponse?> {
+        val localVariableConfig = getBillingSummaryRequestConfig(teamId = teamId)
 
         return request<Unit, GetBillingSummaryResponse>(
             localVariableConfig
@@ -109,9 +111,10 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation getBillingSummary
      *
+     * @param teamId The team the request acts on
      * @return RequestConfig
      */
-    public fun getBillingSummaryRequestConfig() : RequestConfig<Unit> {
+    public fun getBillingSummaryRequestConfig(teamId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -119,7 +122,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/billing/summary",
+            path = "/v1/teams/{teamId}/billing/summary".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -128,9 +131,10 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /invoices
+     * GET /v1/teams/{teamId}/invoices
      * List the workspace&#39;s invoices
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListInvoicesResponse
@@ -142,8 +146,8 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listInvoices(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListInvoicesResponse {
-        val localVarResponse = listInvoicesWithHttpInfo(page = page, limit = limit)
+    public fun listInvoices(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListInvoicesResponse {
+        val localVarResponse = listInvoicesWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListInvoicesResponse
@@ -161,9 +165,10 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /invoices
+     * GET /v1/teams/{teamId}/invoices
      * List the workspace&#39;s invoices
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListInvoicesResponse?>
@@ -172,8 +177,8 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listInvoicesWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListInvoicesResponse?> {
-        val localVariableConfig = listInvoicesRequestConfig(page = page, limit = limit)
+    public fun listInvoicesWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListInvoicesResponse?> {
+        val localVariableConfig = listInvoicesRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListInvoicesResponse>(
             localVariableConfig
@@ -183,11 +188,12 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation listInvoices
      *
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listInvoicesRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listInvoicesRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -203,7 +209,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/invoices",
+            path = "/v1/teams/{teamId}/invoices".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -212,9 +218,10 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * POST /billing/tier/preview
+     * POST /v1/teams/{teamId}/billing/tier/preview
      * Preview what moving to another paid tier would cost
      * 
+     * @param teamId The team the request acts on
      * @param previewTierChangeRequest 
      * @return PreviewTierChangeResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -225,8 +232,8 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun previewTierChange(previewTierChangeRequest: PreviewTierChangeRequest) : PreviewTierChangeResponse {
-        val localVarResponse = previewTierChangeWithHttpInfo(previewTierChangeRequest = previewTierChangeRequest)
+    public fun previewTierChange(teamId: java.util.UUID, previewTierChangeRequest: PreviewTierChangeRequest) : PreviewTierChangeResponse {
+        val localVarResponse = previewTierChangeWithHttpInfo(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PreviewTierChangeResponse
@@ -244,9 +251,10 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * POST /billing/tier/preview
+     * POST /v1/teams/{teamId}/billing/tier/preview
      * Preview what moving to another paid tier would cost
      * 
+     * @param teamId The team the request acts on
      * @param previewTierChangeRequest 
      * @return ApiResponse<PreviewTierChangeResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -254,8 +262,8 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun previewTierChangeWithHttpInfo(previewTierChangeRequest: PreviewTierChangeRequest) : ApiResponse<PreviewTierChangeResponse?> {
-        val localVariableConfig = previewTierChangeRequestConfig(previewTierChangeRequest = previewTierChangeRequest)
+    public fun previewTierChangeWithHttpInfo(teamId: java.util.UUID, previewTierChangeRequest: PreviewTierChangeRequest) : ApiResponse<PreviewTierChangeResponse?> {
+        val localVariableConfig = previewTierChangeRequestConfig(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest)
 
         return request<PreviewTierChangeRequest, PreviewTierChangeResponse>(
             localVariableConfig
@@ -265,10 +273,11 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation previewTierChange
      *
+     * @param teamId The team the request acts on
      * @param previewTierChangeRequest 
      * @return RequestConfig
      */
-    public fun previewTierChangeRequestConfig(previewTierChangeRequest: PreviewTierChangeRequest) : RequestConfig<PreviewTierChangeRequest> {
+    public fun previewTierChangeRequestConfig(teamId: java.util.UUID, previewTierChangeRequest: PreviewTierChangeRequest) : RequestConfig<PreviewTierChangeRequest> {
         val localVariableBody = previewTierChangeRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -277,7 +286,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/billing/tier/preview",
+            path = "/v1/teams/{teamId}/billing/tier/preview".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

@@ -56,7 +56,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * GET /sessions/{sessionId}
+     * GET /v1/account/sessions/{sessionId}
      * Get one of the caller&#39;s live sessions
      * 
      * @param sessionId 
@@ -88,7 +88,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * GET /sessions/{sessionId}
+     * GET /v1/account/sessions/{sessionId}
      * Get one of the caller&#39;s live sessions
      * 
      * @param sessionId 
@@ -120,7 +120,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/sessions/{sessionId}".replace("{"+"sessionId"+"}", encodeURIComponent(sessionId.toString())),
+            path = "/v1/account/sessions/{sessionId}".replace("{"+"sessionId"+"}", encodeURIComponent(sessionId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -129,7 +129,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * GET /sessions
+     * GET /v1/account/sessions
      * List the caller&#39;s live sessions
      * 
      * @param thisDevice &#x60;true&#x60; to list only the session making the request (optional)
@@ -163,7 +163,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * GET /sessions
+     * GET /v1/account/sessions
      * List the caller&#39;s live sessions
      * 
      * @param thisDevice &#x60;true&#x60; to list only the session making the request (optional)
@@ -210,7 +210,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/sessions",
+            path = "/v1/account/sessions",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

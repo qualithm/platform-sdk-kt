@@ -61,7 +61,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * POST /teams/{teamId}/members
+     * POST /v1/teams/{teamId}/members
      * Accept the caller&#39;s invite to the team
      * 
      * @param teamId 
@@ -94,7 +94,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * POST /teams/{teamId}/members
+     * POST /v1/teams/{teamId}/members
      * Accept the caller&#39;s invite to the team
      * 
      * @param teamId 
@@ -129,7 +129,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/teams/{teamId}/members".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}/members".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -138,7 +138,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * DELETE /teams/{teamId}/members/{memberId}
+     * DELETE /v1/teams/{teamId}/members/{memberId}
      * Remove a member from the team
      * A viewer can remove only themselves; a manager only viewers and themselves.
      * @param teamId 
@@ -171,7 +171,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * DELETE /teams/{teamId}/members/{memberId}
+     * DELETE /v1/teams/{teamId}/members/{memberId}
      * Remove a member from the team
      * A viewer can remove only themselves; a manager only viewers and themselves.
      * @param teamId 
@@ -205,7 +205,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/teams/{teamId}/members/{memberId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"memberId"+"}", encodeURIComponent(memberId.toString())),
+            path = "/v1/teams/{teamId}/members/{memberId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"memberId"+"}", encodeURIComponent(memberId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -214,7 +214,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /teams/{teamId}/members/{memberId}
+     * GET /v1/teams/{teamId}/members/{memberId}
      * Get a member of the team
      * 
      * @param teamId 
@@ -247,7 +247,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /teams/{teamId}/members/{memberId}
+     * GET /v1/teams/{teamId}/members/{memberId}
      * Get a member of the team
      * 
      * @param teamId 
@@ -281,7 +281,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/teams/{teamId}/members/{memberId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"memberId"+"}", encodeURIComponent(memberId.toString())),
+            path = "/v1/teams/{teamId}/members/{memberId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"memberId"+"}", encodeURIComponent(memberId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -290,7 +290,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /teams/{teamId}/members
+     * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
      * 
      * @param teamId 
@@ -324,7 +324,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /teams/{teamId}/members
+     * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
      * 
      * @param teamId 
@@ -368,7 +368,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/teams/{teamId}/members".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}/members".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -377,7 +377,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * PATCH /teams/{teamId}/members/{memberId}
+     * PATCH /v1/teams/{teamId}/members/{memberId}
      * Change a member&#39;s role
      * 
      * @param teamId 
@@ -411,7 +411,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * PATCH /teams/{teamId}/members/{memberId}
+     * PATCH /v1/teams/{teamId}/members/{memberId}
      * Change a member&#39;s role
      * 
      * @param teamId 
@@ -448,7 +448,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.PATCH,
-            path = "/teams/{teamId}/members/{memberId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"memberId"+"}", encodeURIComponent(memberId.toString())),
+            path = "/v1/teams/{teamId}/members/{memberId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"memberId"+"}", encodeURIComponent(memberId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

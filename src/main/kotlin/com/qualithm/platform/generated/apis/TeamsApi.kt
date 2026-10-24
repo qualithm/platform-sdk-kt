@@ -60,7 +60,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * POST /teams
+     * POST /v1/teams
      * Create a team with the caller as owner
      * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller&#39;s workspace switches to the new team.
      * @return CreateTeamResponse
@@ -91,7 +91,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * POST /teams
+     * POST /v1/teams
      * Create a team with the caller as owner
      * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller&#39;s workspace switches to the new team.
      * @return ApiResponse<CreateTeamResponse?>
@@ -121,7 +121,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/teams",
+            path = "/v1/teams",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -130,7 +130,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * DELETE /teams/{teamId}
+     * DELETE /v1/teams/{teamId}
      * Delete the team with its spaces, devices and memberships
      * 
      * @param teamId 
@@ -162,7 +162,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * DELETE /teams/{teamId}
+     * DELETE /v1/teams/{teamId}
      * Delete the team with its spaces, devices and memberships
      * 
      * @param teamId 
@@ -194,7 +194,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/teams/{teamId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -203,8 +203,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /teams/{teamId}
-     * Get one of the caller&#39;s teams
+     * GET /v1/teams/{teamId}
+     * Get one of the caller&#39;s teams, with their role and permissions in it
      * 
      * @param teamId 
      * @return GetTeamResponse
@@ -235,8 +235,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /teams/{teamId}
-     * Get one of the caller&#39;s teams
+     * GET /v1/teams/{teamId}
+     * Get one of the caller&#39;s teams, with their role and permissions in it
      * 
      * @param teamId 
      * @return ApiResponse<GetTeamResponse?>
@@ -267,7 +267,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/teams/{teamId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -276,8 +276,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /teams
-     * List the caller&#39;s teams
+     * GET /v1/teams
+     * List the caller&#39;s teams; an API token sees only its own
      * 
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
@@ -309,8 +309,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /teams
-     * List the caller&#39;s teams
+     * GET /v1/teams
+     * List the caller&#39;s teams; an API token sees only its own
      * 
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
@@ -351,7 +351,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/teams",
+            path = "/v1/teams",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -360,7 +360,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * PATCH /teams/{teamId}
+     * PATCH /v1/teams/{teamId}
      * Rename the team
      * 
      * @param teamId 
@@ -393,7 +393,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * PATCH /teams/{teamId}
+     * PATCH /v1/teams/{teamId}
      * Rename the team
      * 
      * @param teamId 
@@ -428,7 +428,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.PATCH,
-            path = "/teams/{teamId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

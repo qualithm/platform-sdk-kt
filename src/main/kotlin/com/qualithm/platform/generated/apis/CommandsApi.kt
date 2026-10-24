@@ -57,9 +57,10 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * POST /devices/{deviceId}/commands
+     * POST /v1/teams/{teamId}/devices/{deviceId}/commands
      * Send a command to a device
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCommandRequest 
      * @return CreateDeviceCommandResponse
@@ -71,8 +72,8 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDeviceCommand(deviceId: java.util.UUID, createDeviceCommandRequest: CreateDeviceCommandRequest) : CreateDeviceCommandResponse {
-        val localVarResponse = createDeviceCommandWithHttpInfo(deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest)
+    public fun createDeviceCommand(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCommandRequest: CreateDeviceCommandRequest) : CreateDeviceCommandResponse {
+        val localVarResponse = createDeviceCommandWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDeviceCommandResponse
@@ -90,9 +91,10 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * POST /devices/{deviceId}/commands
+     * POST /v1/teams/{teamId}/devices/{deviceId}/commands
      * Send a command to a device
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCommandRequest 
      * @return ApiResponse<CreateDeviceCommandResponse?>
@@ -101,8 +103,8 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceCommandWithHttpInfo(deviceId: java.util.UUID, createDeviceCommandRequest: CreateDeviceCommandRequest) : ApiResponse<CreateDeviceCommandResponse?> {
-        val localVariableConfig = createDeviceCommandRequestConfig(deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest)
+    public fun createDeviceCommandWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCommandRequest: CreateDeviceCommandRequest) : ApiResponse<CreateDeviceCommandResponse?> {
+        val localVariableConfig = createDeviceCommandRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest)
 
         return request<CreateDeviceCommandRequest, CreateDeviceCommandResponse>(
             localVariableConfig
@@ -112,11 +114,12 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     /**
      * To obtain the request config of the operation createDeviceCommand
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCommandRequest 
      * @return RequestConfig
      */
-    public fun createDeviceCommandRequestConfig(deviceId: java.util.UUID, createDeviceCommandRequest: CreateDeviceCommandRequest) : RequestConfig<CreateDeviceCommandRequest> {
+    public fun createDeviceCommandRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCommandRequest: CreateDeviceCommandRequest) : RequestConfig<CreateDeviceCommandRequest> {
         val localVariableBody = createDeviceCommandRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -125,7 +128,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/devices/{deviceId}/commands".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/commands".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -134,9 +137,10 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * GET /devices/{deviceId}/commands
+     * GET /v1/teams/{teamId}/devices/{deviceId}/commands
      * List a device&#39;s recent command deliveries
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
@@ -149,8 +153,8 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDeviceCommands(deviceId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListDeviceCommandsResponse {
-        val localVarResponse = listDeviceCommandsWithHttpInfo(deviceId = deviceId, page = page, limit = limit)
+    public fun listDeviceCommands(teamId: java.util.UUID, deviceId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListDeviceCommandsResponse {
+        val localVarResponse = listDeviceCommandsWithHttpInfo(teamId = teamId, deviceId = deviceId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListDeviceCommandsResponse
@@ -168,9 +172,10 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     }
 
     /**
-     * GET /devices/{deviceId}/commands
+     * GET /v1/teams/{teamId}/devices/{deviceId}/commands
      * List a device&#39;s recent command deliveries
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
@@ -180,8 +185,8 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDeviceCommandsWithHttpInfo(deviceId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListDeviceCommandsResponse?> {
-        val localVariableConfig = listDeviceCommandsRequestConfig(deviceId = deviceId, page = page, limit = limit)
+    public fun listDeviceCommandsWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListDeviceCommandsResponse?> {
+        val localVariableConfig = listDeviceCommandsRequestConfig(teamId = teamId, deviceId = deviceId, page = page, limit = limit)
 
         return request<Unit, ListDeviceCommandsResponse>(
             localVariableConfig
@@ -191,12 +196,13 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     /**
      * To obtain the request config of the operation listDeviceCommands
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listDeviceCommandsRequestConfig(deviceId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listDeviceCommandsRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -212,7 +218,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/devices/{deviceId}/commands".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/commands".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
