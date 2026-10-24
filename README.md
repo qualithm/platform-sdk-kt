@@ -32,9 +32,14 @@ Create an API token in the Qualithm app, on the team page under **API tokens**, 
 ```kotlin
 import com.qualithm.platform.PlatformClient
 import com.qualithm.platform.generated.apis.DevicesApi
+import com.qualithm.platform.generated.apis.TeamsApi
 
 val platform = PlatformClient(token = "<your-api-token>")
-val page = platform.call { api(::DevicesApi).listDevices() }
+
+// An API token belongs to one team, so its team list has exactly that team.
+val teamId = platform.call { api(::TeamsApi).listTeams() }.data.items.first().id
+
+val page = platform.call { api(::DevicesApi).listDevices(teamId) }
 
 for (device in page.data.items) {
     println(device.name)
@@ -59,12 +64,14 @@ copy of it.
 
 `api(::SomeApi)` returns that resource group, bound to your token. Run calls inside
 `platform.call { … }`, which turns every failure into a `PlatformError`. Method names match the
-spec's `operationId`s. Every response is the API's envelope, so the result is in `data`:
+spec's `operationId`s. Every response is the API's envelope, so the result is in `data`. Operations
+on a team's resources take its `teamId`:
 
 ```kotlin
 import com.qualithm.platform.generated.apis.AutomationsApi
 
-val automations = platform.call { api(::AutomationsApi).listAutomations(page = 1, limit = 50) }
+val automations =
+    platform.call { api(::AutomationsApi).listAutomations(teamId, page = 1, limit = 50) }
 ```
 
 Calls block the calling thread. On Android, make them off the main thread.
@@ -80,10 +87,10 @@ import com.qualithm.platform.PlatformError
 import com.qualithm.platform.generated.models.ApiErrorCode
 
 try {
-    platform.call { api(::DevicesApi).getDevice(deviceId) }
+    platform.call { api(::DevicesApi).getDevice(teamId, deviceId) }
 } catch (error: PlatformError) {
     if (error.code == ApiErrorCode.NOT_FOUND) {
-        // the device doesn't exist, or isn't in this workspace
+        // the device doesn't exist, or isn't in this team
     }
     throw error
 }
@@ -102,9 +109,9 @@ The operations and types are generated from the platform's OpenAPI spec, committ
 
 See [`examples/`](examples/README.md):
 
-| Example                                       | Description                                                |
-| --------------------------------------------- | ---------------------------------------------------------- |
-| [`listdevices`](examples/listdevices/Main.kt) | List the workspace's devices, and report a `PlatformError` |
+| Example                                       | Description                                                        |
+| --------------------------------------------- | ------------------------------------------------------------------ |
+| [`listdevices`](examples/listdevices/Main.kt) | List the devices in the token's team, and report a `PlatformError` |
 
 ```bash
 QUALITHM_API_TOKEN=<your-api-token> ./gradlew runExample -Pexample=listdevices
