@@ -21,7 +21,7 @@ Add the library from Maven Central:
 
 ```kotlin
 dependencies {
-    implementation("com.qualithm:platform:0.1.0")
+    implementation("com.qualithm:platform:0.2.0")
 }
 ```
 
