@@ -79,9 +79,10 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      }
 
     /**
-     * GET /capabilities
+     * GET /v1/teams/{teamId}/capabilities
      * List the capabilities of the workspace&#39;s devices
      * 
+     * @param teamId The team the request acts on
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
@@ -96,8 +97,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listCapabilities(type: TypeListCapabilities? = null, tag: kotlin.String? = null, key: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListCapabilitiesResponse {
-        val localVarResponse = listCapabilitiesWithHttpInfo(type = type, tag = tag, key = key, page = page, limit = limit)
+    public fun listCapabilities(teamId: java.util.UUID, type: TypeListCapabilities? = null, tag: kotlin.String? = null, key: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListCapabilitiesResponse {
+        val localVarResponse = listCapabilitiesWithHttpInfo(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListCapabilitiesResponse
@@ -115,9 +116,10 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     }
 
     /**
-     * GET /capabilities
+     * GET /v1/teams/{teamId}/capabilities
      * List the capabilities of the workspace&#39;s devices
      * 
+     * @param teamId The team the request acts on
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
@@ -129,8 +131,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listCapabilitiesWithHttpInfo(type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListCapabilitiesResponse?> {
-        val localVariableConfig = listCapabilitiesRequestConfig(type = type, tag = tag, key = key, page = page, limit = limit)
+    public fun listCapabilitiesWithHttpInfo(teamId: java.util.UUID, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListCapabilitiesResponse?> {
+        val localVariableConfig = listCapabilitiesRequestConfig(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit)
 
         return request<Unit, ListCapabilitiesResponse>(
             localVariableConfig
@@ -140,6 +142,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     /**
      * To obtain the request config of the operation listCapabilities
      *
+     * @param teamId The team the request acts on
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
@@ -147,7 +150,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listCapabilitiesRequestConfig(type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listCapabilitiesRequestConfig(teamId: java.util.UUID, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -172,7 +175,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/capabilities",
+            path = "/v1/teams/{teamId}/capabilities".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -181,9 +184,10 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     }
 
     /**
-     * GET /devices/{deviceId}/capabilities
+     * GET /v1/teams/{teamId}/devices/{deviceId}/capabilities
      * List the capabilities a device declares
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @return ListDeviceCapabilitiesResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -194,8 +198,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDeviceCapabilities(deviceId: java.util.UUID) : ListDeviceCapabilitiesResponse {
-        val localVarResponse = listDeviceCapabilitiesWithHttpInfo(deviceId = deviceId)
+    public fun listDeviceCapabilities(teamId: java.util.UUID, deviceId: java.util.UUID) : ListDeviceCapabilitiesResponse {
+        val localVarResponse = listDeviceCapabilitiesWithHttpInfo(teamId = teamId, deviceId = deviceId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListDeviceCapabilitiesResponse
@@ -213,9 +217,10 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     }
 
     /**
-     * GET /devices/{deviceId}/capabilities
+     * GET /v1/teams/{teamId}/devices/{deviceId}/capabilities
      * List the capabilities a device declares
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @return ApiResponse<ListDeviceCapabilitiesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -223,8 +228,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDeviceCapabilitiesWithHttpInfo(deviceId: java.util.UUID) : ApiResponse<ListDeviceCapabilitiesResponse?> {
-        val localVariableConfig = listDeviceCapabilitiesRequestConfig(deviceId = deviceId)
+    public fun listDeviceCapabilitiesWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID) : ApiResponse<ListDeviceCapabilitiesResponse?> {
+        val localVariableConfig = listDeviceCapabilitiesRequestConfig(teamId = teamId, deviceId = deviceId)
 
         return request<Unit, ListDeviceCapabilitiesResponse>(
             localVariableConfig
@@ -234,10 +239,11 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     /**
      * To obtain the request config of the operation listDeviceCapabilities
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @return RequestConfig
      */
-    public fun listDeviceCapabilitiesRequestConfig(deviceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun listDeviceCapabilitiesRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -245,7 +251,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/devices/{deviceId}/capabilities".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/capabilities".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -254,9 +260,10 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     }
 
     /**
-     * PATCH /capabilities/{capabilityId}
+     * PATCH /v1/teams/{teamId}/capabilities/{capabilityId}
      * Rename or retag a capability
      * 
+     * @param teamId The team the request acts on
      * @param capabilityId 
      * @param updateCapabilityRequest 
      * @return UpdateCapabilityResponse
@@ -268,8 +275,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateCapability(capabilityId: java.util.UUID, updateCapabilityRequest: UpdateCapabilityRequest) : UpdateCapabilityResponse {
-        val localVarResponse = updateCapabilityWithHttpInfo(capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest)
+    public fun updateCapability(teamId: java.util.UUID, capabilityId: java.util.UUID, updateCapabilityRequest: UpdateCapabilityRequest) : UpdateCapabilityResponse {
+        val localVarResponse = updateCapabilityWithHttpInfo(teamId = teamId, capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as UpdateCapabilityResponse
@@ -287,9 +294,10 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     }
 
     /**
-     * PATCH /capabilities/{capabilityId}
+     * PATCH /v1/teams/{teamId}/capabilities/{capabilityId}
      * Rename or retag a capability
      * 
+     * @param teamId The team the request acts on
      * @param capabilityId 
      * @param updateCapabilityRequest 
      * @return ApiResponse<UpdateCapabilityResponse?>
@@ -298,8 +306,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateCapabilityWithHttpInfo(capabilityId: java.util.UUID, updateCapabilityRequest: UpdateCapabilityRequest) : ApiResponse<UpdateCapabilityResponse?> {
-        val localVariableConfig = updateCapabilityRequestConfig(capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest)
+    public fun updateCapabilityWithHttpInfo(teamId: java.util.UUID, capabilityId: java.util.UUID, updateCapabilityRequest: UpdateCapabilityRequest) : ApiResponse<UpdateCapabilityResponse?> {
+        val localVariableConfig = updateCapabilityRequestConfig(teamId = teamId, capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest)
 
         return request<UpdateCapabilityRequest, UpdateCapabilityResponse>(
             localVariableConfig
@@ -309,11 +317,12 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     /**
      * To obtain the request config of the operation updateCapability
      *
+     * @param teamId The team the request acts on
      * @param capabilityId 
      * @param updateCapabilityRequest 
      * @return RequestConfig
      */
-    public fun updateCapabilityRequestConfig(capabilityId: java.util.UUID, updateCapabilityRequest: UpdateCapabilityRequest) : RequestConfig<UpdateCapabilityRequest> {
+    public fun updateCapabilityRequestConfig(teamId: java.util.UUID, capabilityId: java.util.UUID, updateCapabilityRequest: UpdateCapabilityRequest) : RequestConfig<UpdateCapabilityRequest> {
         val localVariableBody = updateCapabilityRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -322,7 +331,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
 
         return RequestConfig(
             method = RequestMethod.PATCH,
-            path = "/capabilities/{capabilityId}".replace("{"+"capabilityId"+"}", encodeURIComponent(capabilityId.toString())),
+            path = "/v1/teams/{teamId}/capabilities/{capabilityId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"capabilityId"+"}", encodeURIComponent(capabilityId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

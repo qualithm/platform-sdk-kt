@@ -40,6 +40,7 @@ private class Stub(
 }
 
 class PlatformClientTest {
+    private val teamId = UUID.fromString("1c2d3e4f-5a6b-4c7d-8e9f-0a1b2c3d4e5f")
     private val deviceId = UUID.fromString("0b9f8a1e-8c1d-4b6f-9a51-2f6c1e3d4a5b")
 
     private fun client(
@@ -60,11 +61,14 @@ class PlatformClientTest {
         val stub = Stub(body = """{"data":{"current":1,"items":[],"last":1}}""")
         val platform = client(stub)
 
-        val page = platform.call { api(::DevicesApi).listDevices(page = 2, limit = 10) }
+        val page = platform.call { api(::DevicesApi).listDevices(teamId, page = 2, limit = 10) }
 
         assertTrue(page.`data`.items.isEmpty())
         val request = stub.requests.single()
-        assertEquals("https://api.qualithm.com/devices?page=2&limit=10", request.url.toString())
+        assertEquals(
+            "https://api.qualithm.com/v1/teams/$teamId/devices?page=2&limit=10",
+            request.url.toString(),
+        )
         assertEquals("Bearer qmt_test", request.header("Authorization"))
     }
 
@@ -136,7 +140,7 @@ class PlatformClientTest {
     private fun failure(stub: Stub): PlatformError {
         val platform = client(stub)
         return assertThrows(PlatformError::class.java) {
-            platform.call { api(::DevicesApi).getDevice(deviceId) }
+            platform.call { api(::DevicesApi).getDevice(teamId, deviceId) }
         }
     }
 

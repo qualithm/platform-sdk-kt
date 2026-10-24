@@ -32,7 +32,6 @@ import com.qualithm.platform.generated.models.CreateSpaceRequest
 import com.qualithm.platform.generated.models.CreateSpaceResponse
 import com.qualithm.platform.generated.models.DeleteSpaceResponse
 import com.qualithm.platform.generated.models.GetSpaceResponse
-import com.qualithm.platform.generated.models.ListSpaceDevicesResponse
 import com.qualithm.platform.generated.models.ListSpacesResponse
 import com.qualithm.platform.generated.models.UpdateSpaceRequest
 import com.qualithm.platform.generated.models.UpdateSpaceResponse
@@ -62,9 +61,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * POST /spaces
+     * POST /v1/teams/{teamId}/spaces
      * Create a space in a zone
      * 
+     * @param teamId The team the request acts on
      * @param createSpaceRequest 
      * @return CreateSpaceResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -75,8 +75,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createSpace(createSpaceRequest: CreateSpaceRequest) : CreateSpaceResponse {
-        val localVarResponse = createSpaceWithHttpInfo(createSpaceRequest = createSpaceRequest)
+    public fun createSpace(teamId: java.util.UUID, createSpaceRequest: CreateSpaceRequest) : CreateSpaceResponse {
+        val localVarResponse = createSpaceWithHttpInfo(teamId = teamId, createSpaceRequest = createSpaceRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateSpaceResponse
@@ -94,9 +94,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * POST /spaces
+     * POST /v1/teams/{teamId}/spaces
      * Create a space in a zone
      * 
+     * @param teamId The team the request acts on
      * @param createSpaceRequest 
      * @return ApiResponse<CreateSpaceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -104,8 +105,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createSpaceWithHttpInfo(createSpaceRequest: CreateSpaceRequest) : ApiResponse<CreateSpaceResponse?> {
-        val localVariableConfig = createSpaceRequestConfig(createSpaceRequest = createSpaceRequest)
+    public fun createSpaceWithHttpInfo(teamId: java.util.UUID, createSpaceRequest: CreateSpaceRequest) : ApiResponse<CreateSpaceResponse?> {
+        val localVariableConfig = createSpaceRequestConfig(teamId = teamId, createSpaceRequest = createSpaceRequest)
 
         return request<CreateSpaceRequest, CreateSpaceResponse>(
             localVariableConfig
@@ -115,10 +116,11 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * To obtain the request config of the operation createSpace
      *
+     * @param teamId The team the request acts on
      * @param createSpaceRequest 
      * @return RequestConfig
      */
-    public fun createSpaceRequestConfig(createSpaceRequest: CreateSpaceRequest) : RequestConfig<CreateSpaceRequest> {
+    public fun createSpaceRequestConfig(teamId: java.util.UUID, createSpaceRequest: CreateSpaceRequest) : RequestConfig<CreateSpaceRequest> {
         val localVariableBody = createSpaceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -127,7 +129,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/spaces",
+            path = "/v1/teams/{teamId}/spaces".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -136,9 +138,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * DELETE /spaces/{spaceId}
+     * DELETE /v1/teams/{teamId}/spaces/{spaceId}
      * Delete a space and its devices
      * 
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @return DeleteSpaceResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -149,8 +152,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteSpace(spaceId: java.util.UUID) : DeleteSpaceResponse {
-        val localVarResponse = deleteSpaceWithHttpInfo(spaceId = spaceId)
+    public fun deleteSpace(teamId: java.util.UUID, spaceId: java.util.UUID) : DeleteSpaceResponse {
+        val localVarResponse = deleteSpaceWithHttpInfo(teamId = teamId, spaceId = spaceId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteSpaceResponse
@@ -168,9 +171,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * DELETE /spaces/{spaceId}
+     * DELETE /v1/teams/{teamId}/spaces/{spaceId}
      * Delete a space and its devices
      * 
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @return ApiResponse<DeleteSpaceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -178,8 +182,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteSpaceWithHttpInfo(spaceId: java.util.UUID) : ApiResponse<DeleteSpaceResponse?> {
-        val localVariableConfig = deleteSpaceRequestConfig(spaceId = spaceId)
+    public fun deleteSpaceWithHttpInfo(teamId: java.util.UUID, spaceId: java.util.UUID) : ApiResponse<DeleteSpaceResponse?> {
+        val localVariableConfig = deleteSpaceRequestConfig(teamId = teamId, spaceId = spaceId)
 
         return request<Unit, DeleteSpaceResponse>(
             localVariableConfig
@@ -189,10 +193,11 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * To obtain the request config of the operation deleteSpace
      *
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @return RequestConfig
      */
-    public fun deleteSpaceRequestConfig(spaceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteSpaceRequestConfig(teamId: java.util.UUID, spaceId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -200,7 +205,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/spaces/{spaceId}".replace("{"+"spaceId"+"}", encodeURIComponent(spaceId.toString())),
+            path = "/v1/teams/{teamId}/spaces/{spaceId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"spaceId"+"}", encodeURIComponent(spaceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -209,9 +214,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * GET /spaces/{spaceId}
+     * GET /v1/teams/{teamId}/spaces/{spaceId}
      * Get a space
      * 
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @return GetSpaceResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -222,8 +228,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getSpace(spaceId: java.util.UUID) : GetSpaceResponse {
-        val localVarResponse = getSpaceWithHttpInfo(spaceId = spaceId)
+    public fun getSpace(teamId: java.util.UUID, spaceId: java.util.UUID) : GetSpaceResponse {
+        val localVarResponse = getSpaceWithHttpInfo(teamId = teamId, spaceId = spaceId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetSpaceResponse
@@ -241,9 +247,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * GET /spaces/{spaceId}
+     * GET /v1/teams/{teamId}/spaces/{spaceId}
      * Get a space
      * 
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @return ApiResponse<GetSpaceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -251,8 +258,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getSpaceWithHttpInfo(spaceId: java.util.UUID) : ApiResponse<GetSpaceResponse?> {
-        val localVariableConfig = getSpaceRequestConfig(spaceId = spaceId)
+    public fun getSpaceWithHttpInfo(teamId: java.util.UUID, spaceId: java.util.UUID) : ApiResponse<GetSpaceResponse?> {
+        val localVariableConfig = getSpaceRequestConfig(teamId = teamId, spaceId = spaceId)
 
         return request<Unit, GetSpaceResponse>(
             localVariableConfig
@@ -262,10 +269,11 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * To obtain the request config of the operation getSpace
      *
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @return RequestConfig
      */
-    public fun getSpaceRequestConfig(spaceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getSpaceRequestConfig(teamId: java.util.UUID, spaceId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -273,7 +281,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/spaces/{spaceId}".replace("{"+"spaceId"+"}", encodeURIComponent(spaceId.toString())),
+            path = "/v1/teams/{teamId}/spaces/{spaceId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"spaceId"+"}", encodeURIComponent(spaceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -282,96 +290,29 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * GET /spaces/{spaceId}/devices
-     * List a space&#39;s devices
-     * 
-     * @param spaceId 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
-     * @return ListSpaceDevicesResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
+     * enum for parameter zone
      */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listSpaceDevices(spaceId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListSpaceDevicesResponse {
-        val localVarResponse = listSpaceDevicesWithHttpInfo(spaceId = spaceId, page = page, limit = limit)
+     public enum class ZoneListSpaces(public val value: kotlin.String) {
+         @Json(name = "de-fra-a") DE_FRA_A("de-fra-a"),
+         @Json(name = "sg-sin-a") SG_SIN_A("sg-sin-a"),
+         @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ListSpaceDevicesResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
 
     /**
-     * GET /spaces/{spaceId}/devices
-     * List a space&#39;s devices
-     * 
-     * @param spaceId 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
-     * @return ApiResponse<ListSpaceDevicesResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    public fun listSpaceDevicesWithHttpInfo(spaceId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListSpaceDevicesResponse?> {
-        val localVariableConfig = listSpaceDevicesRequestConfig(spaceId = spaceId, page = page, limit = limit)
-
-        return request<Unit, ListSpaceDevicesResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listSpaceDevices
-     *
-     * @param spaceId 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
-     * @return RequestConfig
-     */
-    public fun listSpaceDevicesRequestConfig(spaceId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/spaces/{spaceId}/devices".replace("{"+"spaceId"+"}", encodeURIComponent(spaceId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * GET /spaces
+     * GET /v1/teams/{teamId}/spaces
      * List the workspace&#39;s spaces
      * 
+     * @param teamId The team the request acts on
+     * @param zone Only the spaces in this zone (optional)
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListSpacesResponse
@@ -383,8 +324,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listSpaces(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListSpacesResponse {
-        val localVarResponse = listSpacesWithHttpInfo(page = page, limit = limit)
+    public fun listSpaces(teamId: java.util.UUID, zone: ZoneListSpaces? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListSpacesResponse {
+        val localVarResponse = listSpacesWithHttpInfo(teamId = teamId, zone = zone, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListSpacesResponse
@@ -402,9 +343,11 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * GET /spaces
+     * GET /v1/teams/{teamId}/spaces
      * List the workspace&#39;s spaces
      * 
+     * @param teamId The team the request acts on
+     * @param zone Only the spaces in this zone (optional)
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListSpacesResponse?>
@@ -413,8 +356,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listSpacesWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListSpacesResponse?> {
-        val localVariableConfig = listSpacesRequestConfig(page = page, limit = limit)
+    public fun listSpacesWithHttpInfo(teamId: java.util.UUID, zone: ZoneListSpaces?, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListSpacesResponse?> {
+        val localVariableConfig = listSpacesRequestConfig(teamId = teamId, zone = zone, page = page, limit = limit)
 
         return request<Unit, ListSpacesResponse>(
             localVariableConfig
@@ -424,14 +367,19 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * To obtain the request config of the operation listSpaces
      *
+     * @param teamId The team the request acts on
+     * @param zone Only the spaces in this zone (optional)
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listSpacesRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listSpacesRequestConfig(teamId: java.util.UUID, zone: ZoneListSpaces?, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
+                if (zone != null) {
+                    put("zone", listOf(zone.value))
+                }
                 if (page != null) {
                     put("page", listOf(page.toString()))
                 }
@@ -444,7 +392,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/spaces",
+            path = "/v1/teams/{teamId}/spaces".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -453,9 +401,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * PATCH /spaces/{spaceId}
+     * PATCH /v1/teams/{teamId}/spaces/{spaceId}
      * Rename a space
      * 
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @param updateSpaceRequest 
      * @return UpdateSpaceResponse
@@ -467,8 +416,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateSpace(spaceId: java.util.UUID, updateSpaceRequest: UpdateSpaceRequest) : UpdateSpaceResponse {
-        val localVarResponse = updateSpaceWithHttpInfo(spaceId = spaceId, updateSpaceRequest = updateSpaceRequest)
+    public fun updateSpace(teamId: java.util.UUID, spaceId: java.util.UUID, updateSpaceRequest: UpdateSpaceRequest) : UpdateSpaceResponse {
+        val localVarResponse = updateSpaceWithHttpInfo(teamId = teamId, spaceId = spaceId, updateSpaceRequest = updateSpaceRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as UpdateSpaceResponse
@@ -486,9 +435,10 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     }
 
     /**
-     * PATCH /spaces/{spaceId}
+     * PATCH /v1/teams/{teamId}/spaces/{spaceId}
      * Rename a space
      * 
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @param updateSpaceRequest 
      * @return ApiResponse<UpdateSpaceResponse?>
@@ -497,8 +447,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateSpaceWithHttpInfo(spaceId: java.util.UUID, updateSpaceRequest: UpdateSpaceRequest) : ApiResponse<UpdateSpaceResponse?> {
-        val localVariableConfig = updateSpaceRequestConfig(spaceId = spaceId, updateSpaceRequest = updateSpaceRequest)
+    public fun updateSpaceWithHttpInfo(teamId: java.util.UUID, spaceId: java.util.UUID, updateSpaceRequest: UpdateSpaceRequest) : ApiResponse<UpdateSpaceResponse?> {
+        val localVariableConfig = updateSpaceRequestConfig(teamId = teamId, spaceId = spaceId, updateSpaceRequest = updateSpaceRequest)
 
         return request<UpdateSpaceRequest, UpdateSpaceResponse>(
             localVariableConfig
@@ -508,11 +458,12 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * To obtain the request config of the operation updateSpace
      *
+     * @param teamId The team the request acts on
      * @param spaceId 
      * @param updateSpaceRequest 
      * @return RequestConfig
      */
-    public fun updateSpaceRequestConfig(spaceId: java.util.UUID, updateSpaceRequest: UpdateSpaceRequest) : RequestConfig<UpdateSpaceRequest> {
+    public fun updateSpaceRequestConfig(teamId: java.util.UUID, spaceId: java.util.UUID, updateSpaceRequest: UpdateSpaceRequest) : RequestConfig<UpdateSpaceRequest> {
         val localVariableBody = updateSpaceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -521,7 +472,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
 
         return RequestConfig(
             method = RequestMethod.PATCH,
-            path = "/spaces/{spaceId}".replace("{"+"spaceId"+"}", encodeURIComponent(spaceId.toString())),
+            path = "/v1/teams/{teamId}/spaces/{spaceId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"spaceId"+"}", encodeURIComponent(spaceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

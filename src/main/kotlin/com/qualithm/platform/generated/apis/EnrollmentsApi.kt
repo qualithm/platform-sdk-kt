@@ -58,9 +58,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /enrollments
+     * POST /v1/teams/{teamId}/enrollments
      * Create a claim code for a device to enroll into a space
      * 
+     * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
      * @return CreateEnrollmentResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -71,8 +72,8 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createEnrollment(createEnrollmentRequest: CreateEnrollmentRequest) : CreateEnrollmentResponse {
-        val localVarResponse = createEnrollmentWithHttpInfo(createEnrollmentRequest = createEnrollmentRequest)
+    public fun createEnrollment(teamId: java.util.UUID, createEnrollmentRequest: CreateEnrollmentRequest) : CreateEnrollmentResponse {
+        val localVarResponse = createEnrollmentWithHttpInfo(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateEnrollmentResponse
@@ -90,9 +91,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /enrollments
+     * POST /v1/teams/{teamId}/enrollments
      * Create a claim code for a device to enroll into a space
      * 
+     * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
      * @return ApiResponse<CreateEnrollmentResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -100,8 +102,8 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createEnrollmentWithHttpInfo(createEnrollmentRequest: CreateEnrollmentRequest) : ApiResponse<CreateEnrollmentResponse?> {
-        val localVariableConfig = createEnrollmentRequestConfig(createEnrollmentRequest = createEnrollmentRequest)
+    public fun createEnrollmentWithHttpInfo(teamId: java.util.UUID, createEnrollmentRequest: CreateEnrollmentRequest) : ApiResponse<CreateEnrollmentResponse?> {
+        val localVariableConfig = createEnrollmentRequestConfig(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest)
 
         return request<CreateEnrollmentRequest, CreateEnrollmentResponse>(
             localVariableConfig
@@ -111,10 +113,11 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation createEnrollment
      *
+     * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
      * @return RequestConfig
      */
-    public fun createEnrollmentRequestConfig(createEnrollmentRequest: CreateEnrollmentRequest) : RequestConfig<CreateEnrollmentRequest> {
+    public fun createEnrollmentRequestConfig(teamId: java.util.UUID, createEnrollmentRequest: CreateEnrollmentRequest) : RequestConfig<CreateEnrollmentRequest> {
         val localVariableBody = createEnrollmentRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -123,7 +126,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/enrollments",
+            path = "/v1/teams/{teamId}/enrollments".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -132,9 +135,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * DELETE /enrollments/{enrollmentId}
+     * DELETE /v1/teams/{teamId}/enrollments/{enrollmentId}
      * Revoke a pending enrollment
      * 
+     * @param teamId The team the request acts on
      * @param enrollmentId 
      * @return DeleteEnrollmentResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -145,8 +149,8 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteEnrollment(enrollmentId: java.util.UUID) : DeleteEnrollmentResponse {
-        val localVarResponse = deleteEnrollmentWithHttpInfo(enrollmentId = enrollmentId)
+    public fun deleteEnrollment(teamId: java.util.UUID, enrollmentId: java.util.UUID) : DeleteEnrollmentResponse {
+        val localVarResponse = deleteEnrollmentWithHttpInfo(teamId = teamId, enrollmentId = enrollmentId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteEnrollmentResponse
@@ -164,9 +168,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * DELETE /enrollments/{enrollmentId}
+     * DELETE /v1/teams/{teamId}/enrollments/{enrollmentId}
      * Revoke a pending enrollment
      * 
+     * @param teamId The team the request acts on
      * @param enrollmentId 
      * @return ApiResponse<DeleteEnrollmentResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -174,8 +179,8 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteEnrollmentWithHttpInfo(enrollmentId: java.util.UUID) : ApiResponse<DeleteEnrollmentResponse?> {
-        val localVariableConfig = deleteEnrollmentRequestConfig(enrollmentId = enrollmentId)
+    public fun deleteEnrollmentWithHttpInfo(teamId: java.util.UUID, enrollmentId: java.util.UUID) : ApiResponse<DeleteEnrollmentResponse?> {
+        val localVariableConfig = deleteEnrollmentRequestConfig(teamId = teamId, enrollmentId = enrollmentId)
 
         return request<Unit, DeleteEnrollmentResponse>(
             localVariableConfig
@@ -185,10 +190,11 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation deleteEnrollment
      *
+     * @param teamId The team the request acts on
      * @param enrollmentId 
      * @return RequestConfig
      */
-    public fun deleteEnrollmentRequestConfig(enrollmentId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteEnrollmentRequestConfig(teamId: java.util.UUID, enrollmentId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -196,7 +202,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/enrollments/{enrollmentId}".replace("{"+"enrollmentId"+"}", encodeURIComponent(enrollmentId.toString())),
+            path = "/v1/teams/{teamId}/enrollments/{enrollmentId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"enrollmentId"+"}", encodeURIComponent(enrollmentId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -205,9 +211,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * GET /enrollments
+     * GET /v1/teams/{teamId}/enrollments
      * List the workspace&#39;s enrollments
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListEnrollmentsResponse
@@ -219,8 +226,8 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listEnrollments(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListEnrollmentsResponse {
-        val localVarResponse = listEnrollmentsWithHttpInfo(page = page, limit = limit)
+    public fun listEnrollments(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListEnrollmentsResponse {
+        val localVarResponse = listEnrollmentsWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListEnrollmentsResponse
@@ -238,9 +245,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * GET /enrollments
+     * GET /v1/teams/{teamId}/enrollments
      * List the workspace&#39;s enrollments
      * 
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListEnrollmentsResponse?>
@@ -249,8 +257,8 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listEnrollmentsWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListEnrollmentsResponse?> {
-        val localVariableConfig = listEnrollmentsRequestConfig(page = page, limit = limit)
+    public fun listEnrollmentsWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListEnrollmentsResponse?> {
+        val localVariableConfig = listEnrollmentsRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListEnrollmentsResponse>(
             localVariableConfig
@@ -260,11 +268,12 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation listEnrollments
      *
+     * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listEnrollmentsRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listEnrollmentsRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -280,7 +289,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/enrollments",
+            path = "/v1/teams/{teamId}/enrollments".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
