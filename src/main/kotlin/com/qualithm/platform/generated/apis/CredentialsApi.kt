@@ -62,9 +62,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /devices/{deviceId}/credentials/cert
+     * POST /v1/teams/{teamId}/devices/{deviceId}/credentials/cert
      * Issue a client certificate for a device from its CSR
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCertificateRequest 
      * @return CreateDeviceCertificateResponse
@@ -76,8 +77,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDeviceCertificate(deviceId: java.util.UUID, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : CreateDeviceCertificateResponse {
-        val localVarResponse = createDeviceCertificateWithHttpInfo(deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest)
+    public fun createDeviceCertificate(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : CreateDeviceCertificateResponse {
+        val localVarResponse = createDeviceCertificateWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDeviceCertificateResponse
@@ -95,9 +96,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /devices/{deviceId}/credentials/cert
+     * POST /v1/teams/{teamId}/devices/{deviceId}/credentials/cert
      * Issue a client certificate for a device from its CSR
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCertificateRequest 
      * @return ApiResponse<CreateDeviceCertificateResponse?>
@@ -106,8 +108,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceCertificateWithHttpInfo(deviceId: java.util.UUID, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : ApiResponse<CreateDeviceCertificateResponse?> {
-        val localVariableConfig = createDeviceCertificateRequestConfig(deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest)
+    public fun createDeviceCertificateWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : ApiResponse<CreateDeviceCertificateResponse?> {
+        val localVariableConfig = createDeviceCertificateRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest)
 
         return request<CreateDeviceCertificateRequest, CreateDeviceCertificateResponse>(
             localVariableConfig
@@ -117,11 +119,12 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation createDeviceCertificate
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCertificateRequest 
      * @return RequestConfig
      */
-    public fun createDeviceCertificateRequestConfig(deviceId: java.util.UUID, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : RequestConfig<CreateDeviceCertificateRequest> {
+    public fun createDeviceCertificateRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : RequestConfig<CreateDeviceCertificateRequest> {
         val localVariableBody = createDeviceCertificateRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -130,7 +133,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/devices/{deviceId}/credentials/cert".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/credentials/cert".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -139,9 +142,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /devices/{deviceId}/credentials
+     * POST /v1/teams/{teamId}/devices/{deviceId}/credentials
      * Mint a token credential for a device
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCredentialRequest  (optional)
      * @return CreateDeviceCredentialResponse
@@ -153,8 +157,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDeviceCredential(deviceId: java.util.UUID, createDeviceCredentialRequest: CreateDeviceCredentialRequest? = null) : CreateDeviceCredentialResponse {
-        val localVarResponse = createDeviceCredentialWithHttpInfo(deviceId = deviceId, createDeviceCredentialRequest = createDeviceCredentialRequest)
+    public fun createDeviceCredential(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCredentialRequest: CreateDeviceCredentialRequest? = null) : CreateDeviceCredentialResponse {
+        val localVarResponse = createDeviceCredentialWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCredentialRequest = createDeviceCredentialRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDeviceCredentialResponse
@@ -172,9 +176,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /devices/{deviceId}/credentials
+     * POST /v1/teams/{teamId}/devices/{deviceId}/credentials
      * Mint a token credential for a device
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCredentialRequest  (optional)
      * @return ApiResponse<CreateDeviceCredentialResponse?>
@@ -183,8 +188,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceCredentialWithHttpInfo(deviceId: java.util.UUID, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : ApiResponse<CreateDeviceCredentialResponse?> {
-        val localVariableConfig = createDeviceCredentialRequestConfig(deviceId = deviceId, createDeviceCredentialRequest = createDeviceCredentialRequest)
+    public fun createDeviceCredentialWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : ApiResponse<CreateDeviceCredentialResponse?> {
+        val localVariableConfig = createDeviceCredentialRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCredentialRequest = createDeviceCredentialRequest)
 
         return request<CreateDeviceCredentialRequest, CreateDeviceCredentialResponse>(
             localVariableConfig
@@ -194,11 +199,12 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation createDeviceCredential
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param createDeviceCredentialRequest  (optional)
      * @return RequestConfig
      */
-    public fun createDeviceCredentialRequestConfig(deviceId: java.util.UUID, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : RequestConfig<CreateDeviceCredentialRequest> {
+    public fun createDeviceCredentialRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : RequestConfig<CreateDeviceCredentialRequest> {
         val localVariableBody = createDeviceCredentialRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -207,7 +213,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/devices/{deviceId}/credentials".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/credentials".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -216,9 +222,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * DELETE /devices/{deviceId}/credentials/{credentialId}
+     * DELETE /v1/teams/{teamId}/devices/{deviceId}/credentials/{credentialId}
      * Revoke a device&#39;s credential
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param credentialId 
      * @return DeleteDeviceCredentialResponse
@@ -230,8 +237,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteDeviceCredential(deviceId: java.util.UUID, credentialId: java.util.UUID) : DeleteDeviceCredentialResponse {
-        val localVarResponse = deleteDeviceCredentialWithHttpInfo(deviceId = deviceId, credentialId = credentialId)
+    public fun deleteDeviceCredential(teamId: java.util.UUID, deviceId: java.util.UUID, credentialId: java.util.UUID) : DeleteDeviceCredentialResponse {
+        val localVarResponse = deleteDeviceCredentialWithHttpInfo(teamId = teamId, deviceId = deviceId, credentialId = credentialId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteDeviceCredentialResponse
@@ -249,9 +256,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * DELETE /devices/{deviceId}/credentials/{credentialId}
+     * DELETE /v1/teams/{teamId}/devices/{deviceId}/credentials/{credentialId}
      * Revoke a device&#39;s credential
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param credentialId 
      * @return ApiResponse<DeleteDeviceCredentialResponse?>
@@ -260,8 +268,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteDeviceCredentialWithHttpInfo(deviceId: java.util.UUID, credentialId: java.util.UUID) : ApiResponse<DeleteDeviceCredentialResponse?> {
-        val localVariableConfig = deleteDeviceCredentialRequestConfig(deviceId = deviceId, credentialId = credentialId)
+    public fun deleteDeviceCredentialWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, credentialId: java.util.UUID) : ApiResponse<DeleteDeviceCredentialResponse?> {
+        val localVariableConfig = deleteDeviceCredentialRequestConfig(teamId = teamId, deviceId = deviceId, credentialId = credentialId)
 
         return request<Unit, DeleteDeviceCredentialResponse>(
             localVariableConfig
@@ -271,11 +279,12 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation deleteDeviceCredential
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param credentialId 
      * @return RequestConfig
      */
-    public fun deleteDeviceCredentialRequestConfig(deviceId: java.util.UUID, credentialId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteDeviceCredentialRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, credentialId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -283,7 +292,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/devices/{deviceId}/credentials/{credentialId}".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())).replace("{"+"credentialId"+"}", encodeURIComponent(credentialId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/credentials/{credentialId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())).replace("{"+"credentialId"+"}", encodeURIComponent(credentialId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -292,9 +301,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * GET /devices/{deviceId}/credentials
+     * GET /v1/teams/{teamId}/devices/{deviceId}/credentials
      * List a device&#39;s credentials
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @return ListDeviceCredentialsResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -305,8 +315,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDeviceCredentials(deviceId: java.util.UUID) : ListDeviceCredentialsResponse {
-        val localVarResponse = listDeviceCredentialsWithHttpInfo(deviceId = deviceId)
+    public fun listDeviceCredentials(teamId: java.util.UUID, deviceId: java.util.UUID) : ListDeviceCredentialsResponse {
+        val localVarResponse = listDeviceCredentialsWithHttpInfo(teamId = teamId, deviceId = deviceId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListDeviceCredentialsResponse
@@ -324,9 +334,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * GET /devices/{deviceId}/credentials
+     * GET /v1/teams/{teamId}/devices/{deviceId}/credentials
      * List a device&#39;s credentials
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @return ApiResponse<ListDeviceCredentialsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -334,8 +345,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDeviceCredentialsWithHttpInfo(deviceId: java.util.UUID) : ApiResponse<ListDeviceCredentialsResponse?> {
-        val localVariableConfig = listDeviceCredentialsRequestConfig(deviceId = deviceId)
+    public fun listDeviceCredentialsWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID) : ApiResponse<ListDeviceCredentialsResponse?> {
+        val localVariableConfig = listDeviceCredentialsRequestConfig(teamId = teamId, deviceId = deviceId)
 
         return request<Unit, ListDeviceCredentialsResponse>(
             localVariableConfig
@@ -345,10 +356,11 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation listDeviceCredentials
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @return RequestConfig
      */
-    public fun listDeviceCredentialsRequestConfig(deviceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun listDeviceCredentialsRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -356,7 +368,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/devices/{deviceId}/credentials".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/credentials".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -365,9 +377,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /devices/{deviceId}/credentials/{credentialId}/rotate
+     * POST /v1/teams/{teamId}/devices/{deviceId}/credentials/{credentialId}/rotate
      * Rotate a device&#39;s token credential
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param credentialId 
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
@@ -381,8 +394,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun rotateDeviceCredential(deviceId: java.util.UUID, credentialId: java.util.UUID, revoke: kotlin.String? = null, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest? = null) : RotateDeviceCredentialResponse {
-        val localVarResponse = rotateDeviceCredentialWithHttpInfo(deviceId = deviceId, credentialId = credentialId, revoke = revoke, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
+    public fun rotateDeviceCredential(teamId: java.util.UUID, deviceId: java.util.UUID, credentialId: java.util.UUID, revoke: kotlin.String? = null, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest? = null) : RotateDeviceCredentialResponse {
+        val localVarResponse = rotateDeviceCredentialWithHttpInfo(teamId = teamId, deviceId = deviceId, credentialId = credentialId, revoke = revoke, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as RotateDeviceCredentialResponse
@@ -400,9 +413,10 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /devices/{deviceId}/credentials/{credentialId}/rotate
+     * POST /v1/teams/{teamId}/devices/{deviceId}/credentials/{credentialId}/rotate
      * Rotate a device&#39;s token credential
      * 
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param credentialId 
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
@@ -413,8 +427,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun rotateDeviceCredentialWithHttpInfo(deviceId: java.util.UUID, credentialId: java.util.UUID, revoke: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : ApiResponse<RotateDeviceCredentialResponse?> {
-        val localVariableConfig = rotateDeviceCredentialRequestConfig(deviceId = deviceId, credentialId = credentialId, revoke = revoke, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
+    public fun rotateDeviceCredentialWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, credentialId: java.util.UUID, revoke: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : ApiResponse<RotateDeviceCredentialResponse?> {
+        val localVariableConfig = rotateDeviceCredentialRequestConfig(teamId = teamId, deviceId = deviceId, credentialId = credentialId, revoke = revoke, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
 
         return request<RotateDeviceCredentialRequest, RotateDeviceCredentialResponse>(
             localVariableConfig
@@ -424,13 +438,14 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation rotateDeviceCredential
      *
+     * @param teamId The team the request acts on
      * @param deviceId 
      * @param credentialId 
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
      * @param rotateDeviceCredentialRequest  (optional)
      * @return RequestConfig
      */
-    public fun rotateDeviceCredentialRequestConfig(deviceId: java.util.UUID, credentialId: java.util.UUID, revoke: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : RequestConfig<RotateDeviceCredentialRequest> {
+    public fun rotateDeviceCredentialRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, credentialId: java.util.UUID, revoke: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : RequestConfig<RotateDeviceCredentialRequest> {
         val localVariableBody = rotateDeviceCredentialRequest
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -444,7 +459,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/devices/{deviceId}/credentials/{credentialId}/rotate".replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())).replace("{"+"credentialId"+"}", encodeURIComponent(credentialId.toString())),
+            path = "/v1/teams/{teamId}/devices/{deviceId}/credentials/{credentialId}/rotate".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())).replace("{"+"credentialId"+"}", encodeURIComponent(credentialId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

@@ -56,7 +56,7 @@ public open class AccountApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /account
+     * GET /v1/account
      * Get the caller&#39;s account
      * 
      * @return GetAccountResponse
@@ -87,7 +87,7 @@ public open class AccountApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /account
+     * GET /v1/account
      * Get the caller&#39;s account
      * 
      * @return ApiResponse<GetAccountResponse?>
@@ -117,7 +117,7 @@ public open class AccountApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/account",
+            path = "/v1/account",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -126,7 +126,7 @@ public open class AccountApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /account/communication-preferences
+     * GET /v1/account/communication-preferences
      * Get the caller&#39;s email preferences
      * 
      * @return GetCommunicationPreferencesResponse
@@ -157,7 +157,7 @@ public open class AccountApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * GET /account/communication-preferences
+     * GET /v1/account/communication-preferences
      * Get the caller&#39;s email preferences
      * 
      * @return ApiResponse<GetCommunicationPreferencesResponse?>
@@ -187,7 +187,7 @@ public open class AccountApi(basePath: kotlin.String = defaultBasePath, client: 
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/account/communication-preferences",
+            path = "/v1/account/communication-preferences",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

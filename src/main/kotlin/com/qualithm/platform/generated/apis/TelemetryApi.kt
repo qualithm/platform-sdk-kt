@@ -55,10 +55,11 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
     }
 
     /**
-     * GET /telemetry
+     * GET /v1/teams/{teamId}/devices/{deviceId}/telemetry
      * Read a device metric as bucketed points
      * 
-     * @param deviceId The device to read
+     * @param teamId 
+     * @param deviceId 
      * @param metric The metric to read
      * @param from Range start, epoch milliseconds, inclusive
      * @param to Range end, epoch milliseconds, exclusive
@@ -74,8 +75,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTelemetry(deviceId: kotlin.String, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String? = null, agg: kotlin.String? = null, fill: kotlin.String? = null) : ListTelemetryResponse {
-        val localVarResponse = listTelemetryWithHttpInfo(deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
+    public fun listTelemetry(teamId: java.util.UUID, deviceId: java.util.UUID, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String? = null, agg: kotlin.String? = null, fill: kotlin.String? = null) : ListTelemetryResponse {
+        val localVarResponse = listTelemetryWithHttpInfo(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListTelemetryResponse
@@ -93,10 +94,11 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
     }
 
     /**
-     * GET /telemetry
+     * GET /v1/teams/{teamId}/devices/{deviceId}/telemetry
      * Read a device metric as bucketed points
      * 
-     * @param deviceId The device to read
+     * @param teamId 
+     * @param deviceId 
      * @param metric The metric to read
      * @param from Range start, epoch milliseconds, inclusive
      * @param to Range end, epoch milliseconds, exclusive
@@ -109,8 +111,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTelemetryWithHttpInfo(deviceId: kotlin.String, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : ApiResponse<ListTelemetryResponse?> {
-        val localVariableConfig = listTelemetryRequestConfig(deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
+    public fun listTelemetryWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : ApiResponse<ListTelemetryResponse?> {
+        val localVariableConfig = listTelemetryRequestConfig(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
 
         return request<Unit, ListTelemetryResponse>(
             localVariableConfig
@@ -120,7 +122,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * To obtain the request config of the operation listTelemetry
      *
-     * @param deviceId The device to read
+     * @param teamId 
+     * @param deviceId 
      * @param metric The metric to read
      * @param from Range start, epoch milliseconds, inclusive
      * @param to Range end, epoch milliseconds, exclusive
@@ -129,11 +132,10 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * @param fill &#x60;locf&#x60; carries the last observation forward across empty buckets (optional)
      * @return RequestConfig
      */
-    public fun listTelemetryRequestConfig(deviceId: kotlin.String, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : RequestConfig<Unit> {
+    public fun listTelemetryRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
-                put("deviceId", listOf(deviceId.toString()))
                 put("metric", listOf(metric.toString()))
                 put("from", listOf(from.toString()))
                 put("to", listOf(to.toString()))
@@ -152,7 +154,7 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/telemetry",
+            path = "/v1/teams/{teamId}/devices/{deviceId}/telemetry".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

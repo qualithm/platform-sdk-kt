@@ -28,7 +28,6 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 
 import com.qualithm.platform.generated.models.ApiError
-import com.qualithm.platform.generated.models.ListZoneSpacesResponse
 import com.qualithm.platform.generated.models.ListZonesResponse
 
 import com.squareup.moshi.Json
@@ -56,112 +55,7 @@ public open class ZonesApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * enum for parameter zone
-     */
-     public enum class ZoneListZoneSpaces(public val value: kotlin.String) {
-         @Json(name = "de-fra-a") DE_FRA_A("de-fra-a"),
-         @Json(name = "sg-sin-a") SG_SIN_A("sg-sin-a"),
-         @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /zones/{zone}/spaces
-     * List the workspace&#39;s spaces in a zone
-     * 
-     * @param zone 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
-     * @return ListZoneSpacesResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listZoneSpaces(zone: ZoneListZoneSpaces, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListZoneSpacesResponse {
-        val localVarResponse = listZoneSpacesWithHttpInfo(zone = zone, page = page, limit = limit)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ListZoneSpacesResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /zones/{zone}/spaces
-     * List the workspace&#39;s spaces in a zone
-     * 
-     * @param zone 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
-     * @return ApiResponse<ListZoneSpacesResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    public fun listZoneSpacesWithHttpInfo(zone: ZoneListZoneSpaces, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListZoneSpacesResponse?> {
-        val localVariableConfig = listZoneSpacesRequestConfig(zone = zone, page = page, limit = limit)
-
-        return request<Unit, ListZoneSpacesResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listZoneSpaces
-     *
-     * @param zone 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
-     * @return RequestConfig
-     */
-    public fun listZoneSpacesRequestConfig(zone: ZoneListZoneSpaces, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/zones/{zone}/spaces".replace("{"+"zone"+"}", encodeURIComponent(zone.value.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * GET /zones
+     * GET /v1/zones
      * List the environment&#39;s zones and their public endpoints
      * 
      * @return ListZonesResponse
@@ -192,7 +86,7 @@ public open class ZonesApi(basePath: kotlin.String = defaultBasePath, client: Ca
     }
 
     /**
-     * GET /zones
+     * GET /v1/zones
      * List the environment&#39;s zones and their public endpoints
      * 
      * @return ApiResponse<ListZonesResponse?>
@@ -222,7 +116,7 @@ public open class ZonesApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/zones",
+            path = "/v1/zones",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = false,
