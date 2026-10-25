@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param teamId 
+ * @param id A device authority ID
+ * @param teamId A team ID
  * @param name 
  * @param kind 
  * @param certificatePem 
@@ -45,11 +45,13 @@ import com.squareup.moshi.JsonClass
 
 public data class Authority (
 
+    /* A device authority ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
     @Json(name = "name")
     val name: kotlin.String,

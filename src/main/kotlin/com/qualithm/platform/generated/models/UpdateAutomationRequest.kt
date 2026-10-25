@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  * At least one of name, spaceId, payload or template
  *
  * @param name 
- * @param spaceId A space id; null or empty clears the scope
+ * @param spaceId A space ID
  * @param payload 
  * @param template A template id to re-expand the chain from; exclusive with `payload`
  * @param params The template's slot values, keyed by slot name; used with `template`
@@ -44,7 +44,7 @@ public data class UpdateAutomationRequest (
     @Json(name = "name")
     val name: kotlin.String? = null,
 
-    /* A space id; null or empty clears the scope */
+    /* A space ID */
     @Json(name = "spaceId")
     val spaceId: kotlin.String? = null,
 

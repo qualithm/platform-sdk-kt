@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class CreateEnrollmentResponse (
 
     @Json(name = "data")
-    val `data`: EnrollmentCode,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: EnrollmentCode
 
 ) {
 

@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param name 
- * @param spaceId A space id to scope the dashboard to; null or empty for team-wide
+ * @param spaceId A space ID
  * @param payload The widgets; null or absent for none
  */
 
@@ -42,7 +42,7 @@ public data class CreateDashboardRequest (
     @Json(name = "name")
     val name: kotlin.String,
 
-    /* A space id to scope the dashboard to; null or empty for team-wide */
+    /* A space ID */
     @Json(name = "spaceId")
     val spaceId: kotlin.String? = null,
 

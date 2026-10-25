@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param deviceId 
+ * @param id A command ID
+ * @param deviceId A device ID
  * @param source 
  * @param topic 
  * @param status 
@@ -43,11 +43,13 @@ import com.squareup.moshi.JsonClass
 
 public data class DeviceCommand (
 
+    /* A command ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A device ID */
     @Json(name = "deviceId")
-    val deviceId: java.util.UUID,
+    val deviceId: kotlin.String,
 
     @Json(name = "source")
     val source: DeviceCommand.Source,

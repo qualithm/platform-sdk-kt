@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param accountId 
+ * @param id A session ID
+ * @param accountId An account ID
  * @param userAgent 
  * @param ipAddress 
  * @param mfaVerified Whether the session passed MFA
@@ -45,11 +45,13 @@ import com.squareup.moshi.JsonClass
 
 public data class Session (
 
+    /* A session ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* An account ID */
     @Json(name = "accountId")
-    val accountId: java.util.UUID,
+    val accountId: kotlin.String,
 
     @Json(name = "userAgent")
     val userAgent: kotlin.String,

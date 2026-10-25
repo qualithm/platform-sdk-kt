@@ -59,7 +59,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
      * GET /v1/account/sessions/{sessionId}
      * Get one of the caller&#39;s live sessions
      * 
-     * @param sessionId 
+     * @param sessionId A session ID
      * @return GetSessionResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -69,7 +69,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getSession(sessionId: java.util.UUID) : GetSessionResponse {
+    public fun getSession(sessionId: kotlin.String) : GetSessionResponse {
         val localVarResponse = getSessionWithHttpInfo(sessionId = sessionId)
 
         return when (localVarResponse.responseType) {
@@ -91,14 +91,14 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
      * GET /v1/account/sessions/{sessionId}
      * Get one of the caller&#39;s live sessions
      * 
-     * @param sessionId 
+     * @param sessionId A session ID
      * @return ApiResponse<GetSessionResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getSessionWithHttpInfo(sessionId: java.util.UUID) : ApiResponse<GetSessionResponse?> {
+    public fun getSessionWithHttpInfo(sessionId: kotlin.String) : ApiResponse<GetSessionResponse?> {
         val localVariableConfig = getSessionRequestConfig(sessionId = sessionId)
 
         return request<Unit, GetSessionResponse>(
@@ -109,10 +109,10 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
     /**
      * To obtain the request config of the operation getSession
      *
-     * @param sessionId 
+     * @param sessionId A session ID
      * @return RequestConfig
      */
-    public fun getSessionRequestConfig(sessionId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getSessionRequestConfig(sessionId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

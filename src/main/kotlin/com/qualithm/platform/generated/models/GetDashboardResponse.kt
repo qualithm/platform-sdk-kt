@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class GetDashboardResponse (
 
     @Json(name = "data")
-    val `data`: Dashboard,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: Dashboard
 
 ) {
 

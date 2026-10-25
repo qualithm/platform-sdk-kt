@@ -31,9 +31,9 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param teamId 
- * @param spaceId The space it is scoped to; null for team-wide
+ * @param id A dashboard ID
+ * @param teamId A team ID
+ * @param spaceId A space ID
  * @param spaceName 
  * @param name 
  * @param payload 
@@ -44,15 +44,17 @@ import com.squareup.moshi.JsonClass
 
 public data class Dashboard (
 
+    /* A dashboard ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
-    /* The space it is scoped to; null for team-wide */
+    /* A space ID */
     @Json(name = "spaceId")
-    val spaceId: java.util.UUID?,
+    val spaceId: kotlin.String?,
 
     @Json(name = "spaceName")
     val spaceName: kotlin.String?,

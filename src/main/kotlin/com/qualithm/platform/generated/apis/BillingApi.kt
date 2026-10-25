@@ -71,7 +71,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getBillingSummary(teamId: java.util.UUID) : GetBillingSummaryResponse {
+    public fun getBillingSummary(teamId: kotlin.String) : GetBillingSummaryResponse {
         val localVarResponse = getBillingSummaryWithHttpInfo(teamId = teamId)
 
         return when (localVarResponse.responseType) {
@@ -100,7 +100,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getBillingSummaryWithHttpInfo(teamId: java.util.UUID) : ApiResponse<GetBillingSummaryResponse?> {
+    public fun getBillingSummaryWithHttpInfo(teamId: kotlin.String) : ApiResponse<GetBillingSummaryResponse?> {
         val localVariableConfig = getBillingSummaryRequestConfig(teamId = teamId)
 
         return request<Unit, GetBillingSummaryResponse>(
@@ -114,7 +114,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      * @param teamId The team the request acts on
      * @return RequestConfig
      */
-    public fun getBillingSummaryRequestConfig(teamId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getBillingSummaryRequestConfig(teamId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -146,7 +146,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listInvoices(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListInvoicesResponse {
+    public fun listInvoices(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListInvoicesResponse {
         val localVarResponse = listInvoicesWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -177,7 +177,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listInvoicesWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListInvoicesResponse?> {
+    public fun listInvoicesWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListInvoicesResponse?> {
         val localVariableConfig = listInvoicesRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListInvoicesResponse>(
@@ -193,7 +193,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listInvoicesRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listInvoicesRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -232,7 +232,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun previewTierChange(teamId: java.util.UUID, previewTierChangeRequest: PreviewTierChangeRequest) : PreviewTierChangeResponse {
+    public fun previewTierChange(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest) : PreviewTierChangeResponse {
         val localVarResponse = previewTierChangeWithHttpInfo(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest)
 
         return when (localVarResponse.responseType) {
@@ -262,7 +262,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun previewTierChangeWithHttpInfo(teamId: java.util.UUID, previewTierChangeRequest: PreviewTierChangeRequest) : ApiResponse<PreviewTierChangeResponse?> {
+    public fun previewTierChangeWithHttpInfo(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest) : ApiResponse<PreviewTierChangeResponse?> {
         val localVariableConfig = previewTierChangeRequestConfig(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest)
 
         return request<PreviewTierChangeRequest, PreviewTierChangeResponse>(
@@ -277,7 +277,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      * @param previewTierChangeRequest 
      * @return RequestConfig
      */
-    public fun previewTierChangeRequestConfig(teamId: java.util.UUID, previewTierChangeRequest: PreviewTierChangeRequest) : RequestConfig<PreviewTierChangeRequest> {
+    public fun previewTierChangeRequestConfig(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest) : RequestConfig<PreviewTierChangeRequest> {
         val localVariableBody = previewTierChangeRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

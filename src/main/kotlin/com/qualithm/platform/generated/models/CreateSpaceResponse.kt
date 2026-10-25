@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class CreateSpaceResponse (
 
     @Json(name = "data")
-    val `data`: Space,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: Space
 
 ) {
 
