@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class ListApiTokensResponse (
 
     @Json(name = "data")
-    val `data`: ApiTokenPage,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: ApiTokenPage
 
 ) {
 

@@ -70,7 +70,7 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAuditEvents(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuditEventsResponse {
+    public fun listAuditEvents(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuditEventsResponse {
         val localVarResponse = listAuditEventsWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -101,7 +101,7 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAuditEventsWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuditEventsResponse?> {
+    public fun listAuditEventsWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuditEventsResponse?> {
         val localVariableConfig = listAuditEventsRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListAuditEventsResponse>(
@@ -117,7 +117,7 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listAuditEventsRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAuditEventsRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {

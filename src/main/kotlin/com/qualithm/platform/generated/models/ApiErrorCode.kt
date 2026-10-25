@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * Values: BAD_REQUEST,UNAUTHORIZED,FORBIDDEN,NOT_FOUND,CONFLICT,UNSUPPORTED_MEDIA_TYPE,UNPROCESSABLE_ENTITY,FAILED_DEPENDENCY,RATE_LIMITED,INTERNAL_ERROR,BACKEND_UNAVAILABLE,UNKNOWN_DEFAULT_OPEN_API
+ * Values: BAD_REQUEST,UNAUTHORIZED,FORBIDDEN,NOT_FOUND,CONFLICT,PRECONDITION_FAILED,UNSUPPORTED_MEDIA_TYPE,UNPROCESSABLE_ENTITY,FAILED_DEPENDENCY,RATE_LIMITED,INTERNAL_ERROR,BACKEND_UNAVAILABLE,UNKNOWN_DEFAULT_OPEN_API
  */
 
 @JsonClass(generateAdapter = false)
@@ -50,6 +50,9 @@ public enum class ApiErrorCode(public val value: kotlin.String) {
 
     @Json(name = "conflict")
     CONFLICT("conflict"),
+
+    @Json(name = "precondition_failed")
+    PRECONDITION_FAILED("precondition_failed"),
 
     @Json(name = "unsupported_media_type")
     UNSUPPORTED_MEDIA_TYPE("unsupported_media_type"),

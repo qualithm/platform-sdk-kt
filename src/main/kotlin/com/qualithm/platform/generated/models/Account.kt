@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
+ * @param id An account ID
  * @param email 
  * @param name 
  * @param payload The account's settings: a JSON object, encoded as a string
@@ -41,8 +41,9 @@ import com.squareup.moshi.JsonClass
 
 public data class Account (
 
+    /* An account ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
     @Json(name = "email")
     val email: kotlin.String,

@@ -38,7 +38,7 @@ public data class RunAutomationResponseData (
 
     /* The queued run's id */
     @Json(name = "id")
-    val id: java.util.UUID
+    val id: kotlin.String
 
 ) {
 

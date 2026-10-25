@@ -33,7 +33,6 @@ import com.qualithm.platform.generated.models.CreateAutomationFromTemplateRespon
 import com.qualithm.platform.generated.models.CreateAutomationRequest
 import com.qualithm.platform.generated.models.CreateAutomationResponse
 import com.qualithm.platform.generated.models.CreateAutomationTriggerSecretResponse
-import com.qualithm.platform.generated.models.DeleteAutomationResponse
 import com.qualithm.platform.generated.models.DisableAutomationResponse
 import com.qualithm.platform.generated.models.EnableAutomationResponse
 import com.qualithm.platform.generated.models.GetAutomationResponse
@@ -84,7 +83,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAutomation(teamId: java.util.UUID, createAutomationRequest: CreateAutomationRequest) : CreateAutomationResponse {
+    public fun createAutomation(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest) : CreateAutomationResponse {
         val localVarResponse = createAutomationWithHttpInfo(teamId = teamId, createAutomationRequest = createAutomationRequest)
 
         return when (localVarResponse.responseType) {
@@ -114,7 +113,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAutomationWithHttpInfo(teamId: java.util.UUID, createAutomationRequest: CreateAutomationRequest) : ApiResponse<CreateAutomationResponse?> {
+    public fun createAutomationWithHttpInfo(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest) : ApiResponse<CreateAutomationResponse?> {
         val localVariableConfig = createAutomationRequestConfig(teamId = teamId, createAutomationRequest = createAutomationRequest)
 
         return request<CreateAutomationRequest, CreateAutomationResponse>(
@@ -129,7 +128,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param createAutomationRequest 
      * @return RequestConfig
      */
-    public fun createAutomationRequestConfig(teamId: java.util.UUID, createAutomationRequest: CreateAutomationRequest) : RequestConfig<CreateAutomationRequest> {
+    public fun createAutomationRequestConfig(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest) : RequestConfig<CreateAutomationRequest> {
         val localVariableBody = createAutomationRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -161,7 +160,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAutomationFromTemplate(teamId: java.util.UUID, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : CreateAutomationFromTemplateResponse {
+    public fun createAutomationFromTemplate(teamId: kotlin.String, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : CreateAutomationFromTemplateResponse {
         val localVarResponse = createAutomationFromTemplateWithHttpInfo(teamId = teamId, createAutomationFromTemplateRequest = createAutomationFromTemplateRequest)
 
         return when (localVarResponse.responseType) {
@@ -191,7 +190,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAutomationFromTemplateWithHttpInfo(teamId: java.util.UUID, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : ApiResponse<CreateAutomationFromTemplateResponse?> {
+    public fun createAutomationFromTemplateWithHttpInfo(teamId: kotlin.String, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : ApiResponse<CreateAutomationFromTemplateResponse?> {
         val localVariableConfig = createAutomationFromTemplateRequestConfig(teamId = teamId, createAutomationFromTemplateRequest = createAutomationFromTemplateRequest)
 
         return request<CreateAutomationFromTemplateRequest, CreateAutomationFromTemplateResponse>(
@@ -206,7 +205,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param createAutomationFromTemplateRequest 
      * @return RequestConfig
      */
-    public fun createAutomationFromTemplateRequestConfig(teamId: java.util.UUID, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : RequestConfig<CreateAutomationFromTemplateRequest> {
+    public fun createAutomationFromTemplateRequestConfig(teamId: kotlin.String, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : RequestConfig<CreateAutomationFromTemplateRequest> {
         val localVariableBody = createAutomationFromTemplateRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -228,7 +227,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Issue or rotate an automation&#39;s trigger secret
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return CreateAutomationTriggerSecretResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -238,7 +237,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAutomationTriggerSecret(teamId: java.util.UUID, automationId: java.util.UUID) : CreateAutomationTriggerSecretResponse {
+    public fun createAutomationTriggerSecret(teamId: kotlin.String, automationId: kotlin.String) : CreateAutomationTriggerSecretResponse {
         val localVarResponse = createAutomationTriggerSecretWithHttpInfo(teamId = teamId, automationId = automationId)
 
         return when (localVarResponse.responseType) {
@@ -261,14 +260,14 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Issue or rotate an automation&#39;s trigger secret
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return ApiResponse<CreateAutomationTriggerSecretResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAutomationTriggerSecretWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID) : ApiResponse<CreateAutomationTriggerSecretResponse?> {
+    public fun createAutomationTriggerSecretWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<CreateAutomationTriggerSecretResponse?> {
         val localVariableConfig = createAutomationTriggerSecretRequestConfig(teamId = teamId, automationId = automationId)
 
         return request<Unit, CreateAutomationTriggerSecretResponse>(
@@ -280,10 +279,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation createAutomationTriggerSecret
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return RequestConfig
      */
-    public fun createAutomationTriggerSecretRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID) : RequestConfig<Unit> {
+    public fun createAutomationTriggerSecretRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -304,21 +303,20 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Delete an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
-     * @return DeleteAutomationResponse
+     * @param automationId An automation ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteAutomation(teamId: java.util.UUID, automationId: java.util.UUID) : DeleteAutomationResponse {
+    public fun deleteAutomation(teamId: kotlin.String, automationId: kotlin.String) : Unit {
         val localVarResponse = deleteAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteAutomationResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -337,17 +335,16 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Delete an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
-     * @return ApiResponse<DeleteAutomationResponse?>
+     * @param automationId An automation ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteAutomationWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID) : ApiResponse<DeleteAutomationResponse?> {
+    public fun deleteAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteAutomationRequestConfig(teamId = teamId, automationId = automationId)
 
-        return request<Unit, DeleteAutomationResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -356,10 +353,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return RequestConfig
      */
-    public fun deleteAutomationRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -380,7 +377,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Disable an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return DisableAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -390,7 +387,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun disableAutomation(teamId: java.util.UUID, automationId: java.util.UUID) : DisableAutomationResponse {
+    public fun disableAutomation(teamId: kotlin.String, automationId: kotlin.String) : DisableAutomationResponse {
         val localVarResponse = disableAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
 
         return when (localVarResponse.responseType) {
@@ -413,14 +410,14 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Disable an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return ApiResponse<DisableAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun disableAutomationWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID) : ApiResponse<DisableAutomationResponse?> {
+    public fun disableAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<DisableAutomationResponse?> {
         val localVariableConfig = disableAutomationRequestConfig(teamId = teamId, automationId = automationId)
 
         return request<Unit, DisableAutomationResponse>(
@@ -432,10 +429,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation disableAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return RequestConfig
      */
-    public fun disableAutomationRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID) : RequestConfig<Unit> {
+    public fun disableAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -456,7 +453,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Enable an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return EnableAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -466,7 +463,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun enableAutomation(teamId: java.util.UUID, automationId: java.util.UUID) : EnableAutomationResponse {
+    public fun enableAutomation(teamId: kotlin.String, automationId: kotlin.String) : EnableAutomationResponse {
         val localVarResponse = enableAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
 
         return when (localVarResponse.responseType) {
@@ -489,14 +486,14 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Enable an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return ApiResponse<EnableAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun enableAutomationWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID) : ApiResponse<EnableAutomationResponse?> {
+    public fun enableAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<EnableAutomationResponse?> {
         val localVariableConfig = enableAutomationRequestConfig(teamId = teamId, automationId = automationId)
 
         return request<Unit, EnableAutomationResponse>(
@@ -508,10 +505,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation enableAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return RequestConfig
      */
-    public fun enableAutomationRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID) : RequestConfig<Unit> {
+    public fun enableAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -532,7 +529,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Get an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return GetAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -542,7 +539,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getAutomation(teamId: java.util.UUID, automationId: java.util.UUID) : GetAutomationResponse {
+    public fun getAutomation(teamId: kotlin.String, automationId: kotlin.String) : GetAutomationResponse {
         val localVarResponse = getAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
 
         return when (localVarResponse.responseType) {
@@ -565,14 +562,14 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Get an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return ApiResponse<GetAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getAutomationWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID) : ApiResponse<GetAutomationResponse?> {
+    public fun getAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<GetAutomationResponse?> {
         val localVariableConfig = getAutomationRequestConfig(teamId = teamId, automationId = automationId)
 
         return request<Unit, GetAutomationResponse>(
@@ -584,10 +581,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation getAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return RequestConfig
      */
-    public fun getAutomationRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -608,7 +605,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List an automation&#39;s runs
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListAutomationRunsResponse
@@ -620,7 +617,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAutomationRuns(teamId: java.util.UUID, automationId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAutomationRunsResponse {
+    public fun listAutomationRuns(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAutomationRunsResponse {
         val localVarResponse = listAutomationRunsWithHttpInfo(teamId = teamId, automationId = automationId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -643,7 +640,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List an automation&#39;s runs
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListAutomationRunsResponse?>
@@ -652,7 +649,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAutomationRunsWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAutomationRunsResponse?> {
+    public fun listAutomationRunsWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAutomationRunsResponse?> {
         val localVariableConfig = listAutomationRunsRequestConfig(teamId = teamId, automationId = automationId, page = page, limit = limit)
 
         return request<Unit, ListAutomationRunsResponse>(
@@ -664,12 +661,12 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation listAutomationRuns
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listAutomationRunsRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAutomationRunsRequestConfig(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -709,7 +706,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAutomations(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAutomationsResponse {
+    public fun listAutomations(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAutomationsResponse {
         val localVarResponse = listAutomationsWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -740,7 +737,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAutomationsWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAutomationsResponse?> {
+    public fun listAutomationsWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAutomationsResponse?> {
         val localVariableConfig = listAutomationsRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListAutomationsResponse>(
@@ -756,7 +753,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listAutomationsRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAutomationsRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -785,7 +782,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List the automation templates a device supports
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return ListDeviceAutomationTemplatesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -795,7 +792,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDeviceAutomationTemplates(teamId: java.util.UUID, deviceId: java.util.UUID) : ListDeviceAutomationTemplatesResponse {
+    public fun listDeviceAutomationTemplates(teamId: kotlin.String, deviceId: kotlin.String) : ListDeviceAutomationTemplatesResponse {
         val localVarResponse = listDeviceAutomationTemplatesWithHttpInfo(teamId = teamId, deviceId = deviceId)
 
         return when (localVarResponse.responseType) {
@@ -818,14 +815,14 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List the automation templates a device supports
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return ApiResponse<ListDeviceAutomationTemplatesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDeviceAutomationTemplatesWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID) : ApiResponse<ListDeviceAutomationTemplatesResponse?> {
+    public fun listDeviceAutomationTemplatesWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<ListDeviceAutomationTemplatesResponse?> {
         val localVariableConfig = listDeviceAutomationTemplatesRequestConfig(teamId = teamId, deviceId = deviceId)
 
         return request<Unit, ListDeviceAutomationTemplatesResponse>(
@@ -837,10 +834,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation listDeviceAutomationTemplates
      *
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return RequestConfig
      */
-    public fun listDeviceAutomationTemplatesRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun listDeviceAutomationTemplatesRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -861,7 +858,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Run an automation&#39;s chain now
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return RunAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -871,7 +868,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun runAutomation(teamId: java.util.UUID, automationId: java.util.UUID) : RunAutomationResponse {
+    public fun runAutomation(teamId: kotlin.String, automationId: kotlin.String) : RunAutomationResponse {
         val localVarResponse = runAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
 
         return when (localVarResponse.responseType) {
@@ -894,14 +891,14 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Run an automation&#39;s chain now
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return ApiResponse<RunAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun runAutomationWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID) : ApiResponse<RunAutomationResponse?> {
+    public fun runAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<RunAutomationResponse?> {
         val localVariableConfig = runAutomationRequestConfig(teamId = teamId, automationId = automationId)
 
         return request<Unit, RunAutomationResponse>(
@@ -913,10 +910,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation runAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @return RequestConfig
      */
-    public fun runAutomationRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID) : RequestConfig<Unit> {
+    public fun runAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -1011,7 +1008,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Update an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @param updateAutomationRequest 
      * @return UpdateAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -1022,7 +1019,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateAutomation(teamId: java.util.UUID, automationId: java.util.UUID, updateAutomationRequest: UpdateAutomationRequest) : UpdateAutomationResponse {
+    public fun updateAutomation(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest) : UpdateAutomationResponse {
         val localVarResponse = updateAutomationWithHttpInfo(teamId = teamId, automationId = automationId, updateAutomationRequest = updateAutomationRequest)
 
         return when (localVarResponse.responseType) {
@@ -1045,7 +1042,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Update an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @param updateAutomationRequest 
      * @return ApiResponse<UpdateAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -1053,7 +1050,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateAutomationWithHttpInfo(teamId: java.util.UUID, automationId: java.util.UUID, updateAutomationRequest: UpdateAutomationRequest) : ApiResponse<UpdateAutomationResponse?> {
+    public fun updateAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest) : ApiResponse<UpdateAutomationResponse?> {
         val localVariableConfig = updateAutomationRequestConfig(teamId = teamId, automationId = automationId, updateAutomationRequest = updateAutomationRequest)
 
         return request<UpdateAutomationRequest, UpdateAutomationResponse>(
@@ -1065,11 +1062,11 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation updateAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId 
+     * @param automationId An automation ID
      * @param updateAutomationRequest 
      * @return RequestConfig
      */
-    public fun updateAutomationRequestConfig(teamId: java.util.UUID, automationId: java.util.UUID, updateAutomationRequest: UpdateAutomationRequest) : RequestConfig<UpdateAutomationRequest> {
+    public fun updateAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest) : RequestConfig<UpdateAutomationRequest> {
         val localVariableBody = updateAutomationRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

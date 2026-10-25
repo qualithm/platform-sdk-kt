@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class CreateDeviceCommandResponse (
 
     @Json(name = "data")
-    val `data`: QueuedCommand,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: QueuedCommand
 
 ) {
 

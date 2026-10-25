@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class ListDeviceCapabilitiesResponse (
 
     @Json(name = "data")
-    val `data`: kotlin.collections.List<Capability>,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: kotlin.collections.List<Capability>
 
 ) {
 

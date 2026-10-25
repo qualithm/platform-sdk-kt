@@ -32,8 +32,8 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param id The invite's id: the invited membership's id
- * @param accountId 
- * @param teamId 
+ * @param accountId An account ID
+ * @param teamId A team ID
  * @param role 
  * @param status 
  * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
@@ -48,13 +48,15 @@ public data class TeamInvite (
 
     /* The invite's id: the invited membership's id */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* An account ID */
     @Json(name = "accountId")
-    val accountId: java.util.UUID,
+    val accountId: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
     @Json(name = "role")
     val role: MemberRole,

@@ -28,7 +28,6 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 
 import com.qualithm.platform.generated.models.ApiError
-import com.qualithm.platform.generated.models.DeleteApiTokenResponse
 import com.qualithm.platform.generated.models.ListApiTokensResponse
 
 import com.squareup.moshi.Json
@@ -60,21 +59,20 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
      * @param teamId The team the request acts on
-     * @param tokenId 
-     * @return DeleteApiTokenResponse
+     * @param tokenId An API token ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteApiToken(teamId: java.util.UUID, tokenId: java.util.UUID) : DeleteApiTokenResponse {
+    public fun deleteApiToken(teamId: kotlin.String, tokenId: kotlin.String) : Unit {
         val localVarResponse = deleteApiTokenWithHttpInfo(teamId = teamId, tokenId = tokenId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteApiTokenResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -93,17 +91,16 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
      * @param teamId The team the request acts on
-     * @param tokenId 
-     * @return ApiResponse<DeleteApiTokenResponse?>
+     * @param tokenId An API token ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteApiTokenWithHttpInfo(teamId: java.util.UUID, tokenId: java.util.UUID) : ApiResponse<DeleteApiTokenResponse?> {
+    public fun deleteApiTokenWithHttpInfo(teamId: kotlin.String, tokenId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteApiTokenRequestConfig(teamId = teamId, tokenId = tokenId)
 
-        return request<Unit, DeleteApiTokenResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -112,10 +109,10 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * To obtain the request config of the operation deleteApiToken
      *
      * @param teamId The team the request acts on
-     * @param tokenId 
+     * @param tokenId An API token ID
      * @return RequestConfig
      */
-    public fun deleteApiTokenRequestConfig(teamId: java.util.UUID, tokenId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteApiTokenRequestConfig(teamId: kotlin.String, tokenId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -147,7 +144,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listApiTokens(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListApiTokensResponse {
+    public fun listApiTokens(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListApiTokensResponse {
         val localVarResponse = listApiTokensWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -178,7 +175,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listApiTokensWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListApiTokensResponse?> {
+    public fun listApiTokensWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListApiTokensResponse?> {
         val localVariableConfig = listApiTokensRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListApiTokensResponse>(
@@ -194,7 +191,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listApiTokensRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listApiTokensRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
