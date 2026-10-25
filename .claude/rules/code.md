@@ -15,8 +15,8 @@ file covers what they can't. CI is generated from `dx/ci-templates/kotlin-lib.ya
 
 ## Kotlin
 
-- Errors are a `sealed` hierarchy returned through `Result` (or a sealed result type), not thrown
-  across the public API. Messages are lowercase with no trailing punctuation.
+- Errors are a `sealed` hierarchy thrown across the public API; `Result` stays internal. Messages
+  are lowercase with no trailing punctuation.
 - Prefer immutable `data class`es and `val`. Model a closed set of states with a `sealed interface`
   and an exhaustive `when`, never with nullable flags.
 - Coroutines: structured concurrency only. Take a `CoroutineScope` or `CoroutineDispatcher` from the
