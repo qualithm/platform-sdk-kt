@@ -38,7 +38,7 @@ public data class TriggerAutomationResponseData (
 
     /* The queued run's id */
     @Json(name = "runId")
-    val runId: java.util.UUID
+    val runId: kotlin.String
 
 ) {
 

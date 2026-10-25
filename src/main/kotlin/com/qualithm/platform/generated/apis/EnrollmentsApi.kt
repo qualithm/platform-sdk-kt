@@ -30,7 +30,6 @@ import okhttp3.HttpUrl
 import com.qualithm.platform.generated.models.ApiError
 import com.qualithm.platform.generated.models.CreateEnrollmentRequest
 import com.qualithm.platform.generated.models.CreateEnrollmentResponse
-import com.qualithm.platform.generated.models.DeleteEnrollmentResponse
 import com.qualithm.platform.generated.models.ListEnrollmentsResponse
 
 import com.squareup.moshi.Json
@@ -72,7 +71,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createEnrollment(teamId: java.util.UUID, createEnrollmentRequest: CreateEnrollmentRequest) : CreateEnrollmentResponse {
+    public fun createEnrollment(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest) : CreateEnrollmentResponse {
         val localVarResponse = createEnrollmentWithHttpInfo(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest)
 
         return when (localVarResponse.responseType) {
@@ -102,7 +101,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createEnrollmentWithHttpInfo(teamId: java.util.UUID, createEnrollmentRequest: CreateEnrollmentRequest) : ApiResponse<CreateEnrollmentResponse?> {
+    public fun createEnrollmentWithHttpInfo(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest) : ApiResponse<CreateEnrollmentResponse?> {
         val localVariableConfig = createEnrollmentRequestConfig(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest)
 
         return request<CreateEnrollmentRequest, CreateEnrollmentResponse>(
@@ -117,7 +116,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param createEnrollmentRequest 
      * @return RequestConfig
      */
-    public fun createEnrollmentRequestConfig(teamId: java.util.UUID, createEnrollmentRequest: CreateEnrollmentRequest) : RequestConfig<CreateEnrollmentRequest> {
+    public fun createEnrollmentRequestConfig(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest) : RequestConfig<CreateEnrollmentRequest> {
         val localVariableBody = createEnrollmentRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -139,21 +138,20 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a pending enrollment
      * 
      * @param teamId The team the request acts on
-     * @param enrollmentId 
-     * @return DeleteEnrollmentResponse
+     * @param enrollmentId An enrollment ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteEnrollment(teamId: java.util.UUID, enrollmentId: java.util.UUID) : DeleteEnrollmentResponse {
+    public fun deleteEnrollment(teamId: kotlin.String, enrollmentId: kotlin.String) : Unit {
         val localVarResponse = deleteEnrollmentWithHttpInfo(teamId = teamId, enrollmentId = enrollmentId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteEnrollmentResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -172,17 +170,16 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a pending enrollment
      * 
      * @param teamId The team the request acts on
-     * @param enrollmentId 
-     * @return ApiResponse<DeleteEnrollmentResponse?>
+     * @param enrollmentId An enrollment ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteEnrollmentWithHttpInfo(teamId: java.util.UUID, enrollmentId: java.util.UUID) : ApiResponse<DeleteEnrollmentResponse?> {
+    public fun deleteEnrollmentWithHttpInfo(teamId: kotlin.String, enrollmentId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteEnrollmentRequestConfig(teamId = teamId, enrollmentId = enrollmentId)
 
-        return request<Unit, DeleteEnrollmentResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -191,10 +188,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteEnrollment
      *
      * @param teamId The team the request acts on
-     * @param enrollmentId 
+     * @param enrollmentId An enrollment ID
      * @return RequestConfig
      */
-    public fun deleteEnrollmentRequestConfig(teamId: java.util.UUID, enrollmentId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteEnrollmentRequestConfig(teamId: kotlin.String, enrollmentId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -226,7 +223,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listEnrollments(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListEnrollmentsResponse {
+    public fun listEnrollments(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListEnrollmentsResponse {
         val localVarResponse = listEnrollmentsWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -257,7 +254,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listEnrollmentsWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListEnrollmentsResponse?> {
+    public fun listEnrollmentsWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListEnrollmentsResponse?> {
         val localVariableConfig = listEnrollmentsRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListEnrollmentsResponse>(
@@ -273,7 +270,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listEnrollmentsRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listEnrollmentsRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {

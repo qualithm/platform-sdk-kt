@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param teamId 
+ * @param id An invoice ID
+ * @param teamId A team ID
  * @param status 
  * @param totalC The invoice total in minor units
  * @param currency 
@@ -43,11 +43,13 @@ import com.squareup.moshi.JsonClass
 
 public data class Invoice (
 
+    /* An invoice ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
     @Json(name = "status")
     val status: kotlin.String,

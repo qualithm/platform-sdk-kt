@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class ListZonesResponse (
 
     @Json(name = "data")
-    val `data`: ZoneList,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: ZoneList
 
 ) {
 

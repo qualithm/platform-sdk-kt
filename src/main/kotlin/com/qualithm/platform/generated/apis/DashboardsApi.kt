@@ -30,7 +30,6 @@ import okhttp3.HttpUrl
 import com.qualithm.platform.generated.models.ApiError
 import com.qualithm.platform.generated.models.CreateDashboardRequest
 import com.qualithm.platform.generated.models.CreateDashboardResponse
-import com.qualithm.platform.generated.models.DeleteDashboardResponse
 import com.qualithm.platform.generated.models.GetDashboardResponse
 import com.qualithm.platform.generated.models.ListDashboardsResponse
 import com.qualithm.platform.generated.models.UpdateDashboardRequest
@@ -75,7 +74,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDashboard(teamId: java.util.UUID, createDashboardRequest: CreateDashboardRequest) : CreateDashboardResponse {
+    public fun createDashboard(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest) : CreateDashboardResponse {
         val localVarResponse = createDashboardWithHttpInfo(teamId = teamId, createDashboardRequest = createDashboardRequest)
 
         return when (localVarResponse.responseType) {
@@ -105,7 +104,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDashboardWithHttpInfo(teamId: java.util.UUID, createDashboardRequest: CreateDashboardRequest) : ApiResponse<CreateDashboardResponse?> {
+    public fun createDashboardWithHttpInfo(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest) : ApiResponse<CreateDashboardResponse?> {
         val localVariableConfig = createDashboardRequestConfig(teamId = teamId, createDashboardRequest = createDashboardRequest)
 
         return request<CreateDashboardRequest, CreateDashboardResponse>(
@@ -120,7 +119,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * @param createDashboardRequest 
      * @return RequestConfig
      */
-    public fun createDashboardRequestConfig(teamId: java.util.UUID, createDashboardRequest: CreateDashboardRequest) : RequestConfig<CreateDashboardRequest> {
+    public fun createDashboardRequestConfig(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest) : RequestConfig<CreateDashboardRequest> {
         val localVariableBody = createDashboardRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -142,21 +141,20 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Delete a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId 
-     * @return DeleteDashboardResponse
+     * @param dashboardId A dashboard ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteDashboard(teamId: java.util.UUID, dashboardId: java.util.UUID) : DeleteDashboardResponse {
+    public fun deleteDashboard(teamId: kotlin.String, dashboardId: kotlin.String) : Unit {
         val localVarResponse = deleteDashboardWithHttpInfo(teamId = teamId, dashboardId = dashboardId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteDashboardResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -175,17 +173,16 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Delete a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId 
-     * @return ApiResponse<DeleteDashboardResponse?>
+     * @param dashboardId A dashboard ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteDashboardWithHttpInfo(teamId: java.util.UUID, dashboardId: java.util.UUID) : ApiResponse<DeleteDashboardResponse?> {
+    public fun deleteDashboardWithHttpInfo(teamId: kotlin.String, dashboardId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteDashboardRequestConfig(teamId = teamId, dashboardId = dashboardId)
 
-        return request<Unit, DeleteDashboardResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -194,10 +191,10 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * To obtain the request config of the operation deleteDashboard
      *
      * @param teamId The team the request acts on
-     * @param dashboardId 
+     * @param dashboardId A dashboard ID
      * @return RequestConfig
      */
-    public fun deleteDashboardRequestConfig(teamId: java.util.UUID, dashboardId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -218,7 +215,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Get a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId 
+     * @param dashboardId A dashboard ID
      * @return GetDashboardResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -228,7 +225,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getDashboard(teamId: java.util.UUID, dashboardId: java.util.UUID) : GetDashboardResponse {
+    public fun getDashboard(teamId: kotlin.String, dashboardId: kotlin.String) : GetDashboardResponse {
         val localVarResponse = getDashboardWithHttpInfo(teamId = teamId, dashboardId = dashboardId)
 
         return when (localVarResponse.responseType) {
@@ -251,14 +248,14 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Get a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId 
+     * @param dashboardId A dashboard ID
      * @return ApiResponse<GetDashboardResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getDashboardWithHttpInfo(teamId: java.util.UUID, dashboardId: java.util.UUID) : ApiResponse<GetDashboardResponse?> {
+    public fun getDashboardWithHttpInfo(teamId: kotlin.String, dashboardId: kotlin.String) : ApiResponse<GetDashboardResponse?> {
         val localVariableConfig = getDashboardRequestConfig(teamId = teamId, dashboardId = dashboardId)
 
         return request<Unit, GetDashboardResponse>(
@@ -270,10 +267,10 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * To obtain the request config of the operation getDashboard
      *
      * @param teamId The team the request acts on
-     * @param dashboardId 
+     * @param dashboardId A dashboard ID
      * @return RequestConfig
      */
-    public fun getDashboardRequestConfig(teamId: java.util.UUID, dashboardId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -305,7 +302,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDashboards(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListDashboardsResponse {
+    public fun listDashboards(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListDashboardsResponse {
         val localVarResponse = listDashboardsWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -336,7 +333,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDashboardsWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListDashboardsResponse?> {
+    public fun listDashboardsWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListDashboardsResponse?> {
         val localVariableConfig = listDashboardsRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListDashboardsResponse>(
@@ -352,7 +349,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listDashboardsRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listDashboardsRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -381,7 +378,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Update a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId 
+     * @param dashboardId A dashboard ID
      * @param updateDashboardRequest 
      * @return UpdateDashboardResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -392,7 +389,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateDashboard(teamId: java.util.UUID, dashboardId: java.util.UUID, updateDashboardRequest: UpdateDashboardRequest) : UpdateDashboardResponse {
+    public fun updateDashboard(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest) : UpdateDashboardResponse {
         val localVarResponse = updateDashboardWithHttpInfo(teamId = teamId, dashboardId = dashboardId, updateDashboardRequest = updateDashboardRequest)
 
         return when (localVarResponse.responseType) {
@@ -415,7 +412,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Update a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId 
+     * @param dashboardId A dashboard ID
      * @param updateDashboardRequest 
      * @return ApiResponse<UpdateDashboardResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -423,7 +420,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateDashboardWithHttpInfo(teamId: java.util.UUID, dashboardId: java.util.UUID, updateDashboardRequest: UpdateDashboardRequest) : ApiResponse<UpdateDashboardResponse?> {
+    public fun updateDashboardWithHttpInfo(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest) : ApiResponse<UpdateDashboardResponse?> {
         val localVariableConfig = updateDashboardRequestConfig(teamId = teamId, dashboardId = dashboardId, updateDashboardRequest = updateDashboardRequest)
 
         return request<UpdateDashboardRequest, UpdateDashboardResponse>(
@@ -435,11 +432,11 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * To obtain the request config of the operation updateDashboard
      *
      * @param teamId The team the request acts on
-     * @param dashboardId 
+     * @param dashboardId A dashboard ID
      * @param updateDashboardRequest 
      * @return RequestConfig
      */
-    public fun updateDashboardRequestConfig(teamId: java.util.UUID, dashboardId: java.util.UUID, updateDashboardRequest: UpdateDashboardRequest) : RequestConfig<UpdateDashboardRequest> {
+    public fun updateDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest) : RequestConfig<UpdateDashboardRequest> {
         val localVariableBody = updateDashboardRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

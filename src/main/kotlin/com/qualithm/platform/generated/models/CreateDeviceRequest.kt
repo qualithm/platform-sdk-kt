@@ -30,14 +30,15 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param spaceId 
+ * @param spaceId A space ID
  */
 
 
 public data class CreateDeviceRequest (
 
+    /* A space ID */
     @Json(name = "spaceId")
-    val spaceId: java.util.UUID
+    val spaceId: kotlin.String
 
 ) {
 

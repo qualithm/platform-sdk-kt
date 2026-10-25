@@ -31,9 +31,9 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param teamId 
- * @param spaceId Null for a team-wide automation
+ * @param id An automation ID
+ * @param teamId A team ID
+ * @param spaceId A space ID
  * @param spaceName 
  * @param name 
  * @param enabled 
@@ -46,15 +46,17 @@ import com.squareup.moshi.JsonClass
 
 public data class Automation (
 
+    /* An automation ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
-    /* Null for a team-wide automation */
+    /* A space ID */
     @Json(name = "spaceId")
-    val spaceId: java.util.UUID?,
+    val spaceId: kotlin.String?,
 
     @Json(name = "spaceName")
     val spaceName: kotlin.String?,

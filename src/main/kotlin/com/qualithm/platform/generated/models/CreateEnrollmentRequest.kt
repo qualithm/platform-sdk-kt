@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param spaceId 
+ * @param spaceId A space ID
  * @param label Up to 64 characters
  * @param expiresInMinutes How long the code can be claimed. Default 1440 (24 hours).
  */
@@ -38,8 +38,9 @@ import com.squareup.moshi.JsonClass
 
 public data class CreateEnrollmentRequest (
 
+    /* A space ID */
     @Json(name = "spaceId")
-    val spaceId: java.util.UUID,
+    val spaceId: kotlin.String,
 
     /* Up to 64 characters */
     @Json(name = "label")

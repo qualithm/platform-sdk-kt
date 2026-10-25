@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class RunAutomationResponse (
 
     @Json(name = "data")
-    val `data`: RunAutomationResponseData,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: RunAutomationResponseData
 
 ) {
 

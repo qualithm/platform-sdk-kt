@@ -30,11 +30,9 @@ import okhttp3.HttpUrl
 import com.qualithm.platform.generated.models.ApiError
 import com.qualithm.platform.generated.models.CreateTeamMemberRequest
 import com.qualithm.platform.generated.models.CreateTeamMemberResponse
-import com.qualithm.platform.generated.models.DeleteTeamMemberResponse
 import com.qualithm.platform.generated.models.GetTeamMemberResponse
 import com.qualithm.platform.generated.models.ListTeamMembersResponse
 import com.qualithm.platform.generated.models.UpdateTeamMemberRequest
-import com.qualithm.platform.generated.models.UpdateTeamMemberResponse
 
 import com.squareup.moshi.Json
 
@@ -64,7 +62,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/members
      * Accept the caller&#39;s invite to the team
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param createTeamMemberRequest 
      * @return CreateTeamMemberResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -75,7 +73,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createTeamMember(teamId: java.util.UUID, createTeamMemberRequest: CreateTeamMemberRequest) : CreateTeamMemberResponse {
+    public fun createTeamMember(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest) : CreateTeamMemberResponse {
         val localVarResponse = createTeamMemberWithHttpInfo(teamId = teamId, createTeamMemberRequest = createTeamMemberRequest)
 
         return when (localVarResponse.responseType) {
@@ -97,7 +95,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/members
      * Accept the caller&#39;s invite to the team
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param createTeamMemberRequest 
      * @return ApiResponse<CreateTeamMemberResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -105,7 +103,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createTeamMemberWithHttpInfo(teamId: java.util.UUID, createTeamMemberRequest: CreateTeamMemberRequest) : ApiResponse<CreateTeamMemberResponse?> {
+    public fun createTeamMemberWithHttpInfo(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest) : ApiResponse<CreateTeamMemberResponse?> {
         val localVariableConfig = createTeamMemberRequestConfig(teamId = teamId, createTeamMemberRequest = createTeamMemberRequest)
 
         return request<CreateTeamMemberRequest, CreateTeamMemberResponse>(
@@ -116,11 +114,11 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation createTeamMember
      *
-     * @param teamId 
+     * @param teamId A team ID
      * @param createTeamMemberRequest 
      * @return RequestConfig
      */
-    public fun createTeamMemberRequestConfig(teamId: java.util.UUID, createTeamMemberRequest: CreateTeamMemberRequest) : RequestConfig<CreateTeamMemberRequest> {
+    public fun createTeamMemberRequestConfig(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest) : RequestConfig<CreateTeamMemberRequest> {
         val localVariableBody = createTeamMemberRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -141,22 +139,21 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/members/{memberId}
      * Remove a member from the team
      * A viewer can remove only themselves; a manager only viewers and themselves.
-     * @param teamId 
-     * @param memberId 
-     * @return DeleteTeamMemberResponse
+     * @param teamId A team ID
+     * @param memberId A member ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteTeamMember(teamId: java.util.UUID, memberId: java.util.UUID) : DeleteTeamMemberResponse {
+    public fun deleteTeamMember(teamId: kotlin.String, memberId: kotlin.String) : Unit {
         val localVarResponse = deleteTeamMemberWithHttpInfo(teamId = teamId, memberId = memberId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteTeamMemberResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -174,18 +171,17 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/members/{memberId}
      * Remove a member from the team
      * A viewer can remove only themselves; a manager only viewers and themselves.
-     * @param teamId 
-     * @param memberId 
-     * @return ApiResponse<DeleteTeamMemberResponse?>
+     * @param teamId A team ID
+     * @param memberId A member ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteTeamMemberWithHttpInfo(teamId: java.util.UUID, memberId: java.util.UUID) : ApiResponse<DeleteTeamMemberResponse?> {
+    public fun deleteTeamMemberWithHttpInfo(teamId: kotlin.String, memberId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteTeamMemberRequestConfig(teamId = teamId, memberId = memberId)
 
-        return request<Unit, DeleteTeamMemberResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -193,11 +189,11 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation deleteTeamMember
      *
-     * @param teamId 
-     * @param memberId 
+     * @param teamId A team ID
+     * @param memberId A member ID
      * @return RequestConfig
      */
-    public fun deleteTeamMemberRequestConfig(teamId: java.util.UUID, memberId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteTeamMemberRequestConfig(teamId: kotlin.String, memberId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -217,8 +213,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members/{memberId}
      * Get a member of the team
      * 
-     * @param teamId 
-     * @param memberId 
+     * @param teamId A team ID
+     * @param memberId A member ID
      * @return GetTeamMemberResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -228,7 +224,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getTeamMember(teamId: java.util.UUID, memberId: java.util.UUID) : GetTeamMemberResponse {
+    public fun getTeamMember(teamId: kotlin.String, memberId: kotlin.String) : GetTeamMemberResponse {
         val localVarResponse = getTeamMemberWithHttpInfo(teamId = teamId, memberId = memberId)
 
         return when (localVarResponse.responseType) {
@@ -250,15 +246,15 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members/{memberId}
      * Get a member of the team
      * 
-     * @param teamId 
-     * @param memberId 
+     * @param teamId A team ID
+     * @param memberId A member ID
      * @return ApiResponse<GetTeamMemberResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getTeamMemberWithHttpInfo(teamId: java.util.UUID, memberId: java.util.UUID) : ApiResponse<GetTeamMemberResponse?> {
+    public fun getTeamMemberWithHttpInfo(teamId: kotlin.String, memberId: kotlin.String) : ApiResponse<GetTeamMemberResponse?> {
         val localVariableConfig = getTeamMemberRequestConfig(teamId = teamId, memberId = memberId)
 
         return request<Unit, GetTeamMemberResponse>(
@@ -269,11 +265,11 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation getTeamMember
      *
-     * @param teamId 
-     * @param memberId 
+     * @param teamId A team ID
+     * @param memberId A member ID
      * @return RequestConfig
      */
-    public fun getTeamMemberRequestConfig(teamId: java.util.UUID, memberId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getTeamMemberRequestConfig(teamId: kotlin.String, memberId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -293,7 +289,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListTeamMembersResponse
@@ -305,7 +301,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTeamMembers(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListTeamMembersResponse {
+    public fun listTeamMembers(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListTeamMembersResponse {
         val localVarResponse = listTeamMembersWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -327,7 +323,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListTeamMembersResponse?>
@@ -336,7 +332,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTeamMembersWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListTeamMembersResponse?> {
+    public fun listTeamMembersWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListTeamMembersResponse?> {
         val localVariableConfig = listTeamMembersRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListTeamMembersResponse>(
@@ -347,12 +343,12 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation listTeamMembers
      *
-     * @param teamId 
+     * @param teamId A team ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listTeamMembersRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listTeamMembersRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -380,23 +376,22 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * PATCH /v1/teams/{teamId}/members/{memberId}
      * Change a member&#39;s role
      * 
-     * @param teamId 
-     * @param memberId 
+     * @param teamId A team ID
+     * @param memberId A member ID
      * @param updateTeamMemberRequest 
-     * @return UpdateTeamMemberResponse
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateTeamMember(teamId: java.util.UUID, memberId: java.util.UUID, updateTeamMemberRequest: UpdateTeamMemberRequest) : UpdateTeamMemberResponse {
+    public fun updateTeamMember(teamId: kotlin.String, memberId: kotlin.String, updateTeamMemberRequest: UpdateTeamMemberRequest) : Unit {
         val localVarResponse = updateTeamMemberWithHttpInfo(teamId = teamId, memberId = memberId, updateTeamMemberRequest = updateTeamMemberRequest)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as UpdateTeamMemberResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -414,19 +409,18 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * PATCH /v1/teams/{teamId}/members/{memberId}
      * Change a member&#39;s role
      * 
-     * @param teamId 
-     * @param memberId 
+     * @param teamId A team ID
+     * @param memberId A member ID
      * @param updateTeamMemberRequest 
-     * @return ApiResponse<UpdateTeamMemberResponse?>
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateTeamMemberWithHttpInfo(teamId: java.util.UUID, memberId: java.util.UUID, updateTeamMemberRequest: UpdateTeamMemberRequest) : ApiResponse<UpdateTeamMemberResponse?> {
+    public fun updateTeamMemberWithHttpInfo(teamId: kotlin.String, memberId: kotlin.String, updateTeamMemberRequest: UpdateTeamMemberRequest) : ApiResponse<Unit?> {
         val localVariableConfig = updateTeamMemberRequestConfig(teamId = teamId, memberId = memberId, updateTeamMemberRequest = updateTeamMemberRequest)
 
-        return request<UpdateTeamMemberRequest, UpdateTeamMemberResponse>(
+        return request<UpdateTeamMemberRequest, Unit>(
             localVariableConfig
         )
     }
@@ -434,12 +428,12 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation updateTeamMember
      *
-     * @param teamId 
-     * @param memberId 
+     * @param teamId A team ID
+     * @param memberId A member ID
      * @param updateTeamMemberRequest 
      * @return RequestConfig
      */
-    public fun updateTeamMemberRequestConfig(teamId: java.util.UUID, memberId: java.util.UUID, updateTeamMemberRequest: UpdateTeamMemberRequest) : RequestConfig<UpdateTeamMemberRequest> {
+    public fun updateTeamMemberRequestConfig(teamId: kotlin.String, memberId: kotlin.String, updateTeamMemberRequest: UpdateTeamMemberRequest) : RequestConfig<UpdateTeamMemberRequest> {
         val localVariableBody = updateTeamMemberRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

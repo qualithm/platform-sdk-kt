@@ -30,14 +30,10 @@ import okhttp3.HttpUrl
 import com.qualithm.platform.generated.models.ApiError
 import com.qualithm.platform.generated.models.CreateDeviceRequest
 import com.qualithm.platform.generated.models.CreateDeviceResponse
-import com.qualithm.platform.generated.models.DeleteDeviceResponse
 import com.qualithm.platform.generated.models.GetDeviceResponse
 import com.qualithm.platform.generated.models.ListDevicesResponse
 import com.qualithm.platform.generated.models.ListTeamDeviceStatesResponse
-import com.qualithm.platform.generated.models.ParkDeviceResponse
-import com.qualithm.platform.generated.models.UnparkDeviceResponse
 import com.qualithm.platform.generated.models.UpdateDeviceRequest
-import com.qualithm.platform.generated.models.UpdateDeviceResponse
 
 import com.squareup.moshi.Json
 
@@ -78,7 +74,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDevice(teamId: java.util.UUID, createDeviceRequest: CreateDeviceRequest) : CreateDeviceResponse {
+    public fun createDevice(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest) : CreateDeviceResponse {
         val localVarResponse = createDeviceWithHttpInfo(teamId = teamId, createDeviceRequest = createDeviceRequest)
 
         return when (localVarResponse.responseType) {
@@ -108,7 +104,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceWithHttpInfo(teamId: java.util.UUID, createDeviceRequest: CreateDeviceRequest) : ApiResponse<CreateDeviceResponse?> {
+    public fun createDeviceWithHttpInfo(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest) : ApiResponse<CreateDeviceResponse?> {
         val localVariableConfig = createDeviceRequestConfig(teamId = teamId, createDeviceRequest = createDeviceRequest)
 
         return request<CreateDeviceRequest, CreateDeviceResponse>(
@@ -123,7 +119,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * @param createDeviceRequest 
      * @return RequestConfig
      */
-    public fun createDeviceRequestConfig(teamId: java.util.UUID, createDeviceRequest: CreateDeviceRequest) : RequestConfig<CreateDeviceRequest> {
+    public fun createDeviceRequestConfig(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest) : RequestConfig<CreateDeviceRequest> {
         val localVariableBody = createDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -145,21 +141,20 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Delete a device and revoke its credentials
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
-     * @return DeleteDeviceResponse
+     * @param deviceId A device ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteDevice(teamId: java.util.UUID, deviceId: java.util.UUID) : DeleteDeviceResponse {
+    public fun deleteDevice(teamId: kotlin.String, deviceId: kotlin.String) : Unit {
         val localVarResponse = deleteDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteDeviceResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -178,17 +173,16 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Delete a device and revoke its credentials
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
-     * @return ApiResponse<DeleteDeviceResponse?>
+     * @param deviceId A device ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteDeviceWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID) : ApiResponse<DeleteDeviceResponse?> {
+    public fun deleteDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteDeviceRequestConfig(teamId = teamId, deviceId = deviceId)
 
-        return request<Unit, DeleteDeviceResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -197,10 +191,10 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation deleteDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return RequestConfig
      */
-    public fun deleteDeviceRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -221,7 +215,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Get a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return GetDeviceResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -231,7 +225,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getDevice(teamId: java.util.UUID, deviceId: java.util.UUID) : GetDeviceResponse {
+    public fun getDevice(teamId: kotlin.String, deviceId: kotlin.String) : GetDeviceResponse {
         val localVarResponse = getDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId)
 
         return when (localVarResponse.responseType) {
@@ -254,14 +248,14 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Get a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return ApiResponse<GetDeviceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getDeviceWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID) : ApiResponse<GetDeviceResponse?> {
+    public fun getDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<GetDeviceResponse?> {
         val localVariableConfig = getDeviceRequestConfig(teamId = teamId, deviceId = deviceId)
 
         return request<Unit, GetDeviceResponse>(
@@ -273,10 +267,10 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation getDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return RequestConfig
      */
-    public fun getDeviceRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -309,7 +303,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDevices(teamId: java.util.UUID, spaceId: java.util.UUID? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListDevicesResponse {
+    public fun listDevices(teamId: kotlin.String, spaceId: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListDevicesResponse {
         val localVarResponse = listDevicesWithHttpInfo(teamId = teamId, spaceId = spaceId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -341,7 +335,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDevicesWithHttpInfo(teamId: java.util.UUID, spaceId: java.util.UUID?, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListDevicesResponse?> {
+    public fun listDevicesWithHttpInfo(teamId: kotlin.String, spaceId: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListDevicesResponse?> {
         val localVariableConfig = listDevicesRequestConfig(teamId = teamId, spaceId = spaceId, page = page, limit = limit)
 
         return request<Unit, ListDevicesResponse>(
@@ -358,7 +352,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listDevicesRequestConfig(teamId: java.util.UUID, spaceId: java.util.UUID?, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listDevicesRequestConfig(teamId: kotlin.String, spaceId: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -389,7 +383,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/device-states
      * List the live state of a team&#39;s devices
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @return ListTeamDeviceStatesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -399,7 +393,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTeamDeviceStates(teamId: java.util.UUID) : ListTeamDeviceStatesResponse {
+    public fun listTeamDeviceStates(teamId: kotlin.String) : ListTeamDeviceStatesResponse {
         val localVarResponse = listTeamDeviceStatesWithHttpInfo(teamId = teamId)
 
         return when (localVarResponse.responseType) {
@@ -421,14 +415,14 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/device-states
      * List the live state of a team&#39;s devices
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @return ApiResponse<ListTeamDeviceStatesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTeamDeviceStatesWithHttpInfo(teamId: java.util.UUID) : ApiResponse<ListTeamDeviceStatesResponse?> {
+    public fun listTeamDeviceStatesWithHttpInfo(teamId: kotlin.String) : ApiResponse<ListTeamDeviceStatesResponse?> {
         val localVariableConfig = listTeamDeviceStatesRequestConfig(teamId = teamId)
 
         return request<Unit, ListTeamDeviceStatesResponse>(
@@ -439,10 +433,10 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation listTeamDeviceStates
      *
-     * @param teamId 
+     * @param teamId A team ID
      * @return RequestConfig
      */
-    public fun listTeamDeviceStatesRequestConfig(teamId: java.util.UUID) : RequestConfig<Unit> {
+    public fun listTeamDeviceStatesRequestConfig(teamId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -463,21 +457,20 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Park a device so it stops connecting and counting against the plan
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
-     * @return ParkDeviceResponse
+     * @param deviceId A device ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun parkDevice(teamId: java.util.UUID, deviceId: java.util.UUID) : ParkDeviceResponse {
+    public fun parkDevice(teamId: kotlin.String, deviceId: kotlin.String) : Unit {
         val localVarResponse = parkDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ParkDeviceResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -496,17 +489,16 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Park a device so it stops connecting and counting against the plan
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
-     * @return ApiResponse<ParkDeviceResponse?>
+     * @param deviceId A device ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun parkDeviceWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID) : ApiResponse<ParkDeviceResponse?> {
+    public fun parkDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = parkDeviceRequestConfig(teamId = teamId, deviceId = deviceId)
 
-        return request<Unit, ParkDeviceResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -515,10 +507,10 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation parkDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return RequestConfig
      */
-    public fun parkDeviceRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun parkDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -539,21 +531,20 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Return a parked device to live
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
-     * @return UnparkDeviceResponse
+     * @param deviceId A device ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun unparkDevice(teamId: java.util.UUID, deviceId: java.util.UUID) : UnparkDeviceResponse {
+    public fun unparkDevice(teamId: kotlin.String, deviceId: kotlin.String) : Unit {
         val localVarResponse = unparkDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as UnparkDeviceResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -572,17 +563,16 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Return a parked device to live
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
-     * @return ApiResponse<UnparkDeviceResponse?>
+     * @param deviceId A device ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun unparkDeviceWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID) : ApiResponse<UnparkDeviceResponse?> {
+    public fun unparkDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = unparkDeviceRequestConfig(teamId = teamId, deviceId = deviceId)
 
-        return request<Unit, UnparkDeviceResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -591,10 +581,10 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation unparkDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @return RequestConfig
      */
-    public fun unparkDeviceRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID) : RequestConfig<Unit> {
+    public fun unparkDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -615,22 +605,21 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Rename a device or move it to another space in the same zone
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @param updateDeviceRequest 
-     * @return UpdateDeviceResponse
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateDevice(teamId: java.util.UUID, deviceId: java.util.UUID, updateDeviceRequest: UpdateDeviceRequest) : UpdateDeviceResponse {
+    public fun updateDevice(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest) : Unit {
         val localVarResponse = updateDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId, updateDeviceRequest = updateDeviceRequest)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as UpdateDeviceResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -649,18 +638,17 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Rename a device or move it to another space in the same zone
      * 
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @param updateDeviceRequest 
-     * @return ApiResponse<UpdateDeviceResponse?>
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateDeviceWithHttpInfo(teamId: java.util.UUID, deviceId: java.util.UUID, updateDeviceRequest: UpdateDeviceRequest) : ApiResponse<UpdateDeviceResponse?> {
+    public fun updateDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest) : ApiResponse<Unit?> {
         val localVariableConfig = updateDeviceRequestConfig(teamId = teamId, deviceId = deviceId, updateDeviceRequest = updateDeviceRequest)
 
-        return request<UpdateDeviceRequest, UpdateDeviceResponse>(
+        return request<UpdateDeviceRequest, Unit>(
             localVariableConfig
         )
     }
@@ -669,11 +657,11 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation updateDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId 
+     * @param deviceId A device ID
      * @param updateDeviceRequest 
      * @return RequestConfig
      */
-    public fun updateDeviceRequestConfig(teamId: java.util.UUID, deviceId: java.util.UUID, updateDeviceRequest: UpdateDeviceRequest) : RequestConfig<UpdateDeviceRequest> {
+    public fun updateDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest) : RequestConfig<UpdateDeviceRequest> {
         val localVariableBody = updateDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

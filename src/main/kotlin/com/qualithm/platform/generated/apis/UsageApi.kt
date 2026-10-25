@@ -68,7 +68,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun getUsage(teamId: java.util.UUID) : GetUsageResponse {
+    public fun getUsage(teamId: kotlin.String) : GetUsageResponse {
         val localVarResponse = getUsageWithHttpInfo(teamId = teamId)
 
         return when (localVarResponse.responseType) {
@@ -97,7 +97,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun getUsageWithHttpInfo(teamId: java.util.UUID) : ApiResponse<GetUsageResponse?> {
+    public fun getUsageWithHttpInfo(teamId: kotlin.String) : ApiResponse<GetUsageResponse?> {
         val localVariableConfig = getUsageRequestConfig(teamId = teamId)
 
         return request<Unit, GetUsageResponse>(
@@ -111,7 +111,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * @param teamId The team the request acts on
      * @return RequestConfig
      */
-    public fun getUsageRequestConfig(teamId: java.util.UUID) : RequestConfig<Unit> {
+    public fun getUsageRequestConfig(teamId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
