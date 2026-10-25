@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param name 
  * @param payload 
- * @param spaceId A space id; null, empty or absent for a team-wide automation
+ * @param spaceId A space ID
  */
 
 
@@ -45,7 +45,7 @@ public data class CreateAutomationRequest (
     @Json(name = "payload")
     val payload: CreateAutomationRequestPayload,
 
-    /* A space id; null, empty or absent for a team-wide automation */
+    /* A space ID */
     @Json(name = "spaceId")
     val spaceId: kotlin.String? = null
 

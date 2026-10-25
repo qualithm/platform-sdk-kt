@@ -4,7 +4,6 @@ import com.qualithm.platform.generated.apis.DevicesApi
 import com.qualithm.platform.generated.apis.HealthApi
 import com.qualithm.platform.generated.models.ApiErrorCode
 import java.io.IOException
-import java.util.UUID
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -40,8 +39,8 @@ private class Stub(
 }
 
 class PlatformClientTest {
-    private val teamId = UUID.fromString("1c2d3e4f-5a6b-4c7d-8e9f-0a1b2c3d4e5f")
-    private val deviceId = UUID.fromString("0b9f8a1e-8c1d-4b6f-9a51-2f6c1e3d4a5b")
+    private val teamId = "tm_01JAYQ4T7Z9K3M5N8P2R6S0V1W"
+    private val deviceId = "dev_01JAYQ4T7Z9K3M5N8P2R6S0V1W"
 
     private fun client(
         stub: Stub,

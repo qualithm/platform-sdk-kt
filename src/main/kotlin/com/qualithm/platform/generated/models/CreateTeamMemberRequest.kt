@@ -38,7 +38,7 @@ public data class CreateTeamMemberRequest (
 
     /* The invite to accept */
     @Json(name = "inviteId")
-    val inviteId: java.util.UUID
+    val inviteId: kotlin.String
 
 ) {
 

@@ -30,7 +30,6 @@ import okhttp3.HttpUrl
 import com.qualithm.platform.generated.models.ApiError
 import com.qualithm.platform.generated.models.CreateAuthorityRequest
 import com.qualithm.platform.generated.models.CreateAuthorityResponse
-import com.qualithm.platform.generated.models.DeleteAuthorityResponse
 import com.qualithm.platform.generated.models.ListAuthoritiesResponse
 
 import com.squareup.moshi.Json
@@ -72,7 +71,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAuthority(teamId: java.util.UUID, createAuthorityRequest: CreateAuthorityRequest) : CreateAuthorityResponse {
+    public fun createAuthority(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest) : CreateAuthorityResponse {
         val localVarResponse = createAuthorityWithHttpInfo(teamId = teamId, createAuthorityRequest = createAuthorityRequest)
 
         return when (localVarResponse.responseType) {
@@ -102,7 +101,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAuthorityWithHttpInfo(teamId: java.util.UUID, createAuthorityRequest: CreateAuthorityRequest) : ApiResponse<CreateAuthorityResponse?> {
+    public fun createAuthorityWithHttpInfo(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest) : ApiResponse<CreateAuthorityResponse?> {
         val localVariableConfig = createAuthorityRequestConfig(teamId = teamId, createAuthorityRequest = createAuthorityRequest)
 
         return request<CreateAuthorityRequest, CreateAuthorityResponse>(
@@ -117,7 +116,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * @param createAuthorityRequest 
      * @return RequestConfig
      */
-    public fun createAuthorityRequestConfig(teamId: java.util.UUID, createAuthorityRequest: CreateAuthorityRequest) : RequestConfig<CreateAuthorityRequest> {
+    public fun createAuthorityRequestConfig(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest) : RequestConfig<CreateAuthorityRequest> {
         val localVariableBody = createAuthorityRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -139,21 +138,20 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a certificate authority and every credential it issued
      * 
      * @param teamId The team the request acts on
-     * @param authorityId 
-     * @return DeleteAuthorityResponse
+     * @param authorityId A device authority ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteAuthority(teamId: java.util.UUID, authorityId: java.util.UUID) : DeleteAuthorityResponse {
+    public fun deleteAuthority(teamId: kotlin.String, authorityId: kotlin.String) : Unit {
         val localVarResponse = deleteAuthorityWithHttpInfo(teamId = teamId, authorityId = authorityId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteAuthorityResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -172,17 +170,16 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a certificate authority and every credential it issued
      * 
      * @param teamId The team the request acts on
-     * @param authorityId 
-     * @return ApiResponse<DeleteAuthorityResponse?>
+     * @param authorityId A device authority ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteAuthorityWithHttpInfo(teamId: java.util.UUID, authorityId: java.util.UUID) : ApiResponse<DeleteAuthorityResponse?> {
+    public fun deleteAuthorityWithHttpInfo(teamId: kotlin.String, authorityId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteAuthorityRequestConfig(teamId = teamId, authorityId = authorityId)
 
-        return request<Unit, DeleteAuthorityResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -191,10 +188,10 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteAuthority
      *
      * @param teamId The team the request acts on
-     * @param authorityId 
+     * @param authorityId A device authority ID
      * @return RequestConfig
      */
-    public fun deleteAuthorityRequestConfig(teamId: java.util.UUID, authorityId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteAuthorityRequestConfig(teamId: kotlin.String, authorityId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -226,7 +223,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAuthorities(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuthoritiesResponse {
+    public fun listAuthorities(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAuthoritiesResponse {
         val localVarResponse = listAuthoritiesWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -257,7 +254,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAuthoritiesWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuthoritiesResponse?> {
+    public fun listAuthoritiesWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAuthoritiesResponse?> {
         val localVariableConfig = listAuthoritiesRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListAuthoritiesResponse>(
@@ -273,7 +270,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listAuthoritiesRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAuthoritiesRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {

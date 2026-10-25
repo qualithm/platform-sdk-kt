@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class CreateAuthorityResponse (
 
     @Json(name = "data")
-    val `data`: Authority,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: Authority
 
 ) {
 

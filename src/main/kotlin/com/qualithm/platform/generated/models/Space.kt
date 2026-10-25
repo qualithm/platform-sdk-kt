@@ -31,8 +31,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param teamId 
+ * @param id A space ID
+ * @param teamId A team ID
  * @param name 
  * @param payload JSON text
  * @param zone 
@@ -44,11 +44,13 @@ import com.squareup.moshi.JsonClass
 
 public data class Space (
 
+    /* A space ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
     @Json(name = "name")
     val name: kotlin.String,

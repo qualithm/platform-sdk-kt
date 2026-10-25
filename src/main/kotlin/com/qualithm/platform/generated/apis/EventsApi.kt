@@ -58,20 +58,19 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
      * Stream the team&#39;s live events
      * 
      * @param teamId The team the request acts on
-     * @return kotlin.String
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun streamEvents(teamId: java.util.UUID) : kotlin.String {
+    public fun streamEvents(teamId: kotlin.String) : Unit {
         val localVarResponse = streamEventsWithHttpInfo(teamId = teamId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.String
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -90,16 +89,15 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
      * Stream the team&#39;s live events
      * 
      * @param teamId The team the request acts on
-     * @return ApiResponse<kotlin.String?>
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun streamEventsWithHttpInfo(teamId: java.util.UUID) : ApiResponse<kotlin.String?> {
+    public fun streamEventsWithHttpInfo(teamId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = streamEventsRequestConfig(teamId = teamId)
 
-        return request<Unit, kotlin.String>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -110,7 +108,7 @@ public open class EventsApi(basePath: kotlin.String = defaultBasePath, client: C
      * @param teamId The team the request acts on
      * @return RequestConfig
      */
-    public fun streamEventsRequestConfig(teamId: java.util.UUID) : RequestConfig<Unit> {
+    public fun streamEventsRequestConfig(teamId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

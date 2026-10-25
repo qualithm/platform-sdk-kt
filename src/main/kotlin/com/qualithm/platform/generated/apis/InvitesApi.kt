@@ -30,7 +30,6 @@ import okhttp3.HttpUrl
 import com.qualithm.platform.generated.models.ApiError
 import com.qualithm.platform.generated.models.CreateTeamInviteRequest
 import com.qualithm.platform.generated.models.CreateTeamInviteResponse
-import com.qualithm.platform.generated.models.DeleteTeamInviteResponse
 import com.qualithm.platform.generated.models.ListTeamInvitesResponse
 
 import com.squareup.moshi.Json
@@ -61,7 +60,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/invites
      * Invite an account to the team by email
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param createTeamInviteRequest 
      * @return CreateTeamInviteResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -72,7 +71,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createTeamInvite(teamId: java.util.UUID, createTeamInviteRequest: CreateTeamInviteRequest) : CreateTeamInviteResponse {
+    public fun createTeamInvite(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest) : CreateTeamInviteResponse {
         val localVarResponse = createTeamInviteWithHttpInfo(teamId = teamId, createTeamInviteRequest = createTeamInviteRequest)
 
         return when (localVarResponse.responseType) {
@@ -94,7 +93,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/invites
      * Invite an account to the team by email
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param createTeamInviteRequest 
      * @return ApiResponse<CreateTeamInviteResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -102,7 +101,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createTeamInviteWithHttpInfo(teamId: java.util.UUID, createTeamInviteRequest: CreateTeamInviteRequest) : ApiResponse<CreateTeamInviteResponse?> {
+    public fun createTeamInviteWithHttpInfo(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest) : ApiResponse<CreateTeamInviteResponse?> {
         val localVariableConfig = createTeamInviteRequestConfig(teamId = teamId, createTeamInviteRequest = createTeamInviteRequest)
 
         return request<CreateTeamInviteRequest, CreateTeamInviteResponse>(
@@ -113,11 +112,11 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation createTeamInvite
      *
-     * @param teamId 
+     * @param teamId A team ID
      * @param createTeamInviteRequest 
      * @return RequestConfig
      */
-    public fun createTeamInviteRequestConfig(teamId: java.util.UUID, createTeamInviteRequest: CreateTeamInviteRequest) : RequestConfig<CreateTeamInviteRequest> {
+    public fun createTeamInviteRequestConfig(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest) : RequestConfig<CreateTeamInviteRequest> {
         val localVariableBody = createTeamInviteRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -138,22 +137,21 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/invites/{inviteId}
      * Revoke a pending invite
      * 
-     * @param teamId 
-     * @param inviteId 
-     * @return DeleteTeamInviteResponse
+     * @param teamId A team ID
+     * @param inviteId A member ID
+     * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
      * @throws ClientException If the API returns a client error response
      * @throws ServerException If the API returns a server error response
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteTeamInvite(teamId: java.util.UUID, inviteId: java.util.UUID) : DeleteTeamInviteResponse {
+    public fun deleteTeamInvite(teamId: kotlin.String, inviteId: kotlin.String) : Unit {
         val localVarResponse = deleteTeamInviteWithHttpInfo(teamId = teamId, inviteId = inviteId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteTeamInviteResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -171,18 +169,17 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/invites/{inviteId}
      * Revoke a pending invite
      * 
-     * @param teamId 
-     * @param inviteId 
-     * @return ApiResponse<DeleteTeamInviteResponse?>
+     * @param teamId A team ID
+     * @param inviteId A member ID
+     * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
-    @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteTeamInviteWithHttpInfo(teamId: java.util.UUID, inviteId: java.util.UUID) : ApiResponse<DeleteTeamInviteResponse?> {
+    public fun deleteTeamInviteWithHttpInfo(teamId: kotlin.String, inviteId: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deleteTeamInviteRequestConfig(teamId = teamId, inviteId = inviteId)
 
-        return request<Unit, DeleteTeamInviteResponse>(
+        return request<Unit, Unit>(
             localVariableConfig
         )
     }
@@ -190,11 +187,11 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation deleteTeamInvite
      *
-     * @param teamId 
-     * @param inviteId 
+     * @param teamId A team ID
+     * @param inviteId A member ID
      * @return RequestConfig
      */
-    public fun deleteTeamInviteRequestConfig(teamId: java.util.UUID, inviteId: java.util.UUID) : RequestConfig<Unit> {
+    public fun deleteTeamInviteRequestConfig(teamId: kotlin.String, inviteId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -214,7 +211,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/invites
      * List the team&#39;s pending invites
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ListTeamInvitesResponse
@@ -226,7 +223,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTeamInvites(teamId: java.util.UUID, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListTeamInvitesResponse {
+    public fun listTeamInvites(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListTeamInvitesResponse {
         val localVarResponse = listTeamInvitesWithHttpInfo(teamId = teamId, page = page, limit = limit)
 
         return when (localVarResponse.responseType) {
@@ -248,7 +245,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/invites
      * List the team&#39;s pending invites
      * 
-     * @param teamId 
+     * @param teamId A team ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return ApiResponse<ListTeamInvitesResponse?>
@@ -257,7 +254,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTeamInvitesWithHttpInfo(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListTeamInvitesResponse?> {
+    public fun listTeamInvitesWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListTeamInvitesResponse?> {
         val localVariableConfig = listTeamInvitesRequestConfig(teamId = teamId, page = page, limit = limit)
 
         return request<Unit, ListTeamInvitesResponse>(
@@ -268,12 +265,12 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation listTeamInvites
      *
-     * @param teamId 
+     * @param teamId A team ID
      * @param page Page number, from 1. Default 1. (optional)
      * @param limit Items per page, 1 to 100. Default 20. (optional)
      * @return RequestConfig
      */
-    public fun listTeamInvitesRequestConfig(teamId: java.util.UUID, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listTeamInvitesRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {

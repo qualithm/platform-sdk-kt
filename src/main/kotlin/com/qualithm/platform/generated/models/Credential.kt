@@ -30,9 +30,9 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param deviceId 
- * @param authorityId The authority that issued a cert credential
+ * @param id A credential ID
+ * @param deviceId A device ID
+ * @param authorityId A device authority ID
  * @param kind 
  * @param certFingerprint SHA-256 of a cert credential's certificate
  * @param certSubject 
@@ -40,7 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param status 
  * @param expiresAt ISO 8601 time
  * @param lastUsedAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param rotatedFrom The credential this one replaced on rotation
+ * @param rotatedFrom A credential ID
  * @param payload JSON text
  * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
  * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
@@ -49,15 +49,17 @@ import com.squareup.moshi.JsonClass
 
 public data class Credential (
 
+    /* A credential ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A device ID */
     @Json(name = "deviceId")
-    val deviceId: java.util.UUID,
+    val deviceId: kotlin.String,
 
-    /* The authority that issued a cert credential */
+    /* A device authority ID */
     @Json(name = "authorityId")
-    val authorityId: java.util.UUID?,
+    val authorityId: kotlin.String?,
 
     @Json(name = "kind")
     val kind: Credential.Kind,
@@ -83,9 +85,9 @@ public data class Credential (
     @Json(name = "lastUsedAt")
     val lastUsedAt: kotlin.String?,
 
-    /* The credential this one replaced on rotation */
+    /* A credential ID */
     @Json(name = "rotatedFrom")
-    val rotatedFrom: java.util.UUID?,
+    val rotatedFrom: kotlin.String?,
 
     /* JSON text */
     @Json(name = "payload")

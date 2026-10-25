@@ -31,9 +31,9 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param accountId 
- * @param teamId 
+ * @param id An API token ID
+ * @param accountId An account ID
+ * @param teamId A team ID
  * @param name 
  * @param status 
  * @param role The token's role ceiling; null means the creator's current role
@@ -47,14 +47,17 @@ import com.squareup.moshi.JsonClass
 
 public data class ApiToken (
 
+    /* An API token ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* An account ID */
     @Json(name = "accountId")
-    val accountId: java.util.UUID,
+    val accountId: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
     @Json(name = "name")
     val name: kotlin.String,

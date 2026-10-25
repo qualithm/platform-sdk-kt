@@ -30,13 +30,13 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param teamId 
+ * @param id An audit event ID
+ * @param teamId A team ID
  * @param actorKind 
- * @param actorId The member or device that acted; null for the system
+ * @param actorId An ID of any type
  * @param action Dot-namespaced action, e.g. `device.claim`
  * @param targetKind What the action acted on, e.g. `device`
- * @param targetId 
+ * @param targetId An ID of any type
  * @param metadata Non-sensitive context for the action
  * @param occurredAt ISO 8601 time
  */
@@ -44,16 +44,18 @@ import com.squareup.moshi.JsonClass
 
 public data class AuditEvent (
 
+    /* An audit event ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
     @Json(name = "actorKind")
     val actorKind: AuditEvent.ActorKind,
 
-    /* The member or device that acted; null for the system */
+    /* An ID of any type */
     @Json(name = "actorId")
     val actorId: kotlin.String?,
 
@@ -65,6 +67,7 @@ public data class AuditEvent (
     @Json(name = "targetKind")
     val targetKind: kotlin.String,
 
+    /* An ID of any type */
     @Json(name = "targetId")
     val targetId: kotlin.String,
 

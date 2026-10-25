@@ -30,14 +30,19 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
+ * @param `field` A JSON pointer into the request
  * @param message 
  */
 
 
-public data class UpdateTeamResponse (
+public data class ApiErrorDetailsInner (
+
+    /* A JSON pointer into the request */
+    @Json(name = "field")
+    val `field`: kotlin.String,
 
     @Json(name = "message")
-    val message: kotlin.String? = null
+    val message: kotlin.String
 
 ) {
 

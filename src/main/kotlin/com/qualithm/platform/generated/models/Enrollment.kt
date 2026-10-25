@@ -30,12 +30,12 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param teamId 
- * @param spaceId 
+ * @param id An enrollment ID
+ * @param teamId A team ID
+ * @param spaceId A space ID
  * @param label 
  * @param status 
- * @param claimedDeviceId 
+ * @param claimedDeviceId A device ID
  * @param claimedAt UTC time, `YYYY-MM-DD HH:MM:SS`
  * @param expiresAt ISO 8601 time
  * @param payload JSON text
@@ -46,14 +46,17 @@ import com.squareup.moshi.JsonClass
 
 public data class Enrollment (
 
+    /* An enrollment ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
+    /* A space ID */
     @Json(name = "spaceId")
-    val spaceId: java.util.UUID,
+    val spaceId: kotlin.String,
 
     @Json(name = "label")
     val label: kotlin.String,
@@ -61,8 +64,9 @@ public data class Enrollment (
     @Json(name = "status")
     val status: Enrollment.Status,
 
+    /* A device ID */
     @Json(name = "claimedDeviceId")
-    val claimedDeviceId: java.util.UUID?,
+    val claimedDeviceId: kotlin.String?,
 
     /* UTC time, `YYYY-MM-DD HH:MM:SS` */
     @Json(name = "claimedAt")

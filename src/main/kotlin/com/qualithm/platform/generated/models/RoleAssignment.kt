@@ -31,9 +31,9 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id 
- * @param accountId 
- * @param teamId 
+ * @param id A member ID
+ * @param accountId An account ID
+ * @param teamId A team ID
  * @param teamName 
  * @param role 
  * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
@@ -43,14 +43,17 @@ import com.squareup.moshi.JsonClass
 
 public data class RoleAssignment (
 
+    /* A member ID */
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: kotlin.String,
 
+    /* An account ID */
     @Json(name = "accountId")
-    val accountId: java.util.UUID,
+    val accountId: kotlin.String,
 
+    /* A team ID */
     @Json(name = "teamId")
-    val teamId: java.util.UUID,
+    val teamId: kotlin.String,
 
     @Json(name = "teamName")
     val teamName: kotlin.String,

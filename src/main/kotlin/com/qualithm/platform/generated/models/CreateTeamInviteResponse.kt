@@ -32,17 +32,13 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param `data` 
- * @param message 
  */
 
 
 public data class CreateTeamInviteResponse (
 
     @Json(name = "data")
-    val `data`: TeamInvite,
-
-    @Json(name = "message")
-    val message: kotlin.String? = null
+    val `data`: TeamInvite
 
 ) {
 
