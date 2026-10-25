@@ -1,7 +1,9 @@
+# Base block, the same in every repo
 .DS_Store
 .env*
 .idea/
 .vscode/
+coverage/
 
 # Gradle build output, coverage reports included
 .gradle/
