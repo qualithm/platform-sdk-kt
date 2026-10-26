@@ -30,7 +30,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The chain; exclusive with `template`
  *
  * @param trigger 
  * @param chain Ordered condition and action steps; at least one action

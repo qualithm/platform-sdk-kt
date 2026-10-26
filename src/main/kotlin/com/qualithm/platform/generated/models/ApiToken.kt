@@ -37,10 +37,10 @@ import com.squareup.moshi.JsonClass
  * @param name 
  * @param status 
  * @param role The token's role ceiling; null means the creator's current role
- * @param expiresAt ISO 8601 time
- * @param lastUsedAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param expiresAt UTC time, RFC 3339
+ * @param lastUsedAt UTC time, RFC 3339
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  * @param permissions What the token can do now: its creator's current role lowered to its ceiling. Listed tokens only.
  */
 
@@ -69,21 +69,21 @@ public data class ApiToken (
     @Json(name = "role")
     val role: MemberRole?,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "expiresAt")
-    val expiresAt: kotlin.String?,
+    val expiresAt: java.time.OffsetDateTime?,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "lastUsedAt")
-    val lastUsedAt: kotlin.String?,
+    val lastUsedAt: java.time.OffsetDateTime?,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String,
+    val updatedAt: java.time.OffsetDateTime,
 
     /* What the token can do now: its creator's current role lowered to its ceiling. Listed tokens only. */
     @Json(name = "permissions")

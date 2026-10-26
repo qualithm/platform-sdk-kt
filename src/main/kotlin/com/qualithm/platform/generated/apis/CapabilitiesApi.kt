@@ -266,6 +266,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param teamId The team the request acts on
      * @param capabilityId A capability ID
      * @param updateCapabilityRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return UpdateCapabilityResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -275,8 +276,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateCapability(teamId: kotlin.String, capabilityId: kotlin.String, updateCapabilityRequest: UpdateCapabilityRequest) : UpdateCapabilityResponse {
-        val localVarResponse = updateCapabilityWithHttpInfo(teamId = teamId, capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest)
+    public fun updateCapability(teamId: kotlin.String, capabilityId: kotlin.String, updateCapabilityRequest: UpdateCapabilityRequest, ifMatch: kotlin.String? = null) : UpdateCapabilityResponse {
+        val localVarResponse = updateCapabilityWithHttpInfo(teamId = teamId, capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as UpdateCapabilityResponse
@@ -300,14 +301,15 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param teamId The team the request acts on
      * @param capabilityId A capability ID
      * @param updateCapabilityRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<UpdateCapabilityResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateCapabilityWithHttpInfo(teamId: kotlin.String, capabilityId: kotlin.String, updateCapabilityRequest: UpdateCapabilityRequest) : ApiResponse<UpdateCapabilityResponse?> {
-        val localVariableConfig = updateCapabilityRequestConfig(teamId = teamId, capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest)
+    public fun updateCapabilityWithHttpInfo(teamId: kotlin.String, capabilityId: kotlin.String, updateCapabilityRequest: UpdateCapabilityRequest, ifMatch: kotlin.String?) : ApiResponse<UpdateCapabilityResponse?> {
+        val localVariableConfig = updateCapabilityRequestConfig(teamId = teamId, capabilityId = capabilityId, updateCapabilityRequest = updateCapabilityRequest, ifMatch = ifMatch)
 
         return request<UpdateCapabilityRequest, UpdateCapabilityResponse>(
             localVariableConfig
@@ -320,14 +322,16 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param teamId The team the request acts on
      * @param capabilityId A capability ID
      * @param updateCapabilityRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun updateCapabilityRequestConfig(teamId: kotlin.String, capabilityId: kotlin.String, updateCapabilityRequest: UpdateCapabilityRequest) : RequestConfig<UpdateCapabilityRequest> {
+    public fun updateCapabilityRequestConfig(teamId: kotlin.String, capabilityId: kotlin.String, updateCapabilityRequest: UpdateCapabilityRequest, ifMatch: kotlin.String?) : RequestConfig<UpdateCapabilityRequest> {
         val localVariableBody = updateCapabilityRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.PATCH,

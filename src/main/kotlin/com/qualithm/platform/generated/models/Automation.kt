@@ -38,8 +38,8 @@ import com.squareup.moshi.JsonClass
  * @param name 
  * @param enabled 
  * @param payload 
- * @param createdAt ISO 8601 time
- * @param updatedAt ISO 8601 time
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  * @param templateDrift On a single read of a template-built automation: true when its chain no longer matches its template
  */
 
@@ -70,13 +70,13 @@ public data class Automation (
     @Json(name = "payload")
     val payload: AutomationPayload,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String,
+    val updatedAt: java.time.OffsetDateTime,
 
     /* On a single read of a template-built automation: true when its chain no longer matches its template */
     @Json(name = "templateDrift")

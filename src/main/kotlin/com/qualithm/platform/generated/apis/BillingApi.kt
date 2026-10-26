@@ -223,6 +223,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId The team the request acts on
      * @param previewTierChangeRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return PreviewTierChangeResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -232,8 +233,8 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun previewTierChange(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest) : PreviewTierChangeResponse {
-        val localVarResponse = previewTierChangeWithHttpInfo(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest)
+    public fun previewTierChange(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest, idempotencyKey: kotlin.String? = null) : PreviewTierChangeResponse {
+        val localVarResponse = previewTierChangeWithHttpInfo(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as PreviewTierChangeResponse
@@ -256,14 +257,15 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId The team the request acts on
      * @param previewTierChangeRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<PreviewTierChangeResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun previewTierChangeWithHttpInfo(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest) : ApiResponse<PreviewTierChangeResponse?> {
-        val localVariableConfig = previewTierChangeRequestConfig(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest)
+    public fun previewTierChangeWithHttpInfo(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest, idempotencyKey: kotlin.String?) : ApiResponse<PreviewTierChangeResponse?> {
+        val localVariableConfig = previewTierChangeRequestConfig(teamId = teamId, previewTierChangeRequest = previewTierChangeRequest, idempotencyKey = idempotencyKey)
 
         return request<PreviewTierChangeRequest, PreviewTierChangeResponse>(
             localVariableConfig
@@ -275,14 +277,16 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      *
      * @param teamId The team the request acts on
      * @param previewTierChangeRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun previewTierChangeRequestConfig(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest) : RequestConfig<PreviewTierChangeRequest> {
+    public fun previewTierChangeRequestConfig(teamId: kotlin.String, previewTierChangeRequest: PreviewTierChangeRequest, idempotencyKey: kotlin.String?) : RequestConfig<PreviewTierChangeRequest> {
         val localVariableBody = previewTierChangeRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,

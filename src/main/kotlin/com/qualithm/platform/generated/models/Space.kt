@@ -36,8 +36,8 @@ import com.squareup.moshi.JsonClass
  * @param name 
  * @param payload JSON text
  * @param zone 
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  * @param deviceTotal The space's live devices. Absent when listing a zone's spaces.
  */
 
@@ -62,13 +62,13 @@ public data class Space (
     @Json(name = "zone")
     val zone: ZoneId,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String,
+    val updatedAt: java.time.OffsetDateTime,
 
     /* The space's live devices. Absent when listing a zone's spaces. */
     @Json(name = "deviceTotal")

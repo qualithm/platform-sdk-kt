@@ -36,11 +36,11 @@ import com.squareup.moshi.JsonClass
  * @param label 
  * @param status 
  * @param claimedDeviceId A device ID
- * @param claimedAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param expiresAt ISO 8601 time
+ * @param claimedAt UTC time, RFC 3339
+ * @param expiresAt UTC time, RFC 3339
  * @param payload JSON text
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  */
 
 
@@ -68,25 +68,25 @@ public data class Enrollment (
     @Json(name = "claimedDeviceId")
     val claimedDeviceId: kotlin.String?,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "claimedAt")
-    val claimedAt: kotlin.String?,
+    val claimedAt: java.time.OffsetDateTime?,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "expiresAt")
-    val expiresAt: kotlin.String,
+    val expiresAt: java.time.OffsetDateTime,
 
     /* JSON text */
     @Json(name = "payload")
     val payload: kotlin.String,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String
+    val updatedAt: java.time.OffsetDateTime
 
 ) {
 

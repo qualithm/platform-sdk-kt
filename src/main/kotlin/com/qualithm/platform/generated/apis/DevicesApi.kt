@@ -65,6 +65,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId The team the request acts on
      * @param createDeviceRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateDeviceResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -74,8 +75,8 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDevice(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest) : CreateDeviceResponse {
-        val localVarResponse = createDeviceWithHttpInfo(teamId = teamId, createDeviceRequest = createDeviceRequest)
+    public fun createDevice(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest, idempotencyKey: kotlin.String? = null) : CreateDeviceResponse {
+        val localVarResponse = createDeviceWithHttpInfo(teamId = teamId, createDeviceRequest = createDeviceRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDeviceResponse
@@ -98,14 +99,15 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId The team the request acts on
      * @param createDeviceRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateDeviceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceWithHttpInfo(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest) : ApiResponse<CreateDeviceResponse?> {
-        val localVariableConfig = createDeviceRequestConfig(teamId = teamId, createDeviceRequest = createDeviceRequest)
+    public fun createDeviceWithHttpInfo(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateDeviceResponse?> {
+        val localVariableConfig = createDeviceRequestConfig(teamId = teamId, createDeviceRequest = createDeviceRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateDeviceRequest, CreateDeviceResponse>(
             localVariableConfig
@@ -117,14 +119,16 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      *
      * @param teamId The team the request acts on
      * @param createDeviceRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createDeviceRequestConfig(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest) : RequestConfig<CreateDeviceRequest> {
+    public fun createDeviceRequestConfig(teamId: kotlin.String, createDeviceRequest: CreateDeviceRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateDeviceRequest> {
         val localVariableBody = createDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -142,6 +146,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -150,8 +155,8 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteDevice(teamId: kotlin.String, deviceId: kotlin.String) : Unit {
-        val localVarResponse = deleteDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId)
+    public fun deleteDevice(teamId: kotlin.String, deviceId: kotlin.String, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = deleteDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -174,13 +179,14 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = deleteDeviceRequestConfig(teamId = teamId, deviceId = deviceId)
+    public fun deleteDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = deleteDeviceRequestConfig(teamId = teamId, deviceId = deviceId, ifMatch = ifMatch)
 
         return request<Unit, Unit>(
             localVariableConfig
@@ -192,13 +198,15 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      *
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun deleteDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
+    public fun deleteDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, ifMatch: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -453,160 +461,13 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
-     * POST /v1/teams/{teamId}/devices/{deviceId}/park
-     * Park a device so it stops connecting and counting against the plan
-     * 
-     * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @return void
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun parkDevice(teamId: kotlin.String, deviceId: kotlin.String) : Unit {
-        val localVarResponse = parkDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> Unit
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/devices/{deviceId}/park
-     * Park a device so it stops connecting and counting against the plan
-     * 
-     * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @return ApiResponse<Unit?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Throws(IllegalStateException::class, IOException::class)
-    public fun parkDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = parkDeviceRequestConfig(teamId = teamId, deviceId = deviceId)
-
-        return request<Unit, Unit>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation parkDevice
-     *
-     * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @return RequestConfig
-     */
-    public fun parkDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/v1/teams/{teamId}/devices/{deviceId}/park".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/devices/{deviceId}/unpark
-     * Return a parked device to live
-     * 
-     * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @return void
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun unparkDevice(teamId: kotlin.String, deviceId: kotlin.String) : Unit {
-        val localVarResponse = unparkDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> Unit
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/devices/{deviceId}/unpark
-     * Return a parked device to live
-     * 
-     * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @return ApiResponse<Unit?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Throws(IllegalStateException::class, IOException::class)
-    public fun unparkDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = unparkDeviceRequestConfig(teamId = teamId, deviceId = deviceId)
-
-        return request<Unit, Unit>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation unparkDevice
-     *
-     * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @return RequestConfig
-     */
-    public fun unparkDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/v1/teams/{teamId}/devices/{deviceId}/unpark".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
      * PATCH /v1/teams/{teamId}/devices/{deviceId}
-     * Rename a device or move it to another space in the same zone
+     * Rename, move or park a device
      * 
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param updateDeviceRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -615,8 +476,8 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateDevice(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest) : Unit {
-        val localVarResponse = updateDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId, updateDeviceRequest = updateDeviceRequest)
+    public fun updateDevice(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = updateDeviceWithHttpInfo(teamId = teamId, deviceId = deviceId, updateDeviceRequest = updateDeviceRequest, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -635,18 +496,19 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * PATCH /v1/teams/{teamId}/devices/{deviceId}
-     * Rename a device or move it to another space in the same zone
+     * Rename, move or park a device
      * 
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param updateDeviceRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest) : ApiResponse<Unit?> {
-        val localVariableConfig = updateDeviceRequestConfig(teamId = teamId, deviceId = deviceId, updateDeviceRequest = updateDeviceRequest)
+    public fun updateDeviceWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = updateDeviceRequestConfig(teamId = teamId, deviceId = deviceId, updateDeviceRequest = updateDeviceRequest, ifMatch = ifMatch)
 
         return request<UpdateDeviceRequest, Unit>(
             localVariableConfig
@@ -659,14 +521,16 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param updateDeviceRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun updateDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest) : RequestConfig<UpdateDeviceRequest> {
+    public fun updateDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, updateDeviceRequest: UpdateDeviceRequest, ifMatch: kotlin.String?) : RequestConfig<UpdateDeviceRequest> {
         val localVariableBody = updateDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.PATCH,

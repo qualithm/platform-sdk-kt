@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
  * @param deviceId A device ID
  * @param spaceId A space ID
  * @param online Whether the device was seen within the offline window
- * @param lastSeenAt Last sighting, epoch milliseconds
+ * @param lastSeenAt When the device was last seen
  * @param metrics The device's current metrics
  */
 
@@ -52,9 +52,9 @@ public data class DeviceState (
     @Json(name = "online")
     val online: kotlin.Boolean,
 
-    /* Last sighting, epoch milliseconds */
+    /* When the device was last seen */
     @Json(name = "lastSeenAt")
-    val lastSeenAt: java.math.BigDecimal,
+    val lastSeenAt: java.time.OffsetDateTime,
 
     /* The device's current metrics */
     @Json(name = "metrics")

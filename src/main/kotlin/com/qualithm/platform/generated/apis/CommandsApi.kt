@@ -63,6 +63,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param createDeviceCommandRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateDeviceCommandResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -72,8 +73,8 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDeviceCommand(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCommandRequest: CreateDeviceCommandRequest) : CreateDeviceCommandResponse {
-        val localVarResponse = createDeviceCommandWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest)
+    public fun createDeviceCommand(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCommandRequest: CreateDeviceCommandRequest, idempotencyKey: kotlin.String? = null) : CreateDeviceCommandResponse {
+        val localVarResponse = createDeviceCommandWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDeviceCommandResponse
@@ -97,14 +98,15 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param createDeviceCommandRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateDeviceCommandResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceCommandWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCommandRequest: CreateDeviceCommandRequest) : ApiResponse<CreateDeviceCommandResponse?> {
-        val localVariableConfig = createDeviceCommandRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest)
+    public fun createDeviceCommandWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCommandRequest: CreateDeviceCommandRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateDeviceCommandResponse?> {
+        val localVariableConfig = createDeviceCommandRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCommandRequest = createDeviceCommandRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateDeviceCommandRequest, CreateDeviceCommandResponse>(
             localVariableConfig
@@ -117,14 +119,16 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param createDeviceCommandRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createDeviceCommandRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCommandRequest: CreateDeviceCommandRequest) : RequestConfig<CreateDeviceCommandRequest> {
+    public fun createDeviceCommandRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCommandRequest: CreateDeviceCommandRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateDeviceCommandRequest> {
         val localVariableBody = createDeviceCommandRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,

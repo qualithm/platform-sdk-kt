@@ -65,6 +65,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * 
      * @param teamId The team the request acts on
      * @param createDashboardRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateDashboardResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -74,8 +75,8 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDashboard(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest) : CreateDashboardResponse {
-        val localVarResponse = createDashboardWithHttpInfo(teamId = teamId, createDashboardRequest = createDashboardRequest)
+    public fun createDashboard(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest, idempotencyKey: kotlin.String? = null) : CreateDashboardResponse {
+        val localVarResponse = createDashboardWithHttpInfo(teamId = teamId, createDashboardRequest = createDashboardRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDashboardResponse
@@ -98,14 +99,15 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * 
      * @param teamId The team the request acts on
      * @param createDashboardRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateDashboardResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDashboardWithHttpInfo(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest) : ApiResponse<CreateDashboardResponse?> {
-        val localVariableConfig = createDashboardRequestConfig(teamId = teamId, createDashboardRequest = createDashboardRequest)
+    public fun createDashboardWithHttpInfo(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateDashboardResponse?> {
+        val localVariableConfig = createDashboardRequestConfig(teamId = teamId, createDashboardRequest = createDashboardRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateDashboardRequest, CreateDashboardResponse>(
             localVariableConfig
@@ -117,14 +119,16 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      *
      * @param teamId The team the request acts on
      * @param createDashboardRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createDashboardRequestConfig(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest) : RequestConfig<CreateDashboardRequest> {
+    public fun createDashboardRequestConfig(teamId: kotlin.String, createDashboardRequest: CreateDashboardRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateDashboardRequest> {
         val localVariableBody = createDashboardRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -142,6 +146,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * 
      * @param teamId The team the request acts on
      * @param dashboardId A dashboard ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -150,8 +155,8 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteDashboard(teamId: kotlin.String, dashboardId: kotlin.String) : Unit {
-        val localVarResponse = deleteDashboardWithHttpInfo(teamId = teamId, dashboardId = dashboardId)
+    public fun deleteDashboard(teamId: kotlin.String, dashboardId: kotlin.String, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = deleteDashboardWithHttpInfo(teamId = teamId, dashboardId = dashboardId, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -174,13 +179,14 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * 
      * @param teamId The team the request acts on
      * @param dashboardId A dashboard ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteDashboardWithHttpInfo(teamId: kotlin.String, dashboardId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = deleteDashboardRequestConfig(teamId = teamId, dashboardId = dashboardId)
+    public fun deleteDashboardWithHttpInfo(teamId: kotlin.String, dashboardId: kotlin.String, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = deleteDashboardRequestConfig(teamId = teamId, dashboardId = dashboardId, ifMatch = ifMatch)
 
         return request<Unit, Unit>(
             localVariableConfig
@@ -192,13 +198,15 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      *
      * @param teamId The team the request acts on
      * @param dashboardId A dashboard ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun deleteDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String) : RequestConfig<Unit> {
+    public fun deleteDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String, ifMatch: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -380,6 +388,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * @param teamId The team the request acts on
      * @param dashboardId A dashboard ID
      * @param updateDashboardRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return UpdateDashboardResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -389,8 +398,8 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateDashboard(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest) : UpdateDashboardResponse {
-        val localVarResponse = updateDashboardWithHttpInfo(teamId = teamId, dashboardId = dashboardId, updateDashboardRequest = updateDashboardRequest)
+    public fun updateDashboard(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest, ifMatch: kotlin.String? = null) : UpdateDashboardResponse {
+        val localVarResponse = updateDashboardWithHttpInfo(teamId = teamId, dashboardId = dashboardId, updateDashboardRequest = updateDashboardRequest, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as UpdateDashboardResponse
@@ -414,14 +423,15 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * @param teamId The team the request acts on
      * @param dashboardId A dashboard ID
      * @param updateDashboardRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<UpdateDashboardResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateDashboardWithHttpInfo(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest) : ApiResponse<UpdateDashboardResponse?> {
-        val localVariableConfig = updateDashboardRequestConfig(teamId = teamId, dashboardId = dashboardId, updateDashboardRequest = updateDashboardRequest)
+    public fun updateDashboardWithHttpInfo(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest, ifMatch: kotlin.String?) : ApiResponse<UpdateDashboardResponse?> {
+        val localVariableConfig = updateDashboardRequestConfig(teamId = teamId, dashboardId = dashboardId, updateDashboardRequest = updateDashboardRequest, ifMatch = ifMatch)
 
         return request<UpdateDashboardRequest, UpdateDashboardResponse>(
             localVariableConfig
@@ -434,14 +444,16 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * @param teamId The team the request acts on
      * @param dashboardId A dashboard ID
      * @param updateDashboardRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun updateDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest) : RequestConfig<UpdateDashboardRequest> {
+    public fun updateDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String, updateDashboardRequest: UpdateDashboardRequest, ifMatch: kotlin.String?) : RequestConfig<UpdateDashboardRequest> {
         val localVariableBody = updateDashboardRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.PATCH,

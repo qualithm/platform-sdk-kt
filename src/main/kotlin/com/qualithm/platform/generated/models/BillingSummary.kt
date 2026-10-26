@@ -27,6 +27,7 @@ import com.qualithm.platform.generated.models.BillingSummaryAddons
 import com.qualithm.platform.generated.models.BillingSummaryLimitGrace
 import com.qualithm.platform.generated.models.BillingSummaryLimits
 import com.qualithm.platform.generated.models.BillingSummaryUsage
+import com.qualithm.platform.generated.models.Money
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -39,7 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param limitGrace 
  * @param limits 
  * @param usage 
- * @param monthlyTotal The plan's monthly price with add-ons, in USD
+ * @param monthlyTotal The plan's monthly price with add-ons
  * @param addons 
  */
 
@@ -62,9 +63,9 @@ public data class BillingSummary (
     @Json(name = "usage")
     val usage: BillingSummaryUsage,
 
-    /* The plan's monthly price with add-ons, in USD */
+    /* The plan's monthly price with add-ons */
     @Json(name = "monthlyTotal")
-    val monthlyTotal: java.math.BigDecimal,
+    val monthlyTotal: Money,
 
     @Json(name = "addons")
     val addons: BillingSummaryAddons

@@ -32,6 +32,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param name 
  * @param spaceId A space in the device's zone
+ * @param parked A parked device can't connect and doesn't count against the plan; its credentials and history stay
  */
 
 
@@ -42,7 +43,11 @@ public data class UpdateDeviceRequest (
 
     /* A space in the device's zone */
     @Json(name = "spaceId")
-    val spaceId: kotlin.String? = null
+    val spaceId: kotlin.String? = null,
+
+    /* A parked device can't connect and doesn't count against the plan; its credentials and history stay */
+    @Json(name = "parked")
+    val parked: kotlin.Boolean? = null
 
 ) {
 

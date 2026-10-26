@@ -37,8 +37,8 @@ import com.squareup.moshi.JsonClass
  * @param status 
  * @param steps 
  * @param lastError 
- * @param triggeredAt ISO 8601 time
- * @param executedAt ISO 8601 time
+ * @param triggeredAt UTC time, RFC 3339
+ * @param executedAt UTC time, RFC 3339
  */
 
 
@@ -64,13 +64,13 @@ public data class AutomationRun (
     @Json(name = "lastError")
     val lastError: kotlin.String?,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "triggeredAt")
-    val triggeredAt: kotlin.String,
+    val triggeredAt: java.time.OffsetDateTime,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "executedAt")
-    val executedAt: kotlin.String?
+    val executedAt: java.time.OffsetDateTime?
 
 ) {
 

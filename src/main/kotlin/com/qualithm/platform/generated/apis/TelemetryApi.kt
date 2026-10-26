@@ -61,8 +61,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * @param teamId A team ID
      * @param deviceId A device ID
      * @param metric The metric to read
-     * @param from Range start, epoch milliseconds, inclusive
-     * @param to Range end, epoch milliseconds, exclusive
+     * @param from Range start, RFC 3339, inclusive
+     * @param to Range end, RFC 3339, exclusive
      * @param bucket Bucket width in seconds. Default 60. (optional)
      * @param agg Bucket aggregate: avg, min, max, sum, count, last, delta or rate. Default avg. (optional)
      * @param fill &#x60;locf&#x60; carries the last observation forward across empty buckets (optional)
@@ -75,7 +75,7 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTelemetry(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String? = null, agg: kotlin.String? = null, fill: kotlin.String? = null) : ListTelemetryResponse {
+    public fun listTelemetry(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String? = null, agg: kotlin.String? = null, fill: kotlin.String? = null) : ListTelemetryResponse {
         val localVarResponse = listTelemetryWithHttpInfo(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
 
         return when (localVarResponse.responseType) {
@@ -100,8 +100,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * @param teamId A team ID
      * @param deviceId A device ID
      * @param metric The metric to read
-     * @param from Range start, epoch milliseconds, inclusive
-     * @param to Range end, epoch milliseconds, exclusive
+     * @param from Range start, RFC 3339, inclusive
+     * @param to Range end, RFC 3339, exclusive
      * @param bucket Bucket width in seconds. Default 60. (optional)
      * @param agg Bucket aggregate: avg, min, max, sum, count, last, delta or rate. Default avg. (optional)
      * @param fill &#x60;locf&#x60; carries the last observation forward across empty buckets (optional)
@@ -111,7 +111,7 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTelemetryWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : ApiResponse<ListTelemetryResponse?> {
+    public fun listTelemetryWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : ApiResponse<ListTelemetryResponse?> {
         val localVariableConfig = listTelemetryRequestConfig(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
 
         return request<Unit, ListTelemetryResponse>(
@@ -125,20 +125,20 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * @param teamId A team ID
      * @param deviceId A device ID
      * @param metric The metric to read
-     * @param from Range start, epoch milliseconds, inclusive
-     * @param to Range end, epoch milliseconds, exclusive
+     * @param from Range start, RFC 3339, inclusive
+     * @param to Range end, RFC 3339, exclusive
      * @param bucket Bucket width in seconds. Default 60. (optional)
      * @param agg Bucket aggregate: avg, min, max, sum, count, last, delta or rate. Default avg. (optional)
      * @param fill &#x60;locf&#x60; carries the last observation forward across empty buckets (optional)
      * @return RequestConfig
      */
-    public fun listTelemetryRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: kotlin.String, to: kotlin.String, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : RequestConfig<Unit> {
+    public fun listTelemetryRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 put("metric", listOf(metric.toString()))
-                put("from", listOf(from.toString()))
-                put("to", listOf(to.toString()))
+                put("from", listOf(parseDateToQueryString<java.time.OffsetDateTime>(from)))
+                put("to", listOf(parseDateToQueryString<java.time.OffsetDateTime>(to)))
                 if (bucket != null) {
                     put("bucket", listOf(bucket.toString()))
                 }

@@ -35,8 +35,8 @@ import com.squareup.moshi.JsonClass
  * @param accountId An account ID
  * @param teamId A team ID
  * @param role 
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  * @param accountEmail 
  * @param accountName 
  * @param teamName 
@@ -60,13 +60,13 @@ public data class TeamMember (
     @Json(name = "role")
     val role: MemberRole,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String,
+    val updatedAt: java.time.OffsetDateTime,
 
     @Json(name = "accountEmail")
     val accountEmail: kotlin.String,

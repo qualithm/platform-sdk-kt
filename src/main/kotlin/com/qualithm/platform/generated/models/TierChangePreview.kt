@@ -23,6 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
+import com.qualithm.platform.generated.models.Money
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -32,8 +33,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param from 
  * @param to 
- * @param amountDue What the change bills now, in minor units; negative for a credit
- * @param currency 
+ * @param amountDue What the change bills now; a negative amount is a credit
  * @param nextPaymentAttempt When the change is billed, in Unix seconds
  */
 
@@ -46,12 +46,9 @@ public data class TierChangePreview (
     @Json(name = "to")
     val to: TierChangePreview.To,
 
-    /* What the change bills now, in minor units; negative for a credit */
+    /* What the change bills now; a negative amount is a credit */
     @Json(name = "amountDue")
-    val amountDue: kotlin.Long,
-
-    @Json(name = "currency")
-    val currency: kotlin.String,
+    val amountDue: Money,
 
     /* When the change is billed, in Unix seconds */
     @Json(name = "nextPaymentAttempt")

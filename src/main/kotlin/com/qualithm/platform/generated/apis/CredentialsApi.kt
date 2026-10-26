@@ -67,6 +67,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param createDeviceCertificateRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateDeviceCertificateResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -76,8 +77,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDeviceCertificate(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : CreateDeviceCertificateResponse {
-        val localVarResponse = createDeviceCertificateWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest)
+    public fun createDeviceCertificate(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCertificateRequest: CreateDeviceCertificateRequest, idempotencyKey: kotlin.String? = null) : CreateDeviceCertificateResponse {
+        val localVarResponse = createDeviceCertificateWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDeviceCertificateResponse
@@ -101,14 +102,15 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param createDeviceCertificateRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateDeviceCertificateResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceCertificateWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : ApiResponse<CreateDeviceCertificateResponse?> {
-        val localVariableConfig = createDeviceCertificateRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest)
+    public fun createDeviceCertificateWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCertificateRequest: CreateDeviceCertificateRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateDeviceCertificateResponse?> {
+        val localVariableConfig = createDeviceCertificateRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCertificateRequest = createDeviceCertificateRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateDeviceCertificateRequest, CreateDeviceCertificateResponse>(
             localVariableConfig
@@ -121,14 +123,16 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param teamId The team the request acts on
      * @param deviceId A device ID
      * @param createDeviceCertificateRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createDeviceCertificateRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCertificateRequest: CreateDeviceCertificateRequest) : RequestConfig<CreateDeviceCertificateRequest> {
+    public fun createDeviceCertificateRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCertificateRequest: CreateDeviceCertificateRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateDeviceCertificateRequest> {
         val localVariableBody = createDeviceCertificateRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -146,6 +150,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param createDeviceCredentialRequest  (optional)
      * @return CreateDeviceCredentialResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -156,8 +161,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createDeviceCredential(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCredentialRequest: CreateDeviceCredentialRequest? = null) : CreateDeviceCredentialResponse {
-        val localVarResponse = createDeviceCredentialWithHttpInfo(teamId = teamId, deviceId = deviceId, createDeviceCredentialRequest = createDeviceCredentialRequest)
+    public fun createDeviceCredential(teamId: kotlin.String, deviceId: kotlin.String, idempotencyKey: kotlin.String? = null, createDeviceCredentialRequest: CreateDeviceCredentialRequest? = null) : CreateDeviceCredentialResponse {
+        val localVarResponse = createDeviceCredentialWithHttpInfo(teamId = teamId, deviceId = deviceId, idempotencyKey = idempotencyKey, createDeviceCredentialRequest = createDeviceCredentialRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateDeviceCredentialResponse
@@ -180,6 +185,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param createDeviceCredentialRequest  (optional)
      * @return ApiResponse<CreateDeviceCredentialResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -187,8 +193,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createDeviceCredentialWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : ApiResponse<CreateDeviceCredentialResponse?> {
-        val localVariableConfig = createDeviceCredentialRequestConfig(teamId = teamId, deviceId = deviceId, createDeviceCredentialRequest = createDeviceCredentialRequest)
+    public fun createDeviceCredentialWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, idempotencyKey: kotlin.String?, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : ApiResponse<CreateDeviceCredentialResponse?> {
+        val localVariableConfig = createDeviceCredentialRequestConfig(teamId = teamId, deviceId = deviceId, idempotencyKey = idempotencyKey, createDeviceCredentialRequest = createDeviceCredentialRequest)
 
         return request<CreateDeviceCredentialRequest, CreateDeviceCredentialResponse>(
             localVariableConfig
@@ -200,15 +206,17 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param createDeviceCredentialRequest  (optional)
      * @return RequestConfig
      */
-    public fun createDeviceCredentialRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : RequestConfig<CreateDeviceCredentialRequest> {
+    public fun createDeviceCredentialRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, idempotencyKey: kotlin.String?, createDeviceCredentialRequest: CreateDeviceCredentialRequest?) : RequestConfig<CreateDeviceCredentialRequest> {
         val localVariableBody = createDeviceCredentialRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -381,6 +389,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param deviceId A device ID
      * @param credentialId A credential ID
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param rotateDeviceCredentialRequest  (optional)
      * @return RotateDeviceCredentialResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -391,8 +400,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun rotateDeviceCredential(teamId: kotlin.String, deviceId: kotlin.String, credentialId: kotlin.String, revoke: kotlin.String? = null, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest? = null) : RotateDeviceCredentialResponse {
-        val localVarResponse = rotateDeviceCredentialWithHttpInfo(teamId = teamId, deviceId = deviceId, credentialId = credentialId, revoke = revoke, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
+    public fun rotateDeviceCredential(teamId: kotlin.String, deviceId: kotlin.String, credentialId: kotlin.String, revoke: kotlin.String? = null, idempotencyKey: kotlin.String? = null, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest? = null) : RotateDeviceCredentialResponse {
+        val localVarResponse = rotateDeviceCredentialWithHttpInfo(teamId = teamId, deviceId = deviceId, credentialId = credentialId, revoke = revoke, idempotencyKey = idempotencyKey, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as RotateDeviceCredentialResponse
@@ -417,6 +426,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param deviceId A device ID
      * @param credentialId A credential ID
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param rotateDeviceCredentialRequest  (optional)
      * @return ApiResponse<RotateDeviceCredentialResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -424,8 +434,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun rotateDeviceCredentialWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, credentialId: kotlin.String, revoke: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : ApiResponse<RotateDeviceCredentialResponse?> {
-        val localVariableConfig = rotateDeviceCredentialRequestConfig(teamId = teamId, deviceId = deviceId, credentialId = credentialId, revoke = revoke, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
+    public fun rotateDeviceCredentialWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, credentialId: kotlin.String, revoke: kotlin.String?, idempotencyKey: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : ApiResponse<RotateDeviceCredentialResponse?> {
+        val localVariableConfig = rotateDeviceCredentialRequestConfig(teamId = teamId, deviceId = deviceId, credentialId = credentialId, revoke = revoke, idempotencyKey = idempotencyKey, rotateDeviceCredentialRequest = rotateDeviceCredentialRequest)
 
         return request<RotateDeviceCredentialRequest, RotateDeviceCredentialResponse>(
             localVariableConfig
@@ -439,10 +449,11 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param deviceId A device ID
      * @param credentialId A credential ID
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param rotateDeviceCredentialRequest  (optional)
      * @return RequestConfig
      */
-    public fun rotateDeviceCredentialRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, credentialId: kotlin.String, revoke: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : RequestConfig<RotateDeviceCredentialRequest> {
+    public fun rotateDeviceCredentialRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, credentialId: kotlin.String, revoke: kotlin.String?, idempotencyKey: kotlin.String?, rotateDeviceCredentialRequest: RotateDeviceCredentialRequest?) : RequestConfig<RotateDeviceCredentialRequest> {
         val localVariableBody = rotateDeviceCredentialRequest
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -453,6 +464,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
