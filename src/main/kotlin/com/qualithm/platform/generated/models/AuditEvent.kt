@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
  * @param targetKind What the action acted on, e.g. `device`
  * @param targetId An ID of any type
  * @param metadata Non-sensitive context for the action
- * @param occurredAt ISO 8601 time
+ * @param occurredAt UTC time, RFC 3339
  */
 
 
@@ -75,9 +75,9 @@ public data class AuditEvent (
     @Json(name = "metadata")
     val metadata: kotlin.Any?,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "occurredAt")
-    val occurredAt: kotlin.String
+    val occurredAt: java.time.OffsetDateTime
 
 ) {
 

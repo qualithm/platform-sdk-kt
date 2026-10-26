@@ -30,15 +30,15 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param expiresAt ISO 8601 time in the future
+ * @param expiresAt A time in the future
  */
 
 
 public data class RotateDeviceCredentialRequest (
 
-    /* ISO 8601 time in the future */
+    /* A time in the future */
     @Json(name = "expiresAt")
-    val expiresAt: kotlin.String? = null
+    val expiresAt: java.time.OffsetDateTime? = null
 
 ) {
 

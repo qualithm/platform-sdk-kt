@@ -64,6 +64,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId A team ID
      * @param createTeamMemberRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateTeamMemberResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -73,8 +74,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createTeamMember(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest) : CreateTeamMemberResponse {
-        val localVarResponse = createTeamMemberWithHttpInfo(teamId = teamId, createTeamMemberRequest = createTeamMemberRequest)
+    public fun createTeamMember(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest, idempotencyKey: kotlin.String? = null) : CreateTeamMemberResponse {
+        val localVarResponse = createTeamMemberWithHttpInfo(teamId = teamId, createTeamMemberRequest = createTeamMemberRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateTeamMemberResponse
@@ -97,14 +98,15 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId A team ID
      * @param createTeamMemberRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateTeamMemberResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createTeamMemberWithHttpInfo(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest) : ApiResponse<CreateTeamMemberResponse?> {
-        val localVariableConfig = createTeamMemberRequestConfig(teamId = teamId, createTeamMemberRequest = createTeamMemberRequest)
+    public fun createTeamMemberWithHttpInfo(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateTeamMemberResponse?> {
+        val localVariableConfig = createTeamMemberRequestConfig(teamId = teamId, createTeamMemberRequest = createTeamMemberRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateTeamMemberRequest, CreateTeamMemberResponse>(
             localVariableConfig
@@ -116,14 +118,16 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      *
      * @param teamId A team ID
      * @param createTeamMemberRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createTeamMemberRequestConfig(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest) : RequestConfig<CreateTeamMemberRequest> {
+    public fun createTeamMemberRequestConfig(teamId: kotlin.String, createTeamMemberRequest: CreateTeamMemberRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateTeamMemberRequest> {
         val localVariableBody = createTeamMemberRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,

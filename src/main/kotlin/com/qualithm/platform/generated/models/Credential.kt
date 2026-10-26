@@ -38,12 +38,12 @@ import com.squareup.moshi.JsonClass
  * @param certSubject 
  * @param label 
  * @param status 
- * @param expiresAt ISO 8601 time
- * @param lastUsedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param expiresAt UTC time, RFC 3339
+ * @param lastUsedAt UTC time, RFC 3339
  * @param rotatedFrom A credential ID
  * @param payload JSON text
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  */
 
 
@@ -77,13 +77,13 @@ public data class Credential (
     @Json(name = "status")
     val status: Credential.Status,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "expiresAt")
-    val expiresAt: kotlin.String?,
+    val expiresAt: java.time.OffsetDateTime?,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "lastUsedAt")
-    val lastUsedAt: kotlin.String?,
+    val lastUsedAt: java.time.OffsetDateTime?,
 
     /* A credential ID */
     @Json(name = "rotatedFrom")
@@ -93,13 +93,13 @@ public data class Credential (
     @Json(name = "payload")
     val payload: kotlin.String,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String
+    val updatedAt: java.time.OffsetDateTime
 
 ) {
 

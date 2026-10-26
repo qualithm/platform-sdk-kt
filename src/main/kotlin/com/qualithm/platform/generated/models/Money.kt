@@ -23,7 +23,6 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.Automation
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -31,14 +30,20 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param `data` 
+ * @param amount The amount in minor units, e.g. cents
+ * @param currency An ISO 4217 currency code
  */
 
 
-public data class DisableAutomationResponse (
+public data class Money (
 
-    @Json(name = "data")
-    val `data`: Automation
+    /* The amount in minor units, e.g. cents */
+    @Json(name = "amount")
+    val amount: kotlin.Long,
+
+    /* An ISO 4217 currency code */
+    @Json(name = "currency")
+    val currency: kotlin.String
 
 ) {
 

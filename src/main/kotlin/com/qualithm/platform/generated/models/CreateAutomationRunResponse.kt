@@ -23,7 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.Automation
+import com.qualithm.platform.generated.models.CreateAutomationRunResponseData
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -35,10 +35,10 @@ import com.squareup.moshi.JsonClass
  */
 
 
-public data class EnableAutomationResponse (
+public data class CreateAutomationRunResponse (
 
     @Json(name = "data")
-    val `data`: Automation
+    val `data`: CreateAutomationRunResponseData
 
 ) {
 

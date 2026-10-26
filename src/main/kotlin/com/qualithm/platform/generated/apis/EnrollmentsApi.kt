@@ -62,6 +62,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateEnrollmentResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -71,8 +72,8 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createEnrollment(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest) : CreateEnrollmentResponse {
-        val localVarResponse = createEnrollmentWithHttpInfo(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest)
+    public fun createEnrollment(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest, idempotencyKey: kotlin.String? = null) : CreateEnrollmentResponse {
+        val localVarResponse = createEnrollmentWithHttpInfo(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateEnrollmentResponse
@@ -95,14 +96,15 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateEnrollmentResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createEnrollmentWithHttpInfo(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest) : ApiResponse<CreateEnrollmentResponse?> {
-        val localVariableConfig = createEnrollmentRequestConfig(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest)
+    public fun createEnrollmentWithHttpInfo(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateEnrollmentResponse?> {
+        val localVariableConfig = createEnrollmentRequestConfig(teamId = teamId, createEnrollmentRequest = createEnrollmentRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateEnrollmentRequest, CreateEnrollmentResponse>(
             localVariableConfig
@@ -114,14 +116,16 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createEnrollmentRequestConfig(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest) : RequestConfig<CreateEnrollmentRequest> {
+    public fun createEnrollmentRequestConfig(teamId: kotlin.String, createEnrollmentRequest: CreateEnrollmentRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateEnrollmentRequest> {
         val localVariableBody = createEnrollmentRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
