@@ -37,9 +37,9 @@ import com.squareup.moshi.JsonClass
  * @param teamId A team ID
  * @param name 
  * @param payload JSON text
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param parkedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
+ * @param parkedAt UTC time, RFC 3339
  * @param level 
  * @param checks 
  */
@@ -69,17 +69,17 @@ public data class Device (
     @Json(name = "payload")
     val payload: kotlin.String,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String,
+    val updatedAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "parkedAt")
-    val parkedAt: kotlin.String? = null,
+    val parkedAt: java.time.OffsetDateTime? = null,
 
     @Json(name = "level")
     val level: Device.Level? = null,

@@ -64,6 +64,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * 
      * @param teamId The team the request acts on
      * @param createSpaceRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateSpaceResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -73,8 +74,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createSpace(teamId: kotlin.String, createSpaceRequest: CreateSpaceRequest) : CreateSpaceResponse {
-        val localVarResponse = createSpaceWithHttpInfo(teamId = teamId, createSpaceRequest = createSpaceRequest)
+    public fun createSpace(teamId: kotlin.String, createSpaceRequest: CreateSpaceRequest, idempotencyKey: kotlin.String? = null) : CreateSpaceResponse {
+        val localVarResponse = createSpaceWithHttpInfo(teamId = teamId, createSpaceRequest = createSpaceRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateSpaceResponse
@@ -97,14 +98,15 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * 
      * @param teamId The team the request acts on
      * @param createSpaceRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateSpaceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createSpaceWithHttpInfo(teamId: kotlin.String, createSpaceRequest: CreateSpaceRequest) : ApiResponse<CreateSpaceResponse?> {
-        val localVariableConfig = createSpaceRequestConfig(teamId = teamId, createSpaceRequest = createSpaceRequest)
+    public fun createSpaceWithHttpInfo(teamId: kotlin.String, createSpaceRequest: CreateSpaceRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateSpaceResponse?> {
+        val localVariableConfig = createSpaceRequestConfig(teamId = teamId, createSpaceRequest = createSpaceRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateSpaceRequest, CreateSpaceResponse>(
             localVariableConfig
@@ -116,14 +118,16 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      *
      * @param teamId The team the request acts on
      * @param createSpaceRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createSpaceRequestConfig(teamId: kotlin.String, createSpaceRequest: CreateSpaceRequest) : RequestConfig<CreateSpaceRequest> {
+    public fun createSpaceRequestConfig(teamId: kotlin.String, createSpaceRequest: CreateSpaceRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateSpaceRequest> {
         val localVariableBody = createSpaceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -141,6 +145,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * 
      * @param teamId The team the request acts on
      * @param spaceId A space ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -149,8 +154,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteSpace(teamId: kotlin.String, spaceId: kotlin.String) : Unit {
-        val localVarResponse = deleteSpaceWithHttpInfo(teamId = teamId, spaceId = spaceId)
+    public fun deleteSpace(teamId: kotlin.String, spaceId: kotlin.String, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = deleteSpaceWithHttpInfo(teamId = teamId, spaceId = spaceId, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -173,13 +178,14 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * 
      * @param teamId The team the request acts on
      * @param spaceId A space ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteSpaceWithHttpInfo(teamId: kotlin.String, spaceId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = deleteSpaceRequestConfig(teamId = teamId, spaceId = spaceId)
+    public fun deleteSpaceWithHttpInfo(teamId: kotlin.String, spaceId: kotlin.String, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = deleteSpaceRequestConfig(teamId = teamId, spaceId = spaceId, ifMatch = ifMatch)
 
         return request<Unit, Unit>(
             localVariableConfig
@@ -191,13 +197,15 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      *
      * @param teamId The team the request acts on
      * @param spaceId A space ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun deleteSpaceRequestConfig(teamId: kotlin.String, spaceId: kotlin.String) : RequestConfig<Unit> {
+    public fun deleteSpaceRequestConfig(teamId: kotlin.String, spaceId: kotlin.String, ifMatch: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -403,6 +411,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * @param teamId The team the request acts on
      * @param spaceId A space ID
      * @param updateSpaceRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -411,8 +420,8 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateSpace(teamId: kotlin.String, spaceId: kotlin.String, updateSpaceRequest: UpdateSpaceRequest) : Unit {
-        val localVarResponse = updateSpaceWithHttpInfo(teamId = teamId, spaceId = spaceId, updateSpaceRequest = updateSpaceRequest)
+    public fun updateSpace(teamId: kotlin.String, spaceId: kotlin.String, updateSpaceRequest: UpdateSpaceRequest, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = updateSpaceWithHttpInfo(teamId = teamId, spaceId = spaceId, updateSpaceRequest = updateSpaceRequest, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -436,13 +445,14 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * @param teamId The team the request acts on
      * @param spaceId A space ID
      * @param updateSpaceRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateSpaceWithHttpInfo(teamId: kotlin.String, spaceId: kotlin.String, updateSpaceRequest: UpdateSpaceRequest) : ApiResponse<Unit?> {
-        val localVariableConfig = updateSpaceRequestConfig(teamId = teamId, spaceId = spaceId, updateSpaceRequest = updateSpaceRequest)
+    public fun updateSpaceWithHttpInfo(teamId: kotlin.String, spaceId: kotlin.String, updateSpaceRequest: UpdateSpaceRequest, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = updateSpaceRequestConfig(teamId = teamId, spaceId = spaceId, updateSpaceRequest = updateSpaceRequest, ifMatch = ifMatch)
 
         return request<UpdateSpaceRequest, Unit>(
             localVariableConfig
@@ -455,14 +465,16 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * @param teamId The team the request acts on
      * @param spaceId A space ID
      * @param updateSpaceRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun updateSpaceRequestConfig(teamId: kotlin.String, spaceId: kotlin.String, updateSpaceRequest: UpdateSpaceRequest) : RequestConfig<UpdateSpaceRequest> {
+    public fun updateSpaceRequestConfig(teamId: kotlin.String, spaceId: kotlin.String, updateSpaceRequest: UpdateSpaceRequest, ifMatch: kotlin.String?) : RequestConfig<UpdateSpaceRequest> {
         val localVariableBody = updateSpaceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.PATCH,

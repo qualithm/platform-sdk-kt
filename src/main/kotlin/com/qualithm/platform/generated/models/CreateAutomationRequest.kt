@@ -29,11 +29,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A name, and either a payload or a template
  *
  * @param name 
- * @param payload 
  * @param spaceId A space ID
+ * @param payload 
+ * @param template A template id to expand the chain from; exclusive with `payload`
+ * @param params The template's slot values, keyed by slot name; used with `template`
  */
 
 
@@ -42,12 +44,20 @@ public data class CreateAutomationRequest (
     @Json(name = "name")
     val name: kotlin.String,
 
-    @Json(name = "payload")
-    val payload: CreateAutomationRequestPayload,
-
     /* A space ID */
     @Json(name = "spaceId")
-    val spaceId: kotlin.String? = null
+    val spaceId: kotlin.String? = null,
+
+    @Json(name = "payload")
+    val payload: CreateAutomationRequestPayload? = null,
+
+    /* A template id to expand the chain from; exclusive with `payload` */
+    @Json(name = "template")
+    val template: kotlin.String? = null,
+
+    /* The template's slot values, keyed by slot name; used with `template` */
+    @Json(name = "params")
+    val params: kotlin.Any? = null
 
 ) {
 

@@ -37,8 +37,8 @@ import com.squareup.moshi.JsonClass
  * @param spaceName 
  * @param name 
  * @param payload 
- * @param createdAt ISO 8601 time
- * @param updatedAt ISO 8601 time
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  */
 
 
@@ -65,13 +65,13 @@ public data class Dashboard (
     @Json(name = "payload")
     val payload: kotlin.collections.List<DashboardWidget>,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String
+    val updatedAt: java.time.OffsetDateTime
 
 ) {
 
