@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
  */
 
 
-public data class RunAutomationResponseData (
+public data class CreateAutomationRunResponseData (
 
     /* The queued run's id */
     @Json(name = "id")

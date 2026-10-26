@@ -36,10 +36,10 @@ import com.squareup.moshi.JsonClass
  * @param ipAddress 
  * @param mfaVerified Whether the session passed MFA
  * @param thisDevice Whether this is the session making the request
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param lastUsedAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param expiresAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param revokedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param createdAt UTC time, RFC 3339
+ * @param lastUsedAt UTC time, RFC 3339
+ * @param expiresAt UTC time, RFC 3339
+ * @param revokedAt UTC time, RFC 3339
  */
 
 
@@ -67,21 +67,21 @@ public data class Session (
     @Json(name = "thisDevice")
     val thisDevice: kotlin.Boolean,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "lastUsedAt")
-    val lastUsedAt: kotlin.String,
+    val lastUsedAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "expiresAt")
-    val expiresAt: kotlin.String,
+    val expiresAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "revokedAt")
-    val revokedAt: kotlin.String?
+    val revokedAt: java.time.OffsetDateTime?
 
 ) {
 

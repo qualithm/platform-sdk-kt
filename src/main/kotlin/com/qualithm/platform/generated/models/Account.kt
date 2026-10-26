@@ -34,8 +34,8 @@ import com.squareup.moshi.JsonClass
  * @param email 
  * @param name 
  * @param payload The account's settings: a JSON object, encoded as a string
- * @param createdAt UTC time, `YYYY-MM-DD HH:MM:SS`
- * @param updatedAt UTC time, `YYYY-MM-DD HH:MM:SS`
+ * @param createdAt UTC time, RFC 3339
+ * @param updatedAt UTC time, RFC 3339
  */
 
 
@@ -55,13 +55,13 @@ public data class Account (
     @Json(name = "payload")
     val payload: kotlin.String,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
-    val createdAt: kotlin.String,
+    val createdAt: java.time.OffsetDateTime,
 
-    /* UTC time, `YYYY-MM-DD HH:MM:SS` */
+    /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: kotlin.String
+    val updatedAt: java.time.OffsetDateTime
 
 ) {
 

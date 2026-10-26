@@ -62,6 +62,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param createAuthorityRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateAuthorityResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -71,8 +72,8 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAuthority(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest) : CreateAuthorityResponse {
-        val localVarResponse = createAuthorityWithHttpInfo(teamId = teamId, createAuthorityRequest = createAuthorityRequest)
+    public fun createAuthority(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest, idempotencyKey: kotlin.String? = null) : CreateAuthorityResponse {
+        val localVarResponse = createAuthorityWithHttpInfo(teamId = teamId, createAuthorityRequest = createAuthorityRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateAuthorityResponse
@@ -95,14 +96,15 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param createAuthorityRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateAuthorityResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAuthorityWithHttpInfo(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest) : ApiResponse<CreateAuthorityResponse?> {
-        val localVariableConfig = createAuthorityRequestConfig(teamId = teamId, createAuthorityRequest = createAuthorityRequest)
+    public fun createAuthorityWithHttpInfo(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateAuthorityResponse?> {
+        val localVariableConfig = createAuthorityRequestConfig(teamId = teamId, createAuthorityRequest = createAuthorityRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateAuthorityRequest, CreateAuthorityResponse>(
             localVariableConfig
@@ -114,14 +116,16 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param createAuthorityRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createAuthorityRequestConfig(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest) : RequestConfig<CreateAuthorityRequest> {
+    public fun createAuthorityRequestConfig(teamId: kotlin.String, createAuthorityRequest: CreateAuthorityRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateAuthorityRequest> {
         val localVariableBody = createAuthorityRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,

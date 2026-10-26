@@ -62,6 +62,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId A team ID
      * @param createTeamInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateTeamInviteResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -71,8 +72,8 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createTeamInvite(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest) : CreateTeamInviteResponse {
-        val localVarResponse = createTeamInviteWithHttpInfo(teamId = teamId, createTeamInviteRequest = createTeamInviteRequest)
+    public fun createTeamInvite(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest, idempotencyKey: kotlin.String? = null) : CreateTeamInviteResponse {
+        val localVarResponse = createTeamInviteWithHttpInfo(teamId = teamId, createTeamInviteRequest = createTeamInviteRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateTeamInviteResponse
@@ -95,14 +96,15 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * 
      * @param teamId A team ID
      * @param createTeamInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateTeamInviteResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createTeamInviteWithHttpInfo(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest) : ApiResponse<CreateTeamInviteResponse?> {
-        val localVariableConfig = createTeamInviteRequestConfig(teamId = teamId, createTeamInviteRequest = createTeamInviteRequest)
+    public fun createTeamInviteWithHttpInfo(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateTeamInviteResponse?> {
+        val localVariableConfig = createTeamInviteRequestConfig(teamId = teamId, createTeamInviteRequest = createTeamInviteRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateTeamInviteRequest, CreateTeamInviteResponse>(
             localVariableConfig
@@ -114,14 +116,16 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      *
      * @param teamId A team ID
      * @param createTeamInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createTeamInviteRequestConfig(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest) : RequestConfig<CreateTeamInviteRequest> {
+    public fun createTeamInviteRequestConfig(teamId: kotlin.String, createTeamInviteRequest: CreateTeamInviteRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateTeamInviteRequest> {
         val localVariableBody = createTeamInviteRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,

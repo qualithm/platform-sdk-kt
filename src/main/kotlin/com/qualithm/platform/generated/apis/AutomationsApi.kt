@@ -28,18 +28,14 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 
 import com.qualithm.platform.generated.models.ApiError
-import com.qualithm.platform.generated.models.CreateAutomationFromTemplateRequest
-import com.qualithm.platform.generated.models.CreateAutomationFromTemplateResponse
 import com.qualithm.platform.generated.models.CreateAutomationRequest
 import com.qualithm.platform.generated.models.CreateAutomationResponse
+import com.qualithm.platform.generated.models.CreateAutomationRunResponse
 import com.qualithm.platform.generated.models.CreateAutomationTriggerSecretResponse
-import com.qualithm.platform.generated.models.DisableAutomationResponse
-import com.qualithm.platform.generated.models.EnableAutomationResponse
 import com.qualithm.platform.generated.models.GetAutomationResponse
 import com.qualithm.platform.generated.models.ListAutomationRunsResponse
 import com.qualithm.platform.generated.models.ListAutomationsResponse
 import com.qualithm.platform.generated.models.ListDeviceAutomationTemplatesResponse
-import com.qualithm.platform.generated.models.RunAutomationResponse
 import com.qualithm.platform.generated.models.TriggerAutomationResponse
 import com.qualithm.platform.generated.models.UpdateAutomationRequest
 import com.qualithm.platform.generated.models.UpdateAutomationResponse
@@ -74,6 +70,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param createAutomationRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -83,8 +80,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAutomation(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest) : CreateAutomationResponse {
-        val localVarResponse = createAutomationWithHttpInfo(teamId = teamId, createAutomationRequest = createAutomationRequest)
+    public fun createAutomation(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest, idempotencyKey: kotlin.String? = null) : CreateAutomationResponse {
+        val localVarResponse = createAutomationWithHttpInfo(teamId = teamId, createAutomationRequest = createAutomationRequest, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateAutomationResponse
@@ -107,14 +104,15 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param createAutomationRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAutomationWithHttpInfo(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest) : ApiResponse<CreateAutomationResponse?> {
-        val localVariableConfig = createAutomationRequestConfig(teamId = teamId, createAutomationRequest = createAutomationRequest)
+    public fun createAutomationWithHttpInfo(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest, idempotencyKey: kotlin.String?) : ApiResponse<CreateAutomationResponse?> {
+        val localVariableConfig = createAutomationRequestConfig(teamId = teamId, createAutomationRequest = createAutomationRequest, idempotencyKey = idempotencyKey)
 
         return request<CreateAutomationRequest, CreateAutomationResponse>(
             localVariableConfig
@@ -126,14 +124,16 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param createAutomationRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createAutomationRequestConfig(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest) : RequestConfig<CreateAutomationRequest> {
+    public fun createAutomationRequestConfig(teamId: kotlin.String, createAutomationRequest: CreateAutomationRequest, idempotencyKey: kotlin.String?) : RequestConfig<CreateAutomationRequest> {
         val localVariableBody = createAutomationRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -146,12 +146,13 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /v1/teams/{teamId}/automations/from-template
-     * Create an automation from a template
+     * POST /v1/teams/{teamId}/automations/{automationId}/runs
+     * Start a run of an automation&#39;s chain now
      * 
      * @param teamId The team the request acts on
-     * @param createAutomationFromTemplateRequest 
-     * @return CreateAutomationFromTemplateResponse
+     * @param automationId An automation ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return CreateAutomationRunResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -160,11 +161,11 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAutomationFromTemplate(teamId: kotlin.String, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : CreateAutomationFromTemplateResponse {
-        val localVarResponse = createAutomationFromTemplateWithHttpInfo(teamId = teamId, createAutomationFromTemplateRequest = createAutomationFromTemplateRequest)
+    public fun createAutomationRun(teamId: kotlin.String, automationId: kotlin.String, idempotencyKey: kotlin.String? = null) : CreateAutomationRunResponse {
+        val localVarResponse = createAutomationRunWithHttpInfo(teamId = teamId, automationId = automationId, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as CreateAutomationFromTemplateResponse
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CreateAutomationRunResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -179,42 +180,44 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /v1/teams/{teamId}/automations/from-template
-     * Create an automation from a template
+     * POST /v1/teams/{teamId}/automations/{automationId}/runs
+     * Start a run of an automation&#39;s chain now
      * 
      * @param teamId The team the request acts on
-     * @param createAutomationFromTemplateRequest 
-     * @return ApiResponse<CreateAutomationFromTemplateResponse?>
+     * @param automationId An automation ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return ApiResponse<CreateAutomationRunResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAutomationFromTemplateWithHttpInfo(teamId: kotlin.String, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : ApiResponse<CreateAutomationFromTemplateResponse?> {
-        val localVariableConfig = createAutomationFromTemplateRequestConfig(teamId = teamId, createAutomationFromTemplateRequest = createAutomationFromTemplateRequest)
+    public fun createAutomationRunWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, idempotencyKey: kotlin.String?) : ApiResponse<CreateAutomationRunResponse?> {
+        val localVariableConfig = createAutomationRunRequestConfig(teamId = teamId, automationId = automationId, idempotencyKey = idempotencyKey)
 
-        return request<CreateAutomationFromTemplateRequest, CreateAutomationFromTemplateResponse>(
+        return request<Unit, CreateAutomationRunResponse>(
             localVariableConfig
         )
     }
 
     /**
-     * To obtain the request config of the operation createAutomationFromTemplate
+     * To obtain the request config of the operation createAutomationRun
      *
      * @param teamId The team the request acts on
-     * @param createAutomationFromTemplateRequest 
+     * @param automationId An automation ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createAutomationFromTemplateRequestConfig(teamId: kotlin.String, createAutomationFromTemplateRequest: CreateAutomationFromTemplateRequest) : RequestConfig<CreateAutomationFromTemplateRequest> {
-        val localVariableBody = createAutomationFromTemplateRequest
+    public fun createAutomationRunRequestConfig(teamId: kotlin.String, automationId: kotlin.String, idempotencyKey: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
-            path = "/v1/teams/{teamId}/automations/from-template".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            path = "/v1/teams/{teamId}/automations/{automationId}/runs".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"automationId"+"}", encodeURIComponent(automationId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -228,6 +231,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param automationId An automation ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateAutomationTriggerSecretResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -237,8 +241,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createAutomationTriggerSecret(teamId: kotlin.String, automationId: kotlin.String) : CreateAutomationTriggerSecretResponse {
-        val localVarResponse = createAutomationTriggerSecretWithHttpInfo(teamId = teamId, automationId = automationId)
+    public fun createAutomationTriggerSecret(teamId: kotlin.String, automationId: kotlin.String, idempotencyKey: kotlin.String? = null) : CreateAutomationTriggerSecretResponse {
+        val localVarResponse = createAutomationTriggerSecretWithHttpInfo(teamId = teamId, automationId = automationId, idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateAutomationTriggerSecretResponse
@@ -261,14 +265,15 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param automationId An automation ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateAutomationTriggerSecretResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createAutomationTriggerSecretWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<CreateAutomationTriggerSecretResponse?> {
-        val localVariableConfig = createAutomationTriggerSecretRequestConfig(teamId = teamId, automationId = automationId)
+    public fun createAutomationTriggerSecretWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, idempotencyKey: kotlin.String?) : ApiResponse<CreateAutomationTriggerSecretResponse?> {
+        val localVariableConfig = createAutomationTriggerSecretRequestConfig(teamId = teamId, automationId = automationId, idempotencyKey = idempotencyKey)
 
         return request<Unit, CreateAutomationTriggerSecretResponse>(
             localVariableConfig
@@ -280,13 +285,15 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param automationId An automation ID
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createAutomationTriggerSecretRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
+    public fun createAutomationTriggerSecretRequestConfig(teamId: kotlin.String, automationId: kotlin.String, idempotencyKey: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -304,6 +311,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param automationId An automation ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -312,8 +320,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteAutomation(teamId: kotlin.String, automationId: kotlin.String) : Unit {
-        val localVarResponse = deleteAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
+    public fun deleteAutomation(teamId: kotlin.String, automationId: kotlin.String, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = deleteAutomationWithHttpInfo(teamId = teamId, automationId = automationId, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -336,13 +344,14 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * 
      * @param teamId The team the request acts on
      * @param automationId An automation ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = deleteAutomationRequestConfig(teamId = teamId, automationId = automationId)
+    public fun deleteAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = deleteAutomationRequestConfig(teamId = teamId, automationId = automationId, ifMatch = ifMatch)
 
         return request<Unit, Unit>(
             localVariableConfig
@@ -354,169 +363,19 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param automationId An automation ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun deleteAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
+    public fun deleteAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String, ifMatch: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.DELETE,
             path = "/v1/teams/{teamId}/automations/{automationId}".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"automationId"+"}", encodeURIComponent(automationId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/automations/{automationId}/disable
-     * Disable an automation
-     * 
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return DisableAutomationResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun disableAutomation(teamId: kotlin.String, automationId: kotlin.String) : DisableAutomationResponse {
-        val localVarResponse = disableAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DisableAutomationResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/automations/{automationId}/disable
-     * Disable an automation
-     * 
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return ApiResponse<DisableAutomationResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    public fun disableAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<DisableAutomationResponse?> {
-        val localVariableConfig = disableAutomationRequestConfig(teamId = teamId, automationId = automationId)
-
-        return request<Unit, DisableAutomationResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation disableAutomation
-     *
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return RequestConfig
-     */
-    public fun disableAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/v1/teams/{teamId}/automations/{automationId}/disable".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"automationId"+"}", encodeURIComponent(automationId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/automations/{automationId}/enable
-     * Enable an automation
-     * 
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return EnableAutomationResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun enableAutomation(teamId: kotlin.String, automationId: kotlin.String) : EnableAutomationResponse {
-        val localVarResponse = enableAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as EnableAutomationResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/automations/{automationId}/enable
-     * Enable an automation
-     * 
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return ApiResponse<EnableAutomationResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    public fun enableAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<EnableAutomationResponse?> {
-        val localVariableConfig = enableAutomationRequestConfig(teamId = teamId, automationId = automationId)
-
-        return request<Unit, EnableAutomationResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation enableAutomation
-     *
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return RequestConfig
-     */
-    public fun enableAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/v1/teams/{teamId}/automations/{automationId}/enable".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"automationId"+"}", encodeURIComponent(automationId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -854,85 +713,10 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     }
 
     /**
-     * POST /v1/teams/{teamId}/automations/{automationId}/run
-     * Run an automation&#39;s chain now
-     * 
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return RunAutomationResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun runAutomation(teamId: kotlin.String, automationId: kotlin.String) : RunAutomationResponse {
-        val localVarResponse = runAutomationWithHttpInfo(teamId = teamId, automationId = automationId)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as RunAutomationResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * POST /v1/teams/{teamId}/automations/{automationId}/run
-     * Run an automation&#39;s chain now
-     * 
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return ApiResponse<RunAutomationResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    public fun runAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String) : ApiResponse<RunAutomationResponse?> {
-        val localVariableConfig = runAutomationRequestConfig(teamId = teamId, automationId = automationId)
-
-        return request<Unit, RunAutomationResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation runAutomation
-     *
-     * @param teamId The team the request acts on
-     * @param automationId An automation ID
-     * @return RequestConfig
-     */
-    public fun runAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/v1/teams/{teamId}/automations/{automationId}/run".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"automationId"+"}", encodeURIComponent(automationId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
      * POST /v1/automations/trigger
      * Trigger a webhook automation
      * 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param body  (optional)
      * @return TriggerAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -943,8 +727,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun triggerAutomation(body: kotlin.Any? = null) : TriggerAutomationResponse {
-        val localVarResponse = triggerAutomationWithHttpInfo(body = body)
+    public fun triggerAutomation(idempotencyKey: kotlin.String? = null, body: kotlin.Any? = null) : TriggerAutomationResponse {
+        val localVarResponse = triggerAutomationWithHttpInfo(idempotencyKey = idempotencyKey, body = body)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as TriggerAutomationResponse
@@ -965,6 +749,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * POST /v1/automations/trigger
      * Trigger a webhook automation
      * 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param body  (optional)
      * @return ApiResponse<TriggerAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -972,8 +757,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun triggerAutomationWithHttpInfo(body: kotlin.Any?) : ApiResponse<TriggerAutomationResponse?> {
-        val localVariableConfig = triggerAutomationRequestConfig(body = body)
+    public fun triggerAutomationWithHttpInfo(idempotencyKey: kotlin.String?, body: kotlin.Any?) : ApiResponse<TriggerAutomationResponse?> {
+        val localVariableConfig = triggerAutomationRequestConfig(idempotencyKey = idempotencyKey, body = body)
 
         return request<kotlin.Any, TriggerAutomationResponse>(
             localVariableConfig
@@ -983,15 +768,17 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * To obtain the request config of the operation triggerAutomation
      *
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param body  (optional)
      * @return RequestConfig
      */
-    public fun triggerAutomationRequestConfig(body: kotlin.Any?) : RequestConfig<kotlin.Any> {
+    public fun triggerAutomationRequestConfig(idempotencyKey: kotlin.String?, body: kotlin.Any?) : RequestConfig<kotlin.Any> {
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -1010,6 +797,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param teamId The team the request acts on
      * @param automationId An automation ID
      * @param updateAutomationRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return UpdateAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1019,8 +807,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateAutomation(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest) : UpdateAutomationResponse {
-        val localVarResponse = updateAutomationWithHttpInfo(teamId = teamId, automationId = automationId, updateAutomationRequest = updateAutomationRequest)
+    public fun updateAutomation(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest, ifMatch: kotlin.String? = null) : UpdateAutomationResponse {
+        val localVarResponse = updateAutomationWithHttpInfo(teamId = teamId, automationId = automationId, updateAutomationRequest = updateAutomationRequest, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as UpdateAutomationResponse
@@ -1044,14 +832,15 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param teamId The team the request acts on
      * @param automationId An automation ID
      * @param updateAutomationRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<UpdateAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest) : ApiResponse<UpdateAutomationResponse?> {
-        val localVariableConfig = updateAutomationRequestConfig(teamId = teamId, automationId = automationId, updateAutomationRequest = updateAutomationRequest)
+    public fun updateAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest, ifMatch: kotlin.String?) : ApiResponse<UpdateAutomationResponse?> {
+        val localVariableConfig = updateAutomationRequestConfig(teamId = teamId, automationId = automationId, updateAutomationRequest = updateAutomationRequest, ifMatch = ifMatch)
 
         return request<UpdateAutomationRequest, UpdateAutomationResponse>(
             localVariableConfig
@@ -1064,14 +853,16 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * @param teamId The team the request acts on
      * @param automationId An automation ID
      * @param updateAutomationRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun updateAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest) : RequestConfig<UpdateAutomationRequest> {
+    public fun updateAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String, updateAutomationRequest: UpdateAutomationRequest, ifMatch: kotlin.String?) : RequestConfig<UpdateAutomationRequest> {
         val localVariableBody = updateAutomationRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.PATCH,

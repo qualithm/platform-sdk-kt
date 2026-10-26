@@ -61,6 +61,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * POST /v1/teams
      * Create a team with the caller as owner
      * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller&#39;s workspace switches to the new team.
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateTeamResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -70,8 +71,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun createTeam() : CreateTeamResponse {
-        val localVarResponse = createTeamWithHttpInfo()
+    public fun createTeam(idempotencyKey: kotlin.String? = null) : CreateTeamResponse {
+        val localVarResponse = createTeamWithHttpInfo(idempotencyKey = idempotencyKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CreateTeamResponse
@@ -92,14 +93,15 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * POST /v1/teams
      * Create a team with the caller as owner
      * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller&#39;s workspace switches to the new team.
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateTeamResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun createTeamWithHttpInfo() : ApiResponse<CreateTeamResponse?> {
-        val localVariableConfig = createTeamRequestConfig()
+    public fun createTeamWithHttpInfo(idempotencyKey: kotlin.String?) : ApiResponse<CreateTeamResponse?> {
+        val localVariableConfig = createTeamRequestConfig(idempotencyKey = idempotencyKey)
 
         return request<Unit, CreateTeamResponse>(
             localVariableConfig
@@ -109,13 +111,15 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation createTeam
      *
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
-    public fun createTeamRequestConfig() : RequestConfig<Unit> {
+    public fun createTeamRequestConfig(idempotencyKey: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -132,6 +136,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * Delete the team with its spaces, devices and memberships
      * 
      * @param teamId A team ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -140,8 +145,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun deleteTeam(teamId: kotlin.String) : Unit {
-        val localVarResponse = deleteTeamWithHttpInfo(teamId = teamId)
+    public fun deleteTeam(teamId: kotlin.String, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = deleteTeamWithHttpInfo(teamId = teamId, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -163,13 +168,14 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * Delete the team with its spaces, devices and memberships
      * 
      * @param teamId A team ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun deleteTeamWithHttpInfo(teamId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = deleteTeamRequestConfig(teamId = teamId)
+    public fun deleteTeamWithHttpInfo(teamId: kotlin.String, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = deleteTeamRequestConfig(teamId = teamId, ifMatch = ifMatch)
 
         return request<Unit, Unit>(
             localVariableConfig
@@ -180,13 +186,15 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * To obtain the request config of the operation deleteTeam
      *
      * @param teamId A team ID
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun deleteTeamRequestConfig(teamId: kotlin.String) : RequestConfig<Unit> {
+    public fun deleteTeamRequestConfig(teamId: kotlin.String, ifMatch: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -361,6 +369,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * 
      * @param teamId A team ID
      * @param updateTeamRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -369,8 +378,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun updateTeam(teamId: kotlin.String, updateTeamRequest: UpdateTeamRequest) : Unit {
-        val localVarResponse = updateTeamWithHttpInfo(teamId = teamId, updateTeamRequest = updateTeamRequest)
+    public fun updateTeam(teamId: kotlin.String, updateTeamRequest: UpdateTeamRequest, ifMatch: kotlin.String? = null) : Unit {
+        val localVarResponse = updateTeamWithHttpInfo(teamId = teamId, updateTeamRequest = updateTeamRequest, ifMatch = ifMatch)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -393,13 +402,14 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * 
      * @param teamId A team ID
      * @param updateTeamRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    public fun updateTeamWithHttpInfo(teamId: kotlin.String, updateTeamRequest: UpdateTeamRequest) : ApiResponse<Unit?> {
-        val localVariableConfig = updateTeamRequestConfig(teamId = teamId, updateTeamRequest = updateTeamRequest)
+    public fun updateTeamWithHttpInfo(teamId: kotlin.String, updateTeamRequest: UpdateTeamRequest, ifMatch: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = updateTeamRequestConfig(teamId = teamId, updateTeamRequest = updateTeamRequest, ifMatch = ifMatch)
 
         return request<UpdateTeamRequest, Unit>(
             localVariableConfig
@@ -411,14 +421,16 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      *
      * @param teamId A team ID
      * @param updateTeamRequest 
+     * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
-    public fun updateTeamRequestConfig(teamId: kotlin.String, updateTeamRequest: UpdateTeamRequest) : RequestConfig<UpdateTeamRequest> {
+    public fun updateTeamRequestConfig(teamId: kotlin.String, updateTeamRequest: UpdateTeamRequest, ifMatch: kotlin.String?) : RequestConfig<UpdateTeamRequest> {
         val localVariableBody = updateTeamRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
+        ifMatch?.apply { localVariableHeaders["If-Match"] = this.toString() }
 
         return RequestConfig(
             method = RequestMethod.PATCH,

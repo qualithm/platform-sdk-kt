@@ -36,8 +36,8 @@ import com.squareup.moshi.JsonClass
  * @param topic 
  * @param status 
  * @param lastError 
- * @param enqueuedAt ISO 8601 time
- * @param settledAt ISO 8601 time
+ * @param enqueuedAt UTC time, RFC 3339
+ * @param settledAt UTC time, RFC 3339
  */
 
 
@@ -63,13 +63,13 @@ public data class DeviceCommand (
     @Json(name = "lastError")
     val lastError: kotlin.String?,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "enqueuedAt")
-    val enqueuedAt: kotlin.String,
+    val enqueuedAt: java.time.OffsetDateTime,
 
-    /* ISO 8601 time */
+    /* UTC time, RFC 3339 */
     @Json(name = "settledAt")
-    val settledAt: kotlin.String?
+    val settledAt: java.time.OffsetDateTime?
 
 ) {
 
