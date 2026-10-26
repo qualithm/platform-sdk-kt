@@ -40,6 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  * @param parkedAt UTC time, RFC 3339
+ * @param capabilitiesDeclared Whether the device's latest session declared its capabilities before sending data; null until a session has done either
  * @param level 
  * @param checks 
  */
@@ -80,6 +81,10 @@ public data class Device (
     /* UTC time, RFC 3339 */
     @Json(name = "parkedAt")
     val parkedAt: java.time.OffsetDateTime? = null,
+
+    /* Whether the device's latest session declared its capabilities before sending data; null until a session has done either */
+    @Json(name = "capabilitiesDeclared")
+    val capabilitiesDeclared: kotlin.Boolean? = null,
 
     @Json(name = "level")
     val level: Device.Level? = null,
