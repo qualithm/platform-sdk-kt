@@ -282,9 +282,10 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * GET /v1/teams
      * List the caller&#39;s teams; an API token sees only its own
-     * 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListTeamsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -294,8 +295,8 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTeams(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListTeamsResponse {
-        val localVarResponse = listTeamsWithHttpInfo(page = page, limit = limit)
+    public fun listTeams(page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListTeamsResponse {
+        val localVarResponse = listTeamsWithHttpInfo(page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListTeamsResponse
@@ -315,17 +316,18 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * GET /v1/teams
      * List the caller&#39;s teams; an API token sees only its own
-     * 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListTeamsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTeamsWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListTeamsResponse?> {
-        val localVariableConfig = listTeamsRequestConfig(page = page, limit = limit)
+    public fun listTeamsWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListTeamsResponse?> {
+        val localVariableConfig = listTeamsRequestConfig(page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListTeamsResponse>(
             localVariableConfig
@@ -335,11 +337,12 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation listTeams
      *
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listTeamsRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listTeamsRequestConfig(page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -348,6 +351,9 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

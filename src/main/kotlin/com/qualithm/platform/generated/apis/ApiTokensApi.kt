@@ -131,10 +131,11 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * GET /v1/teams/{teamId}/api-tokens
      * List API tokens in this team: everyone&#39;s for an owner, otherwise the caller&#39;s own
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListApiTokensResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -144,8 +145,8 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listApiTokens(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListApiTokensResponse {
-        val localVarResponse = listApiTokensWithHttpInfo(teamId = teamId, page = page, limit = limit)
+    public fun listApiTokens(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListApiTokensResponse {
+        val localVarResponse = listApiTokensWithHttpInfo(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListApiTokensResponse
@@ -165,18 +166,19 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * GET /v1/teams/{teamId}/api-tokens
      * List API tokens in this team: everyone&#39;s for an owner, otherwise the caller&#39;s own
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListApiTokensResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listApiTokensWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListApiTokensResponse?> {
-        val localVariableConfig = listApiTokensRequestConfig(teamId = teamId, page = page, limit = limit)
+    public fun listApiTokensWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListApiTokensResponse?> {
+        val localVariableConfig = listApiTokensRequestConfig(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListApiTokensResponse>(
             localVariableConfig
@@ -187,11 +189,12 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * To obtain the request config of the operation listApiTokens
      *
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listApiTokensRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listApiTokensRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -200,6 +203,9 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

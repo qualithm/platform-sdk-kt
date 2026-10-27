@@ -462,11 +462,12 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * GET /v1/teams/{teamId}/automations/{automationId}/runs
      * List an automation&#39;s runs
-     * 
+     * Newest first, by &#x60;triggeredAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param automationId An automation ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListAutomationRunsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -476,8 +477,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAutomationRuns(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAutomationRunsResponse {
-        val localVarResponse = listAutomationRunsWithHttpInfo(teamId = teamId, automationId = automationId, page = page, limit = limit)
+    public fun listAutomationRuns(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListAutomationRunsResponse {
+        val localVarResponse = listAutomationRunsWithHttpInfo(teamId = teamId, automationId = automationId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListAutomationRunsResponse
@@ -497,19 +498,20 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * GET /v1/teams/{teamId}/automations/{automationId}/runs
      * List an automation&#39;s runs
-     * 
+     * Newest first, by &#x60;triggeredAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param automationId An automation ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListAutomationRunsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAutomationRunsWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAutomationRunsResponse?> {
-        val localVariableConfig = listAutomationRunsRequestConfig(teamId = teamId, automationId = automationId, page = page, limit = limit)
+    public fun listAutomationRunsWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListAutomationRunsResponse?> {
+        val localVariableConfig = listAutomationRunsRequestConfig(teamId = teamId, automationId = automationId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListAutomationRunsResponse>(
             localVariableConfig
@@ -521,11 +523,12 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param automationId An automation ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listAutomationRunsRequestConfig(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAutomationRunsRequestConfig(teamId: kotlin.String, automationId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -534,6 +537,9 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -552,10 +558,11 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * GET /v1/teams/{teamId}/automations
      * List the workspace&#39;s automations
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListAutomationsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -565,8 +572,8 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listAutomations(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListAutomationsResponse {
-        val localVarResponse = listAutomationsWithHttpInfo(teamId = teamId, page = page, limit = limit)
+    public fun listAutomations(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListAutomationsResponse {
+        val localVarResponse = listAutomationsWithHttpInfo(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListAutomationsResponse
@@ -586,18 +593,19 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * GET /v1/teams/{teamId}/automations
      * List the workspace&#39;s automations
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListAutomationsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listAutomationsWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListAutomationsResponse?> {
-        val localVariableConfig = listAutomationsRequestConfig(teamId = teamId, page = page, limit = limit)
+    public fun listAutomationsWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListAutomationsResponse?> {
+        val localVariableConfig = listAutomationsRequestConfig(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListAutomationsResponse>(
             localVariableConfig
@@ -608,11 +616,12 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation listAutomations
      *
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listAutomationsRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listAutomationsRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -621,6 +630,9 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

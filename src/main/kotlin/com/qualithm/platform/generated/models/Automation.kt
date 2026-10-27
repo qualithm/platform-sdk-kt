@@ -33,6 +33,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param id An automation ID
  * @param teamId A team ID
+ * @param scopeId A scope ID
  * @param spaceId A space ID
  * @param spaceName 
  * @param name 
@@ -53,6 +54,10 @@ public data class Automation (
     /* A team ID */
     @Json(name = "teamId")
     val teamId: kotlin.String,
+
+    /* A scope ID */
+    @Json(name = "scopeId")
+    val scopeId: kotlin.String?,
 
     /* A space ID */
     @Json(name = "spaceId")
