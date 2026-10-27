@@ -292,10 +292,11 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
-     * 
+     * By &#x60;accountName&#x60;, then &#x60;id&#x60;, ascending. Names compare byte by byte, so uppercase sorts before lowercase.
      * @param teamId A team ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListTeamMembersResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -305,8 +306,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTeamMembers(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListTeamMembersResponse {
-        val localVarResponse = listTeamMembersWithHttpInfo(teamId = teamId, page = page, limit = limit)
+    public fun listTeamMembers(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListTeamMembersResponse {
+        val localVarResponse = listTeamMembersWithHttpInfo(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListTeamMembersResponse
@@ -326,18 +327,19 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
-     * 
+     * By &#x60;accountName&#x60;, then &#x60;id&#x60;, ascending. Names compare byte by byte, so uppercase sorts before lowercase.
      * @param teamId A team ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListTeamMembersResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTeamMembersWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListTeamMembersResponse?> {
-        val localVariableConfig = listTeamMembersRequestConfig(teamId = teamId, page = page, limit = limit)
+    public fun listTeamMembersWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListTeamMembersResponse?> {
+        val localVariableConfig = listTeamMembersRequestConfig(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListTeamMembersResponse>(
             localVariableConfig
@@ -348,11 +350,12 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation listTeamMembers
      *
      * @param teamId A team ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listTeamMembersRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listTeamMembersRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -361,6 +364,9 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

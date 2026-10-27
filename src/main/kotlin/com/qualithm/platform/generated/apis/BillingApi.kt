@@ -133,10 +133,11 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * GET /v1/teams/{teamId}/invoices
      * List the workspace&#39;s invoices
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListInvoicesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -146,8 +147,8 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listInvoices(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListInvoicesResponse {
-        val localVarResponse = listInvoicesWithHttpInfo(teamId = teamId, page = page, limit = limit)
+    public fun listInvoices(teamId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListInvoicesResponse {
+        val localVarResponse = listInvoicesWithHttpInfo(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListInvoicesResponse
@@ -167,18 +168,19 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * GET /v1/teams/{teamId}/invoices
      * List the workspace&#39;s invoices
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListInvoicesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listInvoicesWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListInvoicesResponse?> {
-        val localVariableConfig = listInvoicesRequestConfig(teamId = teamId, page = page, limit = limit)
+    public fun listInvoicesWithHttpInfo(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListInvoicesResponse?> {
+        val localVariableConfig = listInvoicesRequestConfig(teamId = teamId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListInvoicesResponse>(
             localVariableConfig
@@ -189,11 +191,12 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation listInvoices
      *
      * @param teamId The team the request acts on
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listInvoicesRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listInvoicesRequestConfig(teamId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -202,6 +205,9 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

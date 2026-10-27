@@ -23,7 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.Credential
+import com.qualithm.platform.generated.models.CredentialPage
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
 public data class ListDeviceCredentialsResponse (
 
     @Json(name = "data")
-    val `data`: kotlin.collections.List<Credential>
+    val `data`: CredentialPage
 
 ) {
 

@@ -308,9 +308,12 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/credentials
      * List a device&#39;s credentials
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListDeviceCredentialsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -320,8 +323,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDeviceCredentials(teamId: kotlin.String, deviceId: kotlin.String) : ListDeviceCredentialsResponse {
-        val localVarResponse = listDeviceCredentialsWithHttpInfo(teamId = teamId, deviceId = deviceId)
+    public fun listDeviceCredentials(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListDeviceCredentialsResponse {
+        val localVarResponse = listDeviceCredentialsWithHttpInfo(teamId = teamId, deviceId = deviceId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListDeviceCredentialsResponse
@@ -341,17 +344,20 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/credentials
      * List a device&#39;s credentials
-     * 
+     * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListDeviceCredentialsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDeviceCredentialsWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<ListDeviceCredentialsResponse?> {
-        val localVariableConfig = listDeviceCredentialsRequestConfig(teamId = teamId, deviceId = deviceId)
+    public fun listDeviceCredentialsWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListDeviceCredentialsResponse?> {
+        val localVariableConfig = listDeviceCredentialsRequestConfig(teamId = teamId, deviceId = deviceId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListDeviceCredentialsResponse>(
             localVariableConfig
@@ -363,11 +369,25 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      *
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listDeviceCredentialsRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
+    public fun listDeviceCredentialsRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
