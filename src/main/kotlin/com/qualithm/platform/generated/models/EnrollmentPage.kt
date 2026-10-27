@@ -34,6 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param current This page's number, from 1
  * @param items 
  * @param last The last page's number
+ * @param nextCursor Pass as `cursor` to read the next page; `null` on the last page
  */
 
 
@@ -48,7 +49,11 @@ public data class EnrollmentPage (
 
     /* The last page's number */
     @Json(name = "last")
-    val last: kotlin.Long
+    val last: kotlin.Long,
+
+    /* Pass as `cursor` to read the next page; `null` on the last page */
+    @Json(name = "nextCursor")
+    val nextCursor: kotlin.String?
 
 ) {
 

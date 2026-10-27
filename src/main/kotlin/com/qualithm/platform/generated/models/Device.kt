@@ -32,7 +32,8 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param id A device ID
- * @param spaceId A space ID
+ * @param scopeId A scope ID
+ * @param spaceId Deprecated: use scopeId
  * @param spaceName 
  * @param teamId A team ID
  * @param name 
@@ -51,8 +52,13 @@ public data class Device (
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A space ID */
+    /* A scope ID */
+    @Json(name = "scopeId")
+    val scopeId: kotlin.String,
+
+    /* Deprecated: use scopeId */
     @Json(name = "spaceId")
+    @Deprecated(message = "This property is deprecated.")
     val spaceId: kotlin.String,
 
     @Json(name = "spaceName")

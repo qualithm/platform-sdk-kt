@@ -29,10 +29,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * At least one of name, enabled, spaceId, payload or template
+ * At least one of name, enabled, scopeId, payload or template
  *
  * @param name 
  * @param enabled Whether its trigger fires
+ * @param scopeId A scope ID
  * @param spaceId A space ID
  * @param payload 
  * @param template A template id to re-expand the chain from; exclusive with `payload`
@@ -48,6 +49,10 @@ public data class UpdateAutomationRequest (
     /* Whether its trigger fires */
     @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
+
+    /* A scope ID */
+    @Json(name = "scopeId")
+    val scopeId: kotlin.String? = null,
 
     /* A space ID */
     @Json(name = "spaceId")

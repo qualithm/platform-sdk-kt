@@ -32,6 +32,7 @@ import com.squareup.moshi.JsonClass
  * A name, and either a payload or a template
  *
  * @param name 
+ * @param scopeId A scope ID
  * @param spaceId A space ID
  * @param payload 
  * @param template A template id to expand the chain from; exclusive with `payload`
@@ -43,6 +44,10 @@ public data class CreateAutomationRequest (
 
     @Json(name = "name")
     val name: kotlin.String,
+
+    /* A scope ID */
+    @Json(name = "scopeId")
+    val scopeId: kotlin.String? = null,
 
     /* A space ID */
     @Json(name = "spaceId")

@@ -57,9 +57,10 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * GET /v1/account/memberships
      * List the teams the caller belongs to and their role in each
-     * 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * Newest team first, by the team&#39;s &#x60;createdAt&#x60; then the membership &#x60;id&#x60;.
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListRolesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -69,8 +70,8 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listRoles(page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListRolesResponse {
-        val localVarResponse = listRolesWithHttpInfo(page = page, limit = limit)
+    public fun listRoles(page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListRolesResponse {
+        val localVarResponse = listRolesWithHttpInfo(page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListRolesResponse
@@ -90,17 +91,18 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * GET /v1/account/memberships
      * List the teams the caller belongs to and their role in each
-     * 
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * Newest team first, by the team&#39;s &#x60;createdAt&#x60; then the membership &#x60;id&#x60;.
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListRolesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listRolesWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListRolesResponse?> {
-        val localVariableConfig = listRolesRequestConfig(page = page, limit = limit)
+    public fun listRolesWithHttpInfo(page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListRolesResponse?> {
+        val localVariableConfig = listRolesRequestConfig(page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListRolesResponse>(
             localVariableConfig
@@ -110,11 +112,12 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation listRoles
      *
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listRolesRequestConfig(page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listRolesRequestConfig(page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -123,6 +126,9 @@ public open class RolesApi(basePath: kotlin.String = defaultBasePath, client: Ca
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
