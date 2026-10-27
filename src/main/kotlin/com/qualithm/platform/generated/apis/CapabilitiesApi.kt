@@ -81,13 +81,14 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     /**
      * GET /v1/teams/{teamId}/capabilities
      * List the capabilities of the workspace&#39;s devices
-     * 
+     * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListCapabilitiesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -97,8 +98,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listCapabilities(teamId: kotlin.String, type: TypeListCapabilities? = null, tag: kotlin.String? = null, key: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListCapabilitiesResponse {
-        val localVarResponse = listCapabilitiesWithHttpInfo(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit)
+    public fun listCapabilities(teamId: kotlin.String, type: TypeListCapabilities? = null, tag: kotlin.String? = null, key: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListCapabilitiesResponse {
+        val localVarResponse = listCapabilitiesWithHttpInfo(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListCapabilitiesResponse
@@ -118,21 +119,22 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     /**
      * GET /v1/teams/{teamId}/capabilities
      * List the capabilities of the workspace&#39;s devices
-     * 
+     * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListCapabilitiesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listCapabilitiesWithHttpInfo(teamId: kotlin.String, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListCapabilitiesResponse?> {
-        val localVariableConfig = listCapabilitiesRequestConfig(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit)
+    public fun listCapabilitiesWithHttpInfo(teamId: kotlin.String, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListCapabilitiesResponse?> {
+        val localVariableConfig = listCapabilitiesRequestConfig(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListCapabilitiesResponse>(
             localVariableConfig
@@ -146,11 +148,12 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listCapabilitiesRequestConfig(teamId: kotlin.String, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listCapabilitiesRequestConfig(teamId: kotlin.String, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -169,6 +172,9 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
                 }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
+                }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
@@ -186,9 +192,12 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/capabilities
      * List the capabilities a device declares
-     * 
+     * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListDeviceCapabilitiesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -198,8 +207,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDeviceCapabilities(teamId: kotlin.String, deviceId: kotlin.String) : ListDeviceCapabilitiesResponse {
-        val localVarResponse = listDeviceCapabilitiesWithHttpInfo(teamId = teamId, deviceId = deviceId)
+    public fun listDeviceCapabilities(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListDeviceCapabilitiesResponse {
+        val localVarResponse = listDeviceCapabilitiesWithHttpInfo(teamId = teamId, deviceId = deviceId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListDeviceCapabilitiesResponse
@@ -219,17 +228,20 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/capabilities
      * List the capabilities a device declares
-     * 
+     * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListDeviceCapabilitiesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDeviceCapabilitiesWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String) : ApiResponse<ListDeviceCapabilitiesResponse?> {
-        val localVariableConfig = listDeviceCapabilitiesRequestConfig(teamId = teamId, deviceId = deviceId)
+    public fun listDeviceCapabilitiesWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListDeviceCapabilitiesResponse?> {
+        val localVariableConfig = listDeviceCapabilitiesRequestConfig(teamId = teamId, deviceId = deviceId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListDeviceCapabilitiesResponse>(
             localVariableConfig
@@ -241,11 +253,25 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      *
      * @param teamId The team the request acts on
      * @param deviceId A device ID
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listDeviceCapabilitiesRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
+    public fun listDeviceCapabilitiesRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 

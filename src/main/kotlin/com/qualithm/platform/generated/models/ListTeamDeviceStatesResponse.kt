@@ -23,7 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.ListTeamDeviceStatesResponseData
+import com.qualithm.platform.generated.models.DeviceStatePage
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
 public data class ListTeamDeviceStatesResponse (
 
     @Json(name = "data")
-    val `data`: ListTeamDeviceStatesResponseData
+    val `data`: DeviceStatePage
 
 ) {
 

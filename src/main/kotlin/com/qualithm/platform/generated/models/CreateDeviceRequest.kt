@@ -28,17 +28,23 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The scope to create it in
  *
- * @param spaceId A space ID
+ * @param scopeId A scope ID
+ * @param spaceId Deprecated: use scopeId
  */
 
 
 public data class CreateDeviceRequest (
 
-    /* A space ID */
+    /* A scope ID */
+    @Json(name = "scopeId")
+    val scopeId: kotlin.String? = null,
+
+    /* Deprecated: use scopeId */
     @Json(name = "spaceId")
-    val spaceId: kotlin.String
+    @Deprecated(message = "This property is deprecated.")
+    val spaceId: kotlin.String? = null
 
 ) {
 

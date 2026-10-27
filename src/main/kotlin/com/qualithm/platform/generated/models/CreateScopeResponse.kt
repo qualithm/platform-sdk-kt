@@ -23,7 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.TelemetryPoint
+import com.qualithm.platform.generated.models.Scope
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -31,14 +31,14 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param items 
+ * @param `data` 
  */
 
 
-public data class ListTelemetryResponseData (
+public data class CreateScopeResponse (
 
-    @Json(name = "items")
-    val items: kotlin.collections.List<TelemetryPoint>
+    @Json(name = "data")
+    val `data`: Scope
 
 ) {
 

@@ -143,11 +143,12 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/commands
      * List a device&#39;s recent command deliveries
-     * 
+     * Newest first, by &#x60;settledAt&#x60; (or &#x60;enqueuedAt&#x60; while unsettled) then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param deviceId A device ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListDeviceCommandsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -157,8 +158,8 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDeviceCommands(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null) : ListDeviceCommandsResponse {
-        val localVarResponse = listDeviceCommandsWithHttpInfo(teamId = teamId, deviceId = deviceId, page = page, limit = limit)
+    public fun listDeviceCommands(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListDeviceCommandsResponse {
+        val localVarResponse = listDeviceCommandsWithHttpInfo(teamId = teamId, deviceId = deviceId, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListDeviceCommandsResponse
@@ -178,19 +179,20 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/commands
      * List a device&#39;s recent command deliveries
-     * 
+     * Newest first, by &#x60;settledAt&#x60; (or &#x60;enqueuedAt&#x60; while unsettled) then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param deviceId A device ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListDeviceCommandsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDeviceCommandsWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : ApiResponse<ListDeviceCommandsResponse?> {
-        val localVariableConfig = listDeviceCommandsRequestConfig(teamId = teamId, deviceId = deviceId, page = page, limit = limit)
+    public fun listDeviceCommandsWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListDeviceCommandsResponse?> {
+        val localVariableConfig = listDeviceCommandsRequestConfig(teamId = teamId, deviceId = deviceId, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListDeviceCommandsResponse>(
             localVariableConfig
@@ -202,11 +204,12 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      *
      * @param teamId The team the request acts on
      * @param deviceId A device ID
-     * @param page Page number, from 1. Default 1. (optional)
-     * @param limit Items per page, 1 to 100. Default 20. (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listDeviceCommandsRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    public fun listDeviceCommandsRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -215,6 +218,9 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

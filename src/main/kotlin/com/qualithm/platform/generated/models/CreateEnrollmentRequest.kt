@@ -30,7 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param spaceId A space ID
+ * @param scopeId The scope the device joins
+ * @param spaceId Deprecated: use scopeId
  * @param label Up to 64 characters
  * @param expiresInMinutes How long the code can be claimed. Default 1440 (24 hours).
  */
@@ -38,9 +39,14 @@ import com.squareup.moshi.JsonClass
 
 public data class CreateEnrollmentRequest (
 
-    /* A space ID */
+    /* The scope the device joins */
+    @Json(name = "scopeId")
+    val scopeId: kotlin.String? = null,
+
+    /* Deprecated: use scopeId */
     @Json(name = "spaceId")
-    val spaceId: kotlin.String,
+    @Deprecated(message = "This property is deprecated.")
+    val spaceId: kotlin.String? = null,
 
     /* Up to 64 characters */
     @Json(name = "label")

@@ -31,7 +31,8 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param name 
- * @param spaceId A space in the device's zone
+ * @param scopeId A scope in the device's zone; a device stays in the zone it was claimed in
+ * @param spaceId Deprecated: use scopeId
  * @param parked A parked device can't connect and doesn't count against the plan; its credentials and history stay
  */
 
@@ -41,8 +42,13 @@ public data class UpdateDeviceRequest (
     @Json(name = "name")
     val name: kotlin.String? = null,
 
-    /* A space in the device's zone */
+    /* A scope in the device's zone; a device stays in the zone it was claimed in */
+    @Json(name = "scopeId")
+    val scopeId: kotlin.String? = null,
+
+    /* Deprecated: use scopeId */
     @Json(name = "spaceId")
+    @Deprecated(message = "This property is deprecated.")
     val spaceId: kotlin.String? = null,
 
     /* A parked device can't connect and doesn't count against the plan; its credentials and history stay */

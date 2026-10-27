@@ -57,7 +57,7 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/telemetry
      * Read a device metric as bucketed points
-     * 
+     * By bucket start &#x60;ts&#x60;, ascending, within &#x60;from&#x60; and &#x60;to&#x60;. Every page reads the same range, so pass the same query with each cursor.
      * @param teamId A team ID
      * @param deviceId A device ID
      * @param metric The metric to read
@@ -66,6 +66,9 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * @param bucket Bucket width in seconds. Default 60. (optional)
      * @param agg Bucket aggregate: avg, min, max, sum, count, last, delta or rate. Default avg. (optional)
      * @param fill &#x60;locf&#x60; carries the last observation forward across empty buckets (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ListTelemetryResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -75,8 +78,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listTelemetry(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String? = null, agg: kotlin.String? = null, fill: kotlin.String? = null) : ListTelemetryResponse {
-        val localVarResponse = listTelemetryWithHttpInfo(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
+    public fun listTelemetry(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String? = null, agg: kotlin.String? = null, fill: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListTelemetryResponse {
+        val localVarResponse = listTelemetryWithHttpInfo(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListTelemetryResponse
@@ -96,7 +99,7 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * GET /v1/teams/{teamId}/devices/{deviceId}/telemetry
      * Read a device metric as bucketed points
-     * 
+     * By bucket start &#x60;ts&#x60;, ascending, within &#x60;from&#x60; and &#x60;to&#x60;. Every page reads the same range, so pass the same query with each cursor.
      * @param teamId A team ID
      * @param deviceId A device ID
      * @param metric The metric to read
@@ -105,14 +108,17 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * @param bucket Bucket width in seconds. Default 60. (optional)
      * @param agg Bucket aggregate: avg, min, max, sum, count, last, delta or rate. Default avg. (optional)
      * @param fill &#x60;locf&#x60; carries the last observation forward across empty buckets (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return ApiResponse<ListTelemetryResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listTelemetryWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : ApiResponse<ListTelemetryResponse?> {
-        val localVariableConfig = listTelemetryRequestConfig(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill)
+    public fun listTelemetryWithHttpInfo(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListTelemetryResponse?> {
+        val localVariableConfig = listTelemetryRequestConfig(teamId = teamId, deviceId = deviceId, metric = metric, from = from, to = to, bucket = bucket, agg = agg, fill = fill, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListTelemetryResponse>(
             localVariableConfig
@@ -130,9 +136,12 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * @param bucket Bucket width in seconds. Default 60. (optional)
      * @param agg Bucket aggregate: avg, min, max, sum, count, last, delta or rate. Default avg. (optional)
      * @param fill &#x60;locf&#x60; carries the last observation forward across empty buckets (optional)
+     * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
+     * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
+     * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listTelemetryRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?) : RequestConfig<Unit> {
+    public fun listTelemetryRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, metric: kotlin.String, from: java.time.OffsetDateTime, to: java.time.OffsetDateTime, bucket: kotlin.String?, agg: kotlin.String?, fill: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -147,6 +156,15 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
                 }
                 if (fill != null) {
                     put("fill", listOf(fill.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (cursor != null) {
+                    put("cursor", listOf(cursor.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

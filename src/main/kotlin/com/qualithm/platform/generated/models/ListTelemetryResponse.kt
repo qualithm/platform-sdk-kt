@@ -23,7 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.ListTelemetryResponseData
+import com.qualithm.platform.generated.models.TelemetryPointPage
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
 public data class ListTelemetryResponse (
 
     @Json(name = "data")
-    val `data`: ListTelemetryResponseData
+    val `data`: TelemetryPointPage
 
 ) {
 
