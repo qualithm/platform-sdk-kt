@@ -37,7 +37,6 @@ import com.squareup.moshi.JsonClass
  * @param certificatePem 
  * @param fingerprint SHA-256 of the CA certificate
  * @param status 
- * @param payload JSON text
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -68,10 +67,6 @@ public data class Authority (
 
     @Json(name = "status")
     val status: Authority.Status,
-
-    /* JSON text */
-    @Json(name = "payload")
-    val payload: kotlin.String,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
