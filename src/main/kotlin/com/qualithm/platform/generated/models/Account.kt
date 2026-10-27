@@ -33,7 +33,6 @@ import com.squareup.moshi.JsonClass
  * @param id An account ID
  * @param email 
  * @param name 
- * @param payload The account's settings: a JSON object, encoded as a string
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -50,10 +49,6 @@ public data class Account (
 
     @Json(name = "name")
     val name: kotlin.String,
-
-    /* The account's settings: a JSON object, encoded as a string */
-    @Json(name = "payload")
-    val payload: kotlin.String,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
