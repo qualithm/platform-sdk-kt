@@ -35,7 +35,7 @@ import com.squareup.moshi.JsonClass
  * @param teamId A team ID
  * @param status 
  * @param total The invoice total; null until Stripe sets it
- * @param payload The invoice detail: a JSON object, encoded as a string
+ * @param stripeInvoiceId The Stripe invoice this one mirrors; null when Stripe didn't send one
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -58,9 +58,9 @@ public data class Invoice (
     @Json(name = "total")
     val total: Money?,
 
-    /* The invoice detail: a JSON object, encoded as a string */
-    @Json(name = "payload")
-    val payload: kotlin.String,
+    /* The Stripe invoice this one mirrors; null when Stripe didn't send one */
+    @Json(name = "stripeInvoiceId")
+    val stripeInvoiceId: kotlin.String?,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")

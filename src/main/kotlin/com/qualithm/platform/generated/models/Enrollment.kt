@@ -38,7 +38,6 @@ import com.squareup.moshi.JsonClass
  * @param claimedDeviceId A device ID
  * @param claimedAt UTC time, RFC 3339
  * @param expiresAt UTC time, RFC 3339
- * @param payload JSON text
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -75,10 +74,6 @@ public data class Enrollment (
     /* UTC time, RFC 3339 */
     @Json(name = "expiresAt")
     val expiresAt: java.time.OffsetDateTime,
-
-    /* JSON text */
-    @Json(name = "payload")
-    val payload: kotlin.String,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
