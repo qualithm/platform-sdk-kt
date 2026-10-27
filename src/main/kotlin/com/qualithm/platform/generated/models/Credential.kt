@@ -41,7 +41,6 @@ import com.squareup.moshi.JsonClass
  * @param expiresAt UTC time, RFC 3339
  * @param lastUsedAt UTC time, RFC 3339
  * @param rotatedFrom A credential ID
- * @param payload JSON text
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -88,10 +87,6 @@ public data class Credential (
     /* A credential ID */
     @Json(name = "rotatedFrom")
     val rotatedFrom: kotlin.String?,
-
-    /* JSON text */
-    @Json(name = "payload")
-    val payload: kotlin.String,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
