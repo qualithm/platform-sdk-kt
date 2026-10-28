@@ -41,6 +41,7 @@ import com.squareup.moshi.JsonClass
  * @param updatedAt UTC time, RFC 3339
  * @param parkedAt UTC time, RFC 3339
  * @param capabilitiesDeclared Whether the device's latest session declared its capabilities before sending data; null until a session has done either
+ * @param virtual Whether the device declared itself virtual at claim: it runs on a host rather than a board, and counts as a device all the same
  * @param level 
  * @param checks 
  */
@@ -86,6 +87,10 @@ public data class Device (
     /* Whether the device's latest session declared its capabilities before sending data; null until a session has done either */
     @Json(name = "capabilitiesDeclared")
     val capabilitiesDeclared: kotlin.Boolean? = null,
+
+    /* Whether the device declared itself virtual at claim: it runs on a host rather than a board, and counts as a device all the same */
+    @Json(name = "virtual")
+    val virtual: kotlin.Boolean? = null,
 
     @Json(name = "level")
     val level: Device.Level? = null,
