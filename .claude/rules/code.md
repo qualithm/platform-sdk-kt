@@ -26,7 +26,7 @@ file covers what they can't. CI is generated from `dx/ci-templates/kotlin-lib.ya
 ## Generated and synced files
 
 - `.github/workflows/` is generated from `dx/ci-templates/`; change the template and run the dx
-  sync, never edit it here. `CI Required` is the single required status check.
+  sync, never edit it here. `CI Required` and `PR Title` are required.
 
 ## Releases
 
