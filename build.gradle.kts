@@ -33,10 +33,10 @@ kotlin {
 }
 
 // The generated client: src/main/kotlin/com/qualithm/platform/generated/,
-// written by scripts/generate and checked by CI's Generated Drift job
-// (Decision qualithm/pm#2394). It compiles as its own source set, so the
-// generator's warnings don't fail the build, and it sits outside ktfmt, detekt
-// and the Kover gate below. Its classes and sources ship in the one jar.
+// written by scripts/generate and checked by CI's Generated Drift job. It
+// compiles as its own source set, so the generator's warnings don't fail the
+// build, and it sits outside ktfmt, detekt and the Kover gate below. Its
+// classes and sources ship in the one jar.
 val generatedSources = "com/qualithm/platform/generated/**"
 
 val generated = sourceSets.create("generated")
