@@ -83,6 +83,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * List the capabilities of the workspace&#39;s devices
      * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
+     * @param scopeId Only the devices in this scope and every scope under it (optional)
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
@@ -98,8 +99,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listCapabilities(teamId: kotlin.String, type: TypeListCapabilities? = null, tag: kotlin.String? = null, key: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListCapabilitiesResponse {
-        val localVarResponse = listCapabilitiesWithHttpInfo(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit, cursor = cursor)
+    public fun listCapabilities(teamId: kotlin.String, scopeId: kotlin.String? = null, type: TypeListCapabilities? = null, tag: kotlin.String? = null, key: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListCapabilitiesResponse {
+        val localVarResponse = listCapabilitiesWithHttpInfo(teamId = teamId, scopeId = scopeId, type = type, tag = tag, key = key, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListCapabilitiesResponse
@@ -121,6 +122,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * List the capabilities of the workspace&#39;s devices
      * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
+     * @param scopeId Only the devices in this scope and every scope under it (optional)
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
@@ -133,8 +135,8 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listCapabilitiesWithHttpInfo(teamId: kotlin.String, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListCapabilitiesResponse?> {
-        val localVariableConfig = listCapabilitiesRequestConfig(teamId = teamId, type = type, tag = tag, key = key, page = page, limit = limit, cursor = cursor)
+    public fun listCapabilitiesWithHttpInfo(teamId: kotlin.String, scopeId: kotlin.String?, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListCapabilitiesResponse?> {
+        val localVariableConfig = listCapabilitiesRequestConfig(teamId = teamId, scopeId = scopeId, type = type, tag = tag, key = key, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListCapabilitiesResponse>(
             localVariableConfig
@@ -145,6 +147,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * To obtain the request config of the operation listCapabilities
      *
      * @param teamId The team the request acts on
+     * @param scopeId Only the devices in this scope and every scope under it (optional)
      * @param type Only capabilities of this type (optional)
      * @param tag Only capabilities carrying this tag (optional)
      * @param key Only capabilities with this key (optional)
@@ -153,10 +156,13 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listCapabilitiesRequestConfig(teamId: kotlin.String, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
+    public fun listCapabilitiesRequestConfig(teamId: kotlin.String, scopeId: kotlin.String?, type: TypeListCapabilities?, tag: kotlin.String?, key: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
+                if (scopeId != null) {
+                    put("scopeId", listOf(scopeId.toString()))
+                }
                 if (type != null) {
                     put("type", listOf(type.value))
                 }
