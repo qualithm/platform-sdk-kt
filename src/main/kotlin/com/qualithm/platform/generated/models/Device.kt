@@ -23,6 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
+import com.qualithm.platform.generated.models.Decision
 import com.qualithm.platform.generated.models.DeviceCheck
 
 import com.squareup.moshi.Json
@@ -44,6 +45,7 @@ import com.squareup.moshi.JsonClass
  * @param virtual Whether the device declared itself virtual at claim: it runs on a host rather than a board, and counts as a device all the same
  * @param level 
  * @param checks 
+ * @param decisions What Qualithm decided when the device was claimed: at most six, most consequential first. Returned by getDevice; empty for a device created without a claim.
  */
 
 
@@ -96,7 +98,11 @@ public data class Device (
     val level: Device.Level? = null,
 
     @Json(name = "checks")
-    val checks: kotlin.collections.List<DeviceCheck>? = null
+    val checks: kotlin.collections.List<DeviceCheck>? = null,
+
+    /* What Qualithm decided when the device was claimed: at most six, most consequential first. Returned by getDevice; empty for a device created without a claim. */
+    @Json(name = "decisions")
+    val decisions: kotlin.collections.List<Decision>? = null
 
 ) {
 
