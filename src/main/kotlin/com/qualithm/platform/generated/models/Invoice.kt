@@ -36,6 +36,8 @@ import com.squareup.moshi.JsonClass
  * @param status 
  * @param total The invoice total; null until Stripe sets it
  * @param stripeInvoiceId The Stripe invoice this one mirrors; null when Stripe didn't send one
+ * @param hostedUrl Stripe's page to view and pay the invoice; null until Stripe finalizes it
+ * @param pdfUrl The invoice as a PDF; null until Stripe finalizes it
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -61,6 +63,14 @@ public data class Invoice (
     /* The Stripe invoice this one mirrors; null when Stripe didn't send one */
     @Json(name = "stripeInvoiceId")
     val stripeInvoiceId: kotlin.String?,
+
+    /* Stripe's page to view and pay the invoice; null until Stripe finalizes it */
+    @Json(name = "hostedUrl")
+    val hostedUrl: kotlin.String?,
+
+    /* The invoice as a PDF; null until Stripe finalizes it */
+    @Json(name = "pdfUrl")
+    val pdfUrl: kotlin.String?,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
