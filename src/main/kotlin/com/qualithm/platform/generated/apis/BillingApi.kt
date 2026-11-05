@@ -59,7 +59,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /v1/teams/{teamId}/billing/summary
-     * Get the workspace&#39;s plan, usage, price and add-ons
+     * Get the workspace&#39;s plan, usage, next bill and add-ons
      * 
      * @param teamId The team the request acts on
      * @return GetBillingSummaryResponse
@@ -91,7 +91,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /v1/teams/{teamId}/billing/summary
-     * Get the workspace&#39;s plan, usage, price and add-ons
+     * Get the workspace&#39;s plan, usage, next bill and add-ons
      * 
      * @param teamId The team the request acts on
      * @return ApiResponse<GetBillingSummaryResponse?>
