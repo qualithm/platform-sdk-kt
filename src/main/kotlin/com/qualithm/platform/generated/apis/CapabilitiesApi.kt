@@ -85,7 +85,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param teamId The team the request acts on
      * @param scopeId Only the devices in this scope and every scope under it (optional)
      * @param type Only capabilities of this type (optional)
-     * @param tag Only capabilities carrying this tag (optional)
+     * @param tag Only capabilities tagged this, or on a device tagged this (optional)
      * @param key Only capabilities with this key (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -124,7 +124,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param teamId The team the request acts on
      * @param scopeId Only the devices in this scope and every scope under it (optional)
      * @param type Only capabilities of this type (optional)
-     * @param tag Only capabilities carrying this tag (optional)
+     * @param tag Only capabilities tagged this, or on a device tagged this (optional)
      * @param key Only capabilities with this key (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -149,7 +149,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * @param teamId The team the request acts on
      * @param scopeId Only the devices in this scope and every scope under it (optional)
      * @param type Only capabilities of this type (optional)
-     * @param tag Only capabilities carrying this tag (optional)
+     * @param tag Only capabilities tagged this, or on a device tagged this (optional)
      * @param key Only capabilities with this key (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
