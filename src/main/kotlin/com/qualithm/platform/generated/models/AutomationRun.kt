@@ -24,6 +24,7 @@
 package com.qualithm.platform.generated.models
 
 import com.qualithm.platform.generated.models.AutomationRunStep
+import com.qualithm.platform.generated.models.Decision
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -39,6 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param lastError 
  * @param triggeredAt UTC time, RFC 3339
  * @param executedAt UTC time, RFC 3339
+ * @param decisions What Qualithm decided when the run's alert fired: at most six, most consequential first. Absent when the run fired no alert.
  */
 
 
@@ -70,7 +72,11 @@ public data class AutomationRun (
 
     /* UTC time, RFC 3339 */
     @Json(name = "executedAt")
-    val executedAt: java.time.OffsetDateTime?
+    val executedAt: java.time.OffsetDateTime?,
+
+    /* What Qualithm decided when the run's alert fired: at most six, most consequential first. Absent when the run fired no alert. */
+    @Json(name = "decisions")
+    val decisions: kotlin.collections.List<Decision>? = null
 
 ) {
 
