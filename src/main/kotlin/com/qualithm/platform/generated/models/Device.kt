@@ -43,6 +43,7 @@ import com.squareup.moshi.JsonClass
  * @param parkedAt UTC time, RFC 3339
  * @param capabilitiesDeclared Whether the device's latest session declared its capabilities before sending data; null until a session has done either
  * @param virtual Whether the device declared itself virtual at claim: it runs on a host rather than a board, and counts as a device all the same
+ * @param tags Operator-set tags, lowercased and sorted. A capability reference with this tag matches every capability on the device
  * @param level 
  * @param checks 
  * @param decisions What Qualithm decided when the device was claimed: at most six, most consequential first. Returned by getDevice; empty for a device created without a claim.
@@ -93,6 +94,10 @@ public data class Device (
     /* Whether the device declared itself virtual at claim: it runs on a host rather than a board, and counts as a device all the same */
     @Json(name = "virtual")
     val virtual: kotlin.Boolean? = null,
+
+    /* Operator-set tags, lowercased and sorted. A capability reference with this tag matches every capability on the device */
+    @Json(name = "tags")
+    val tags: kotlin.collections.List<kotlin.String>? = null,
 
     @Json(name = "level")
     val level: Device.Level? = null,
