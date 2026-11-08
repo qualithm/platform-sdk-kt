@@ -300,6 +300,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param scopeId A scope ID
+     * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -312,8 +313,8 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listScopeDevices(teamId: kotlin.String, scopeId: kotlin.String, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListScopeDevicesResponse {
-        val localVarResponse = listScopeDevicesWithHttpInfo(teamId = teamId, scopeId = scopeId, page = page, limit = limit, cursor = cursor)
+    public fun listScopeDevices(teamId: kotlin.String, scopeId: kotlin.String, tag: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListScopeDevicesResponse {
+        val localVarResponse = listScopeDevicesWithHttpInfo(teamId = teamId, scopeId = scopeId, tag = tag, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListScopeDevicesResponse
@@ -336,6 +337,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param scopeId A scope ID
+     * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -345,8 +347,8 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listScopeDevicesWithHttpInfo(teamId: kotlin.String, scopeId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListScopeDevicesResponse?> {
-        val localVariableConfig = listScopeDevicesRequestConfig(teamId = teamId, scopeId = scopeId, page = page, limit = limit, cursor = cursor)
+    public fun listScopeDevicesWithHttpInfo(teamId: kotlin.String, scopeId: kotlin.String, tag: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListScopeDevicesResponse?> {
+        val localVariableConfig = listScopeDevicesRequestConfig(teamId = teamId, scopeId = scopeId, tag = tag, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListScopeDevicesResponse>(
             localVariableConfig
@@ -358,15 +360,19 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      *
      * @param teamId The team the request acts on
      * @param scopeId A scope ID
+     * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listScopeDevicesRequestConfig(teamId: kotlin.String, scopeId: kotlin.String, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
+    public fun listScopeDevicesRequestConfig(teamId: kotlin.String, scopeId: kotlin.String, tag: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
+                if (tag != null) {
+                    put("tag", listOf(tag.toString()))
+                }
                 if (page != null) {
                     put("page", listOf(page.toString()))
                 }
