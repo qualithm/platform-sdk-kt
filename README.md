@@ -79,17 +79,17 @@ Calls block the calling thread. On Android, make them off the main thread.
 ### Error Handling
 
 `platform.call` throws only `PlatformError`. Branch on `code`, never on `message`. A code this
-version doesn't know yet reads as `UNKNOWN_DEFAULT_OPEN_API`, and a request that got no response is
+version doesn't know yet reads as `PlatformErrorCode.UNKNOWN`, and a request that got no response is
 a `PlatformError.Transport` with `status` `0`:
 
 ```kotlin
 import com.qualithm.platform.PlatformError
-import com.qualithm.platform.generated.models.ApiErrorCode
+import com.qualithm.platform.PlatformErrorCode
 
 try {
     platform.call { api(::DevicesApi).getDevice(teamId, deviceId) }
 } catch (error: PlatformError) {
-    if (error.code == ApiErrorCode.NOT_FOUND) {
+    if (error.code == PlatformErrorCode.NOT_FOUND) {
         // the device doesn't exist, or isn't in this team
     }
     throw error
