@@ -31,9 +31,9 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A member ID
- * @param accountId An account ID
- * @param teamId A team ID
+ * @param id A member ID: `mbr_…`; also accepts the legacy `mem_…`
+ * @param accountId An account ID: `acc_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param role 
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
@@ -45,15 +45,15 @@ import com.squareup.moshi.JsonClass
 
 public data class TeamMember (
 
-    /* A member ID */
+    /* A member ID: `mbr_…`; also accepts the legacy `mem_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* An account ID */
+    /* An account ID: `acc_…` */
     @Json(name = "accountId")
     val accountId: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 

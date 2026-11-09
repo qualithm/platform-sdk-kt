@@ -59,7 +59,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
      * @param teamId The team the request acts on
-     * @param tokenId An API token ID
+     * @param tokenId An API token ID: &#x60;tok_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -91,7 +91,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * Revoke an API token: any in the team for an owner, otherwise the caller&#39;s own
      * 
      * @param teamId The team the request acts on
-     * @param tokenId An API token ID
+     * @param tokenId An API token ID: &#x60;tok_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -109,7 +109,7 @@ public open class ApiTokensApi(basePath: kotlin.String = defaultBasePath, client
      * To obtain the request config of the operation deleteApiToken
      *
      * @param teamId The team the request acts on
-     * @param tokenId An API token ID
+     * @param tokenId An API token ID: &#x60;tok_…&#x60;
      * @return RequestConfig
      */
     public fun deleteApiTokenRequestConfig(teamId: kotlin.String, tokenId: kotlin.String) : RequestConfig<Unit> {

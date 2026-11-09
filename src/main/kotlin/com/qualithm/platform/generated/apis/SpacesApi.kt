@@ -144,7 +144,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Delete a space and its devices
      * Refused while scopes sit under it.
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
@@ -177,7 +177,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Delete a space and its devices
      * Refused while scopes sit under it.
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -196,7 +196,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * To obtain the request config of the operation deleteSpace
      *
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
@@ -222,7 +222,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Get a space
      * 
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @return GetSpaceResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -255,7 +255,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Get a space
      * 
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @return ApiResponse<GetSpaceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -274,7 +274,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * To obtain the request config of the operation getSpace
      *
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @return RequestConfig
      */
     public fun getSpaceRequestConfig(teamId: kotlin.String, spaceId: kotlin.String) : RequestConfig<Unit> {
@@ -415,7 +415,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Rename a space
      * 
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param updateSpaceRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
@@ -449,7 +449,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Rename a space
      * 
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param updateSpaceRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
@@ -469,7 +469,7 @@ public open class SpacesApi(basePath: kotlin.String = defaultBasePath, client: C
      * To obtain the request config of the operation updateSpace
      *
      * @param teamId The team the request acts on
-     * @param spaceId A space ID
+     * @param spaceId A space ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param updateSpaceRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig

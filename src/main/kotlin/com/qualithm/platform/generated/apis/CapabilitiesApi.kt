@@ -200,7 +200,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * List the capabilities a device declares
      * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -236,7 +236,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * List the capabilities a device declares
      * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -258,7 +258,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * To obtain the request config of the operation listDeviceCapabilities
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -296,7 +296,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * Rename or retag a capability
      * 
      * @param teamId The team the request acts on
-     * @param capabilityId A capability ID
+     * @param capabilityId A capability ID: &#x60;cap_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cap_…&#x60;
      * @param updateCapabilityRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return UpdateCapabilityResponse
@@ -331,7 +331,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * Rename or retag a capability
      * 
      * @param teamId The team the request acts on
-     * @param capabilityId A capability ID
+     * @param capabilityId A capability ID: &#x60;cap_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cap_…&#x60;
      * @param updateCapabilityRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<UpdateCapabilityResponse?>
@@ -352,7 +352,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
      * To obtain the request config of the operation updateCapability
      *
      * @param teamId The team the request acts on
-     * @param capabilityId A capability ID
+     * @param capabilityId A capability ID: &#x60;cap_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cap_…&#x60;
      * @param updateCapabilityRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig

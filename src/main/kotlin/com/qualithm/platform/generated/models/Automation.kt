@@ -31,10 +31,10 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id An automation ID
- * @param teamId A team ID
- * @param scopeId A scope ID
- * @param spaceId A space ID
+ * @param id An automation ID: `aut_<zone>_…`; also accepts the legacy `aut_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
+ * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
+ * @param spaceId A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param spaceName 
  * @param name 
  * @param enabled 
@@ -47,19 +47,19 @@ import com.squareup.moshi.JsonClass
 
 public data class Automation (
 
-    /* An automation ID */
+    /* An automation ID: `aut_<zone>_…`; also accepts the legacy `aut_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 
-    /* A scope ID */
+    /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String?,
 
-    /* A space ID */
+    /* A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "spaceId")
     val spaceId: kotlin.String?,
 

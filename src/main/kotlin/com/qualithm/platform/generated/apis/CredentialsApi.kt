@@ -65,7 +65,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Issue a client certificate for a device from its CSR
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param createDeviceCertificateRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateDeviceCertificateResponse
@@ -100,7 +100,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Issue a client certificate for a device from its CSR
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param createDeviceCertificateRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateDeviceCertificateResponse?>
@@ -121,7 +121,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation createDeviceCertificate
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param createDeviceCertificateRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
@@ -149,7 +149,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Mint a token credential for a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param createDeviceCredentialRequest  (optional)
      * @return CreateDeviceCredentialResponse
@@ -184,7 +184,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Mint a token credential for a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param createDeviceCredentialRequest  (optional)
      * @return ApiResponse<CreateDeviceCredentialResponse?>
@@ -205,7 +205,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation createDeviceCredential
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param createDeviceCredentialRequest  (optional)
      * @return RequestConfig
@@ -233,8 +233,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a device&#39;s credential
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @param credentialId A credential ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
+     * @param credentialId A credential ID: &#x60;crd_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cred_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -266,8 +266,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a device&#39;s credential
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @param credentialId A credential ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
+     * @param credentialId A credential ID: &#x60;crd_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cred_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -285,8 +285,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteDeviceCredential
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @param credentialId A credential ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
+     * @param credentialId A credential ID: &#x60;crd_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cred_…&#x60;
      * @return RequestConfig
      */
     public fun deleteDeviceCredentialRequestConfig(teamId: kotlin.String, deviceId: kotlin.String, credentialId: kotlin.String) : RequestConfig<Unit> {
@@ -310,7 +310,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * List a device&#39;s credentials
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -346,7 +346,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * List a device&#39;s credentials
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -368,7 +368,7 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation listDeviceCredentials
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -406,8 +406,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Rotate a device&#39;s token credential
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @param credentialId A credential ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
+     * @param credentialId A credential ID: &#x60;crd_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cred_…&#x60;
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param rotateDeviceCredentialRequest  (optional)
@@ -443,8 +443,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * Rotate a device&#39;s token credential
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @param credentialId A credential ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
+     * @param credentialId A credential ID: &#x60;crd_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cred_…&#x60;
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param rotateDeviceCredentialRequest  (optional)
@@ -466,8 +466,8 @@ public open class CredentialsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation rotateDeviceCredential
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
-     * @param credentialId A credential ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
+     * @param credentialId A credential ID: &#x60;crd_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;cred_…&#x60;
      * @param revoke &#x60;true&#x60; revokes the old credential now; otherwise it stays active until it expires (optional)
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @param rotateDeviceCredentialRequest  (optional)

@@ -142,7 +142,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a certificate authority and every credential it issued
      * 
      * @param teamId The team the request acts on
-     * @param authorityId A device authority ID
+     * @param authorityId A device authority ID: &#x60;dca_…&#x60;; also accepts the legacy &#x60;auth_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -174,7 +174,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a certificate authority and every credential it issued
      * 
      * @param teamId The team the request acts on
-     * @param authorityId A device authority ID
+     * @param authorityId A device authority ID: &#x60;dca_…&#x60;; also accepts the legacy &#x60;auth_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -192,7 +192,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteAuthority
      *
      * @param teamId The team the request acts on
-     * @param authorityId A device authority ID
+     * @param authorityId A device authority ID: &#x60;dca_…&#x60;; also accepts the legacy &#x60;auth_…&#x60;
      * @return RequestConfig
      */
     public fun deleteAuthorityRequestConfig(teamId: kotlin.String, authorityId: kotlin.String) : RequestConfig<Unit> {

@@ -30,14 +30,14 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A command ID
+ * @param id A command ID: `cmd_<zone>_…`; also accepts the legacy `cmd_…`
  * @param duplicate True when the dedup key was already used: no second command was sent
  */
 
 
 public data class QueuedCommand (
 
-    /* A command ID */
+    /* A command ID: `cmd_<zone>_…`; also accepts the legacy `cmd_…` */
     @Json(name = "id")
     val id: kotlin.String,
 

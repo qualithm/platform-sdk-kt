@@ -23,7 +23,6 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.ApiErrorCode
 import com.qualithm.platform.generated.models.ApiErrorDetailsInner
 
 import com.squareup.moshi.Json
@@ -45,7 +44,7 @@ public data class ApiError (
     val message: kotlin.String,
 
     @Json(name = "code")
-    val code: ApiErrorCode,
+    val code: kotlin.String,
 
     /* The `Request-Id` this response carried; quote it */
     @Json(name = "requestId")

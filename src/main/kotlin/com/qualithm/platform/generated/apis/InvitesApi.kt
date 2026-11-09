@@ -60,7 +60,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/invites
      * Invite an account to the team by email
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamInviteRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateTeamInviteResponse
@@ -94,7 +94,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/invites
      * Invite an account to the team by email
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamInviteRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateTeamInviteResponse?>
@@ -114,7 +114,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation createTeamInvite
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamInviteRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
@@ -141,8 +141,8 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/invites/{inviteId}
      * Revoke a pending invite
      * 
-     * @param teamId A team ID
-     * @param inviteId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param inviteId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -173,8 +173,8 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/invites/{inviteId}
      * Revoke a pending invite
      * 
-     * @param teamId A team ID
-     * @param inviteId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param inviteId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -191,8 +191,8 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation deleteTeamInvite
      *
-     * @param teamId A team ID
-     * @param inviteId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param inviteId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return RequestConfig
      */
     public fun deleteTeamInviteRequestConfig(teamId: kotlin.String, inviteId: kotlin.String) : RequestConfig<Unit> {
@@ -215,7 +215,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/invites
      * List the team&#39;s pending invites
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -250,7 +250,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/invites
      * List the team&#39;s pending invites
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -271,7 +271,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation listTeamInvites
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
