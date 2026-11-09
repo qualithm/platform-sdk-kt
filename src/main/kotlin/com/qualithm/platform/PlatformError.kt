@@ -1,7 +1,6 @@
 package com.qualithm.platform
 
 import com.qualithm.platform.generated.infrastructure.Serializer
-import com.qualithm.platform.generated.models.ApiErrorCode
 import java.io.IOException
 
 /**
@@ -14,10 +13,10 @@ public sealed class PlatformError(override val message: String, cause: Throwable
     RuntimeException(message, cause) {
     /**
      * The envelope's stable code. A code this version doesn't know yet, or a failure with no
-     * response, reads as [ApiErrorCode.UNKNOWN_DEFAULT_OPEN_API]; a missing token reads as
-     * [ApiErrorCode.UNAUTHORIZED].
+     * response, reads as [PlatformErrorCode.UNKNOWN]; a missing token reads as
+     * [PlatformErrorCode.UNAUTHORIZED].
      */
-    public abstract val code: ApiErrorCode
+    public abstract val code: PlatformErrorCode
 
     /** The HTTP status, or `0` when no response arrived. */
     public abstract val status: Int
@@ -30,7 +29,7 @@ public sealed class PlatformError(override val message: String, cause: Throwable
      */
     public class Api(
         override val status: Int,
-        override val code: ApiErrorCode,
+        override val code: PlatformErrorCode,
         message: String,
         cause: Throwable? = null,
     ) : PlatformError(message, cause)
@@ -38,14 +37,14 @@ public sealed class PlatformError(override val message: String, cause: Throwable
     /** The request never got a usable response. Its [status] is `0`. */
     public class Transport(message: String, cause: Throwable? = null) :
         PlatformError(message, cause) {
-        override val code: ApiErrorCode = ApiErrorCode.UNKNOWN_DEFAULT_OPEN_API
+        override val code: PlatformErrorCode = PlatformErrorCode.UNKNOWN
         override val status: Int = 0
     }
 
     /** No API token was passed or set in `QUALITHM_API_TOKEN`. */
     public class MissingToken :
         PlatformError("api token missing: pass token or set QUALITHM_API_TOKEN") {
-        override val code: ApiErrorCode = ApiErrorCode.UNAUTHORIZED
+        override val code: PlatformErrorCode = PlatformErrorCode.UNAUTHORIZED
         override val status: Int = 0
     }
 
@@ -60,10 +59,7 @@ public sealed class PlatformError(override val message: String, cause: Throwable
                 } catch (_: IOException) {
                     null
                 }
-            val code =
-                (envelope?.get("code") as? String)?.let { code ->
-                    ApiErrorCode.entries.firstOrNull { it.value == code }
-                } ?: ApiErrorCode.UNKNOWN_DEFAULT_OPEN_API
+            val code = PlatformErrorCode.fromValue(envelope?.get("code") as? String)
             val message =
                 (envelope?.get("message") as? String)?.takeIf { it.isNotEmpty() }
                     ?: "request failed with status $status"

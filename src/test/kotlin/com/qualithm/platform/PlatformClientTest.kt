@@ -2,7 +2,6 @@ package com.qualithm.platform
 
 import com.qualithm.platform.generated.apis.DevicesApi
 import com.qualithm.platform.generated.apis.HealthApi
-import com.qualithm.platform.generated.models.ApiErrorCode
 import java.io.IOException
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
@@ -128,7 +127,7 @@ class PlatformClientTest {
             assertThrows(PlatformError.MissingToken::class.java) {
                 PlatformClient(environment = mapOf("QUALITHM_API_TOKEN" to ""))
             }
-        assertEquals(ApiErrorCode.UNAUTHORIZED, error.code)
+        assertEquals(PlatformErrorCode.UNAUTHORIZED, error.code)
         assertEquals(0, error.status)
         assertEquals("api token missing: pass token or set QUALITHM_API_TOKEN", error.message)
         assertThrows(PlatformError.MissingToken::class.java) {
@@ -148,7 +147,7 @@ class PlatformClientTest {
         val error = failure(Stub(404, """{"message":"device not found","code":"not_found"}"""))
 
         assertTrue(error is PlatformError.Api)
-        assertEquals(ApiErrorCode.NOT_FOUND, error.code)
+        assertEquals(PlatformErrorCode.NOT_FOUND, error.code)
         assertEquals(404, error.status)
         assertEquals("device not found", error.message)
     }
@@ -158,7 +157,7 @@ class PlatformClientTest {
         val error =
             failure(Stub(503, """{"message":"backend unavailable","code":"backend_unavailable"}"""))
 
-        assertEquals(ApiErrorCode.BACKEND_UNAVAILABLE, error.code)
+        assertEquals(PlatformErrorCode.BACKEND_UNAVAILABLE, error.code)
         assertEquals(503, error.status)
         assertEquals("backend unavailable", error.message)
     }
@@ -170,9 +169,33 @@ class PlatformClientTest {
                 Stub(422, """{"message":"device limit reached","code":"device_limit_reached"}""")
             )
 
-        assertEquals(ApiErrorCode.UNKNOWN_DEFAULT_OPEN_API, error.code)
+        assertEquals(PlatformErrorCode.UNKNOWN, error.code)
         assertEquals(422, error.status)
         assertEquals("device limit reached", error.message)
+    }
+
+    @Test
+    fun `decodes a code added after the generated spec`() {
+        val error = failure(Stub(409, """{"message":"name taken","code":"name_taken"}"""))
+
+        assertEquals(PlatformErrorCode.NAME_TAKEN, error.code)
+        assertEquals("name_taken", error.code.value)
+    }
+
+    @Test
+    fun `decodes a code that isn't a string to the fallback`() {
+        val error = failure(Stub(400, """{"message":"bad","code":42}"""))
+
+        assertEquals(PlatformErrorCode.UNKNOWN, error.code)
+    }
+
+    @Test
+    fun `maps every wire value back to its code`() {
+        PlatformErrorCode.entries
+            .filter { it != PlatformErrorCode.UNKNOWN }
+            .forEach { assertEquals(it, PlatformErrorCode.fromValue(it.value)) }
+        assertEquals(PlatformErrorCode.UNKNOWN, PlatformErrorCode.fromValue("unknown"))
+        assertEquals(PlatformErrorCode.UNKNOWN, PlatformErrorCode.fromValue(null))
     }
 
     @Test
@@ -180,7 +203,7 @@ class PlatformClientTest {
         val error = failure(Stub(502, "<html>bad gateway</html>"))
 
         assertTrue(error is PlatformError.Api)
-        assertEquals(ApiErrorCode.UNKNOWN_DEFAULT_OPEN_API, error.code)
+        assertEquals(PlatformErrorCode.UNKNOWN, error.code)
         assertEquals(502, error.status)
         assertEquals("request failed with status 502", error.message)
     }
@@ -191,7 +214,7 @@ class PlatformClientTest {
 
         assertTrue(error is PlatformError.Transport)
         assertEquals(0, error.status)
-        assertEquals(ApiErrorCode.UNKNOWN_DEFAULT_OPEN_API, error.code)
+        assertEquals(PlatformErrorCode.UNKNOWN, error.code)
         assertEquals("request failed: connection refused", error.message)
         assertTrue(error.cause is IOException)
     }
