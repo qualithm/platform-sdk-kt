@@ -302,6 +302,7 @@
       "Bash(dx images sync *)",
       "Bash(dx git sync-commit)",
       "Bash(dx git sync-commit *)",
+      "Bash(python3 .claude/checks/ci-jobs.py *)",
       "Bash(./gradlew ktfmtCheck)",
       "Bash(./gradlew ktfmtFormat)",
       "Bash(./gradlew detekt)",
@@ -326,8 +327,7 @@
       "Bash(./gradlew runExample *)",
       "Bash(./gradlew * --write-locks)",
       "Bash(./gradlew tasks)",
-      "Bash(./gradlew tasks *)",
-      "Bash(python3 .claude/checks/ci-jobs.py *)"
+      "Bash(./gradlew tasks *)"
     ],
     "ask": [
       "Bash(git push *--force)",
