@@ -31,8 +31,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id An invoice ID
- * @param teamId A team ID
+ * @param id An invoice ID: `inv_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param status 
  * @param total The invoice total; null until Stripe sets it
  * @param stripeInvoiceId The Stripe invoice this one mirrors; null when Stripe didn't send one
@@ -45,11 +45,11 @@ import com.squareup.moshi.JsonClass
 
 public data class Invoice (
 
-    /* An invoice ID */
+    /* An invoice ID: `inv_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 

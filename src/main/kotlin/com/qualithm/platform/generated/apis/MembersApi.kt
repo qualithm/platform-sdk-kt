@@ -62,7 +62,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/members
      * Accept the caller&#39;s invite to the team
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamMemberRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateTeamMemberResponse
@@ -96,7 +96,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * POST /v1/teams/{teamId}/members
      * Accept the caller&#39;s invite to the team
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamMemberRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateTeamMemberResponse?>
@@ -116,7 +116,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation createTeamMember
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamMemberRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
@@ -143,8 +143,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/members/{memberId}
      * Remove a member from the team
      * A viewer can remove only themselves; a manager only viewers and themselves.
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -175,8 +175,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * DELETE /v1/teams/{teamId}/members/{memberId}
      * Remove a member from the team
      * A viewer can remove only themselves; a manager only viewers and themselves.
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -193,8 +193,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation deleteTeamMember
      *
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return RequestConfig
      */
     public fun deleteTeamMemberRequestConfig(teamId: kotlin.String, memberId: kotlin.String) : RequestConfig<Unit> {
@@ -217,8 +217,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members/{memberId}
      * Get a member of the team
      * 
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return GetTeamMemberResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -250,8 +250,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members/{memberId}
      * Get a member of the team
      * 
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return ApiResponse<GetTeamMemberResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -269,8 +269,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation getTeamMember
      *
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @return RequestConfig
      */
     public fun getTeamMemberRequestConfig(teamId: kotlin.String, memberId: kotlin.String) : RequestConfig<Unit> {
@@ -293,7 +293,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
      * By &#x60;accountName&#x60;, then &#x60;id&#x60;, ascending. Names compare byte by byte, so uppercase sorts before lowercase.
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -328,7 +328,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/members
      * List the team&#39;s active members
      * By &#x60;accountName&#x60;, then &#x60;id&#x60;, ascending. Names compare byte by byte, so uppercase sorts before lowercase.
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -349,7 +349,7 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation listTeamMembers
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -386,8 +386,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * PATCH /v1/teams/{teamId}/members/{memberId}
      * Change a member&#39;s role
      * 
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @param updateTeamMemberRequest 
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
@@ -419,8 +419,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
      * PATCH /v1/teams/{teamId}/members/{memberId}
      * Change a member&#39;s role
      * 
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @param updateTeamMemberRequest 
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -438,8 +438,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation updateTeamMember
      *
-     * @param teamId A team ID
-     * @param memberId A member ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param memberId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
      * @param updateTeamMemberRequest 
      * @return RequestConfig
      */

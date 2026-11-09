@@ -30,13 +30,13 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id An audit event ID
- * @param teamId A team ID
+ * @param id An audit event ID: `aud_…`; also accepts the legacy `evt_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param actorKind 
- * @param actorId An ID of any type
+ * @param actorId An ID of any kind: `<kind>_[<zone>_]<ULID>`
  * @param action Dot-namespaced action, e.g. `device.claim`
  * @param targetKind What the action acted on, e.g. `device`
- * @param targetId An ID of any type
+ * @param targetId An ID of any kind: `<kind>_[<zone>_]<ULID>`
  * @param metadata Non-sensitive context for the action
  * @param occurredAt UTC time, RFC 3339
  */
@@ -44,18 +44,18 @@ import com.squareup.moshi.JsonClass
 
 public data class AuditEvent (
 
-    /* An audit event ID */
+    /* An audit event ID: `aud_…`; also accepts the legacy `evt_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 
     @Json(name = "actorKind")
     val actorKind: AuditEvent.ActorKind,
 
-    /* An ID of any type */
+    /* An ID of any kind: `<kind>_[<zone>_]<ULID>` */
     @Json(name = "actorId")
     val actorId: kotlin.String?,
 
@@ -67,7 +67,7 @@ public data class AuditEvent (
     @Json(name = "targetKind")
     val targetKind: kotlin.String,
 
-    /* An ID of any type */
+    /* An ID of any kind: `<kind>_[<zone>_]<ULID>` */
     @Json(name = "targetId")
     val targetId: kotlin.String,
 

@@ -32,8 +32,8 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param id The invite's id: the invited membership's id
- * @param accountId An account ID
- * @param teamId A team ID
+ * @param accountId An account ID: `acc_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param role 
  * @param status 
  * @param createdAt UTC time, RFC 3339
@@ -50,11 +50,11 @@ public data class TeamInvite (
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* An account ID */
+    /* An account ID: `acc_…` */
     @Json(name = "accountId")
     val accountId: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 

@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param deviceId A device ID
- * @param scopeId A scope ID
+ * @param deviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
+ * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param spaceId Deprecated: use scopeId
  * @param online Whether the device was seen within the offline window
  * @param lastSeenAt When the device was last seen
@@ -41,11 +41,11 @@ import com.squareup.moshi.JsonClass
 
 public data class DeviceState (
 
-    /* A device ID */
+    /* A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…` */
     @Json(name = "deviceId")
     val deviceId: kotlin.String,
 
-    /* A scope ID */
+    /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String,
 

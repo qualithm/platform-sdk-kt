@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A device authority ID
- * @param teamId A team ID
+ * @param id A device authority ID: `dca_…`; also accepts the legacy `auth_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param name 
  * @param kind 
  * @param certificatePem 
@@ -44,11 +44,11 @@ import com.squareup.moshi.JsonClass
 
 public data class Authority (
 
-    /* A device authority ID */
+    /* A device authority ID: `dca_…`; also accepts the legacy `auth_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 

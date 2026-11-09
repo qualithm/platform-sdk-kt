@@ -6,8 +6,6 @@ import com.squareup.moshi.adapters.EnumJsonAdapter
 public object SerializerHelper {
     public fun addEnumUnknownDefaultCase(moshiBuilder: Moshi.Builder): Moshi.Builder {
         return moshiBuilder
-            .add(com.qualithm.platform.generated.models.ApiErrorCode::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.ApiErrorCode::class.java)
-                .withUnknownFallback(com.qualithm.platform.generated.models.ApiErrorCode.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.ApiToken.Status::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.ApiToken.Status::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.ApiToken.Status.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.ApiToken.Permissions::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.ApiToken.Permissions::class.java)
