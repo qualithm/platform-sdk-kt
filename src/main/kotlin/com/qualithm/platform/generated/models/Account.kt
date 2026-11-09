@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id An account ID
+ * @param id An account ID: `acc_…`
  * @param email 
  * @param name 
  * @param createdAt UTC time, RFC 3339
@@ -40,7 +40,7 @@ import com.squareup.moshi.JsonClass
 
 public data class Account (
 
-    /* An account ID */
+    /* An account ID: `acc_…` */
     @Json(name = "id")
     val id: kotlin.String,
 

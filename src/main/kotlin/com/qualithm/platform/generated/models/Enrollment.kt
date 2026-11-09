@@ -30,13 +30,13 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id An enrollment ID
- * @param teamId A team ID
- * @param scopeId A scope ID
+ * @param id An enrollment ID: `enr_<zone>_…`; also accepts the legacy `enr_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
+ * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param spaceId Deprecated: use scopeId
  * @param label 
  * @param status 
- * @param claimedDeviceId A device ID
+ * @param claimedDeviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
  * @param claimedAt UTC time, RFC 3339
  * @param expiresAt UTC time, RFC 3339
  * @param createdAt UTC time, RFC 3339
@@ -46,15 +46,15 @@ import com.squareup.moshi.JsonClass
 
 public data class Enrollment (
 
-    /* An enrollment ID */
+    /* An enrollment ID: `enr_<zone>_…`; also accepts the legacy `enr_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 
-    /* A scope ID */
+    /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String,
 
@@ -69,7 +69,7 @@ public data class Enrollment (
     @Json(name = "status")
     val status: Enrollment.Status,
 
-    /* A device ID */
+    /* A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…` */
     @Json(name = "claimedDeviceId")
     val claimedDeviceId: kotlin.String?,
 

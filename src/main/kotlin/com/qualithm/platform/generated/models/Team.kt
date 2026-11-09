@@ -31,7 +31,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A team ID
+ * @param id A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param name 
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
@@ -43,7 +43,7 @@ import com.squareup.moshi.JsonClass
 
 public data class Team (
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "id")
     val id: kotlin.String,
 

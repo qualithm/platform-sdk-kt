@@ -59,7 +59,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
      * GET /v1/account/sessions/{sessionId}
      * Get one of the caller&#39;s live sessions
      * 
-     * @param sessionId A session ID
+     * @param sessionId A session ID: &#x60;ses_…&#x60;
      * @return GetSessionResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -91,7 +91,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
      * GET /v1/account/sessions/{sessionId}
      * Get one of the caller&#39;s live sessions
      * 
-     * @param sessionId A session ID
+     * @param sessionId A session ID: &#x60;ses_…&#x60;
      * @return ApiResponse<GetSessionResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -109,7 +109,7 @@ public open class SessionsApi(basePath: kotlin.String = defaultBasePath, client:
     /**
      * To obtain the request config of the operation getSession
      *
-     * @param sessionId A session ID
+     * @param sessionId A session ID: &#x60;ses_…&#x60;
      * @return RequestConfig
      */
     public fun getSessionRequestConfig(sessionId: kotlin.String) : RequestConfig<Unit> {

@@ -145,7 +145,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Delete a device and revoke its credentials
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
@@ -178,7 +178,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Delete a device and revoke its credentials
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -197,7 +197,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation deleteDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
@@ -223,7 +223,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Get a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @return GetDeviceResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -256,7 +256,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Get a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @return ApiResponse<GetDeviceResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -275,7 +275,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation getDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @return RequestConfig
      */
     public fun getDeviceRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
@@ -409,7 +409,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/device-states
      * List the live state of a team&#39;s devices
      * By &#x60;deviceId&#x60;, ascending.
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -444,7 +444,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * GET /v1/teams/{teamId}/device-states
      * List the live state of a team&#39;s devices
      * By &#x60;deviceId&#x60;, ascending.
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -465,7 +465,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * To obtain the request config of the operation listTeamDeviceStates
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -503,7 +503,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Rename, move, park or retag a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param updateDeviceRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
@@ -537,7 +537,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Rename, move, park or retag a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param updateDeviceRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
@@ -557,7 +557,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation updateDevice
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param updateDeviceRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig

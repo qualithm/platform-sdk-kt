@@ -58,8 +58,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * GET /v1/teams/{teamId}/devices/{deviceId}/telemetry
      * Read a device metric as bucketed points
      * By bucket start &#x60;ts&#x60;, ascending, within &#x60;from&#x60; and &#x60;to&#x60;. Every page reads the same range, so pass the same query with each cursor.
-     * @param teamId A team ID
-     * @param deviceId A device ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param metric The metric to read
      * @param from Range start, RFC 3339, inclusive
      * @param to Range end, RFC 3339, exclusive
@@ -100,8 +100,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
      * GET /v1/teams/{teamId}/devices/{deviceId}/telemetry
      * Read a device metric as bucketed points
      * By bucket start &#x60;ts&#x60;, ascending, within &#x60;from&#x60; and &#x60;to&#x60;. Every page reads the same range, so pass the same query with each cursor.
-     * @param teamId A team ID
-     * @param deviceId A device ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param metric The metric to read
      * @param from Range start, RFC 3339, inclusive
      * @param to Range end, RFC 3339, exclusive
@@ -128,8 +128,8 @@ public open class TelemetryApi(basePath: kotlin.String = defaultBasePath, client
     /**
      * To obtain the request config of the operation listTelemetry
      *
-     * @param teamId A team ID
-     * @param deviceId A device ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param metric The metric to read
      * @param from Range start, RFC 3339, inclusive
      * @param to Range end, RFC 3339, exclusive

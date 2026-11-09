@@ -32,8 +32,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id An automation run ID
- * @param automationId An automation ID
+ * @param id An automation run ID: `run_<zone>_…`; also accepts the legacy `run_…`
+ * @param automationId An automation ID: `aut_<zone>_…`; also accepts the legacy `aut_…`
  * @param triggerType 
  * @param status 
  * @param steps 
@@ -46,11 +46,11 @@ import com.squareup.moshi.JsonClass
 
 public data class AutomationRun (
 
-    /* An automation run ID */
+    /* An automation run ID: `run_<zone>_…`; also accepts the legacy `run_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* An automation ID */
+    /* An automation ID: `aut_<zone>_…`; also accepts the legacy `aut_…` */
     @Json(name = "automationId")
     val automationId: kotlin.String,
 

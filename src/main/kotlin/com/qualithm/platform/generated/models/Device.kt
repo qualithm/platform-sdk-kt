@@ -32,11 +32,11 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A device ID
- * @param scopeId A scope ID
+ * @param id A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
+ * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param spaceId Deprecated: use scopeId
  * @param spaceName 
- * @param teamId A team ID
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param name 
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
@@ -52,11 +52,11 @@ import com.squareup.moshi.JsonClass
 
 public data class Device (
 
-    /* A device ID */
+    /* A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A scope ID */
+    /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String,
 
@@ -68,7 +68,7 @@ public data class Device (
     @Json(name = "spaceName")
     val spaceName: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 

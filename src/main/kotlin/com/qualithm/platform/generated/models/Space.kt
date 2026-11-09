@@ -31,8 +31,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A space ID
- * @param teamId A team ID
+ * @param id A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
+ * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param name 
  * @param zone 
  * @param createdAt UTC time, RFC 3339
@@ -43,11 +43,11 @@ import com.squareup.moshi.JsonClass
 
 public data class Space (
 
-    /* A space ID */
+    /* A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A team ID */
+    /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 

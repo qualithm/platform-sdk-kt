@@ -135,7 +135,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * DELETE /v1/teams/{teamId}
      * Delete the team with its spaces, devices and memberships
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
@@ -167,7 +167,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * DELETE /v1/teams/{teamId}
      * Delete the team with its spaces, devices and memberships
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -185,7 +185,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation deleteTeam
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
@@ -210,7 +210,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * GET /v1/teams/{teamId}
      * Get one of the caller&#39;s teams, with their role and permissions in it
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @return GetTeamResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -242,7 +242,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * GET /v1/teams/{teamId}
      * Get one of the caller&#39;s teams, with their role and permissions in it
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @return ApiResponse<GetTeamResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -260,7 +260,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation getTeam
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @return RequestConfig
      */
     public fun getTeamRequestConfig(teamId: kotlin.String) : RequestConfig<Unit> {
@@ -373,7 +373,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * PATCH /v1/teams/{teamId}
      * Rename the team
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param updateTeamRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
@@ -406,7 +406,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
      * PATCH /v1/teams/{teamId}
      * Rename the team
      * 
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param updateTeamRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
@@ -425,7 +425,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * To obtain the request config of the operation updateTeam
      *
-     * @param teamId A team ID
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param updateTeamRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig

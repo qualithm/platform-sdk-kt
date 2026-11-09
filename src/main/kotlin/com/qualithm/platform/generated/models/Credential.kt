@@ -30,9 +30,9 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A credential ID
- * @param deviceId A device ID
- * @param authorityId A device authority ID
+ * @param id A credential ID: `crd_<zone>_…`; also accepts the legacy `cred_…`
+ * @param deviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
+ * @param authorityId A device authority ID: `dca_…`; also accepts the legacy `auth_…`
  * @param kind 
  * @param certFingerprint SHA-256 of a cert credential's certificate
  * @param certSubject 
@@ -40,7 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param status 
  * @param expiresAt UTC time, RFC 3339
  * @param lastUsedAt UTC time, RFC 3339
- * @param rotatedFrom A credential ID
+ * @param rotatedFrom A credential ID: `crd_<zone>_…`; also accepts the legacy `cred_…`
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -48,15 +48,15 @@ import com.squareup.moshi.JsonClass
 
 public data class Credential (
 
-    /* A credential ID */
+    /* A credential ID: `crd_<zone>_…`; also accepts the legacy `cred_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A device ID */
+    /* A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…` */
     @Json(name = "deviceId")
     val deviceId: kotlin.String,
 
-    /* A device authority ID */
+    /* A device authority ID: `dca_…`; also accepts the legacy `auth_…` */
     @Json(name = "authorityId")
     val authorityId: kotlin.String?,
 
@@ -84,7 +84,7 @@ public data class Credential (
     @Json(name = "lastUsedAt")
     val lastUsedAt: java.time.OffsetDateTime?,
 
-    /* A credential ID */
+    /* A credential ID: `crd_<zone>_…`; also accepts the legacy `cred_…` */
     @Json(name = "rotatedFrom")
     val rotatedFrom: kotlin.String?,
 

@@ -61,7 +61,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * Send a command to a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param createDeviceCommandRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateDeviceCommandResponse
@@ -96,7 +96,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * Send a command to a device
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param createDeviceCommandRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateDeviceCommandResponse?>
@@ -117,7 +117,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * To obtain the request config of the operation createDeviceCommand
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param createDeviceCommandRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
@@ -145,7 +145,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * List a device&#39;s recent command deliveries
      * Newest first, by &#x60;settledAt&#x60; (or &#x60;enqueuedAt&#x60; while unsettled) then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -181,7 +181,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * List a device&#39;s recent command deliveries
      * Newest first, by &#x60;settledAt&#x60; (or &#x60;enqueuedAt&#x60; while unsettled) then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -203,7 +203,7 @@ public open class CommandsApi(basePath: kotlin.String = defaultBasePath, client:
      * To obtain the request config of the operation listDeviceCommands
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)

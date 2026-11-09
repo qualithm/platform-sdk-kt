@@ -145,7 +145,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Delete an empty scope
      * Refused while the scope holds devices or scopes.
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
@@ -178,7 +178,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Delete an empty scope
      * Refused while the scope holds devices or scopes.
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -197,7 +197,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * To obtain the request config of the operation deleteScope
      *
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
@@ -223,7 +223,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Get a scope
      * 
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @return GetScopeResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -256,7 +256,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Get a scope
      * 
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @return ApiResponse<GetScopeResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -275,7 +275,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * To obtain the request config of the operation getScope
      *
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @return RequestConfig
      */
     public fun getScopeRequestConfig(teamId: kotlin.String, scopeId: kotlin.String) : RequestConfig<Unit> {
@@ -299,7 +299,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * List the devices in a scope and every scope under it
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -336,7 +336,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * List the devices in a scope and every scope under it
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -359,7 +359,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * To obtain the request config of the operation listScopeDevices
      *
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -524,7 +524,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Rename a scope
      * 
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param updateScopeRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
@@ -558,7 +558,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * Rename a scope
      * 
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param updateScopeRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
@@ -578,7 +578,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      * To obtain the request config of the operation updateScope
      *
      * @param teamId The team the request acts on
-     * @param scopeId A scope ID
+     * @param scopeId A scope ID: &#x60;scp_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;spc_…&#x60;
      * @param updateScopeRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
