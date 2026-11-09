@@ -145,7 +145,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Delete a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
@@ -178,7 +178,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Delete a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -197,7 +197,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * To obtain the request config of the operation deleteDashboard
      *
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
@@ -223,7 +223,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Get a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @return GetDashboardResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -256,7 +256,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Get a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @return ApiResponse<GetDashboardResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -275,7 +275,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * To obtain the request config of the operation getDashboard
      *
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @return RequestConfig
      */
     public fun getDashboardRequestConfig(teamId: kotlin.String, dashboardId: kotlin.String) : RequestConfig<Unit> {
@@ -392,7 +392,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Update a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @param updateDashboardRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return UpdateDashboardResponse
@@ -427,7 +427,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * Update a dashboard
      * 
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @param updateDashboardRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<UpdateDashboardResponse?>
@@ -448,7 +448,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
      * To obtain the request config of the operation updateDashboard
      *
      * @param teamId The team the request acts on
-     * @param dashboardId A dashboard ID
+     * @param dashboardId A dashboard ID: &#x60;dsh_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dash_…&#x60;
      * @param updateDashboardRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig

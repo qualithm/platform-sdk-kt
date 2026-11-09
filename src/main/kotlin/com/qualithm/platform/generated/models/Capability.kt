@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id A capability ID
- * @param deviceId A device ID
+ * @param id A capability ID: `cap_<zone>_…`; also accepts the legacy `cap_…`
+ * @param deviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
  * @param key 
  * @param type 
  * @param config 
@@ -42,11 +42,11 @@ import com.squareup.moshi.JsonClass
 
 public data class Capability (
 
-    /* A capability ID */
+    /* A capability ID: `cap_<zone>_…`; also accepts the legacy `cap_…` */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* A device ID */
+    /* A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…` */
     @Json(name = "deviceId")
     val deviceId: kotlin.String,
 

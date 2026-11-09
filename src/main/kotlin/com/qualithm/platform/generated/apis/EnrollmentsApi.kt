@@ -142,7 +142,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a pending enrollment
      * 
      * @param teamId The team the request acts on
-     * @param enrollmentId An enrollment ID
+     * @param enrollmentId An enrollment ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -174,7 +174,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * Revoke a pending enrollment
      * 
      * @param teamId The team the request acts on
-     * @param enrollmentId An enrollment ID
+     * @param enrollmentId An enrollment ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -192,7 +192,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteEnrollment
      *
      * @param teamId The team the request acts on
-     * @param enrollmentId An enrollment ID
+     * @param enrollmentId An enrollment ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
      * @return RequestConfig
      */
     public fun deleteEnrollmentRequestConfig(teamId: kotlin.String, enrollmentId: kotlin.String) : RequestConfig<Unit> {

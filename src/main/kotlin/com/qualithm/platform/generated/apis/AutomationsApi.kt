@@ -150,7 +150,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Start a run of an automation&#39;s chain now
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateAutomationRunResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -184,7 +184,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Start a run of an automation&#39;s chain now
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateAutomationRunResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -204,7 +204,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation createAutomationRun
      *
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
@@ -230,7 +230,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Issue or rotate an automation&#39;s trigger secret
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateAutomationTriggerSecretResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -264,7 +264,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Issue or rotate an automation&#39;s trigger secret
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateAutomationTriggerSecretResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -284,7 +284,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation createAutomationTriggerSecret
      *
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return RequestConfig
      */
@@ -310,7 +310,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Delete an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
@@ -343,7 +343,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Delete an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -362,7 +362,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
      */
@@ -388,7 +388,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Get an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @return GetAutomationResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -421,7 +421,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Get an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @return ApiResponse<GetAutomationResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -440,7 +440,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation getAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @return RequestConfig
      */
     public fun getAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String) : RequestConfig<Unit> {
@@ -464,7 +464,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List an automation&#39;s runs
      * Newest first, by &#x60;triggeredAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -500,7 +500,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List an automation&#39;s runs
      * Newest first, by &#x60;triggeredAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -522,7 +522,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation listAutomationRuns
      *
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
@@ -653,7 +653,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List the automation templates a device supports
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @return ListDeviceAutomationTemplatesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -686,7 +686,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * List the automation templates a device supports
      * 
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @return ApiResponse<ListDeviceAutomationTemplatesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -705,7 +705,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation listDeviceAutomationTemplates
      *
      * @param teamId The team the request acts on
-     * @param deviceId A device ID
+     * @param deviceId A device ID: &#x60;dvc_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;dev_…&#x60;
      * @return RequestConfig
      */
     public fun listDeviceAutomationTemplatesRequestConfig(teamId: kotlin.String, deviceId: kotlin.String) : RequestConfig<Unit> {
@@ -807,7 +807,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Update an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param updateAutomationRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return UpdateAutomationResponse
@@ -842,7 +842,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * Update an automation
      * 
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param updateAutomationRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return ApiResponse<UpdateAutomationResponse?>
@@ -863,7 +863,7 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation updateAutomation
      *
      * @param teamId The team the request acts on
-     * @param automationId An automation ID
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
      * @param updateAutomationRequest 
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
      * @return RequestConfig
