@@ -402,6 +402,7 @@ public open class ScopesApi(basePath: kotlin.String = defaultBasePath, client: C
      public enum class ZoneListScopes(public val value: kotlin.String) {
          @Json(name = "de-fra-a") DE_FRA_A("de-fra-a"),
          @Json(name = "sg-sin-a") SG_SIN_A("sg-sin-a"),
+         @Json(name = "us-nyc-a") US_NYC_A("us-nyc-a"),
          @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
         /**

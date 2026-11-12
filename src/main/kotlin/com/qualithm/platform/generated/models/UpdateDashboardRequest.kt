@@ -33,7 +33,6 @@ import com.squareup.moshi.JsonClass
  *
  * @param name 
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceId A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param payload Replaces every widget; null for none
  */
 
@@ -46,10 +45,6 @@ public data class UpdateDashboardRequest (
     /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String? = null,
-
-    /* A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
-    @Json(name = "spaceId")
-    val spaceId: kotlin.String? = null,
 
     /* Replaces every widget; null for none */
     @Json(name = "payload")

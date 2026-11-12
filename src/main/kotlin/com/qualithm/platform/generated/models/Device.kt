@@ -34,8 +34,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param id A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceId Deprecated: use scopeId
- * @param spaceName 
+ * @param scopeName 
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param name 
  * @param createdAt UTC time, RFC 3339
@@ -60,13 +59,8 @@ public data class Device (
     @Json(name = "scopeId")
     val scopeId: kotlin.String,
 
-    /* Deprecated: use scopeId */
-    @Json(name = "spaceId")
-    @Deprecated(message = "This property is deprecated.")
-    val spaceId: kotlin.String,
-
-    @Json(name = "spaceName")
-    val spaceName: kotlin.String,
+    @Json(name = "scopeName")
+    val scopeName: kotlin.String,
 
     /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
