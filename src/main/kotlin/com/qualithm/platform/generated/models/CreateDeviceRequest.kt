@@ -31,7 +31,6 @@ import com.squareup.moshi.JsonClass
  * The scope to create it in
  *
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceId Deprecated: use scopeId
  */
 
 
@@ -39,12 +38,7 @@ public data class CreateDeviceRequest (
 
     /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
-    val scopeId: kotlin.String? = null,
-
-    /* Deprecated: use scopeId */
-    @Json(name = "spaceId")
-    @Deprecated(message = "This property is deprecated.")
-    val spaceId: kotlin.String? = null
+    val scopeId: kotlin.String? = null
 
 ) {
 

@@ -24,6 +24,7 @@
 package com.qualithm.platform.generated.models
 
 import com.qualithm.platform.generated.models.BillingSummaryAddons
+import com.qualithm.platform.generated.models.BillingSummaryCancellation
 import com.qualithm.platform.generated.models.BillingSummaryLimitGrace
 import com.qualithm.platform.generated.models.BillingSummaryLimits
 import com.qualithm.platform.generated.models.BillingSummaryUpcomingInvoice
@@ -44,6 +45,7 @@ import com.squareup.moshi.JsonClass
  * @param monthlyTotal What the next invoice will charge, after discounts and credit; the plan price with add-ons when `estimated` is true
  * @param upcomingInvoice 
  * @param estimated True when Stripe couldn't be read, so `monthlyTotal` is the plan price
+ * @param cancellation 
  * @param addons 
  */
 
@@ -76,6 +78,9 @@ public data class BillingSummary (
     /* True when Stripe couldn't be read, so `monthlyTotal` is the plan price */
     @Json(name = "estimated")
     val estimated: kotlin.Boolean,
+
+    @Json(name = "cancellation")
+    val cancellation: BillingSummaryCancellation?,
 
     @Json(name = "addons")
     val addons: BillingSummaryAddons

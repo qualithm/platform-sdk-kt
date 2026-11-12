@@ -34,8 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param id An automation ID: `aut_<zone>_…`; also accepts the legacy `aut_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceId A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceName 
+ * @param scopeName 
  * @param name 
  * @param enabled 
  * @param payload 
@@ -59,12 +58,8 @@ public data class Automation (
     @Json(name = "scopeId")
     val scopeId: kotlin.String?,
 
-    /* A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
-    @Json(name = "spaceId")
-    val spaceId: kotlin.String?,
-
-    @Json(name = "spaceName")
-    val spaceName: kotlin.String?,
+    @Json(name = "scopeName")
+    val scopeName: kotlin.String?,
 
     @Json(name = "name")
     val name: kotlin.String,

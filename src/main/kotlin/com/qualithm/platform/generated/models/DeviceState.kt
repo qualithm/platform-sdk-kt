@@ -32,7 +32,6 @@ import com.squareup.moshi.JsonClass
  *
  * @param deviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceId Deprecated: use scopeId
  * @param online Whether the device was seen within the offline window
  * @param lastSeenAt When the device was last seen
  * @param metrics The device's current metrics
@@ -48,11 +47,6 @@ public data class DeviceState (
     /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String,
-
-    /* Deprecated: use scopeId */
-    @Json(name = "spaceId")
-    @Deprecated(message = "This property is deprecated.")
-    val spaceId: kotlin.String,
 
     /* Whether the device was seen within the offline window */
     @Json(name = "online")

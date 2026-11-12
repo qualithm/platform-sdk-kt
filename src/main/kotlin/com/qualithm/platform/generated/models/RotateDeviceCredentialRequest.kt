@@ -30,13 +30,13 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param expiresAt A time in the future
+ * @param expiresAt A time in the future, within 30 days. Default 30 days from now.
  */
 
 
 public data class RotateDeviceCredentialRequest (
 
-    /* A time in the future */
+    /* A time in the future, within 30 days. Default 30 days from now. */
     @Json(name = "expiresAt")
     val expiresAt: java.time.OffsetDateTime? = null
 
