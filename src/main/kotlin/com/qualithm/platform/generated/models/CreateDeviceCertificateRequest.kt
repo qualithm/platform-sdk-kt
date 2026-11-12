@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param csrPem The device's PEM certificate signing request
  * @param label Up to 64 characters
- * @param expiresInDays Certificate lifetime in days. Default 90.
+ * @param expiresInDays Certificate lifetime in days, at most 30 for a development device. Default 30.
  */
 
 
@@ -46,7 +46,7 @@ public data class CreateDeviceCertificateRequest (
     @Json(name = "label")
     val label: kotlin.String? = null,
 
-    /* Certificate lifetime in days. Default 90. */
+    /* Certificate lifetime in days, at most 30 for a development device. Default 30. */
     @Json(name = "expiresInDays")
     val expiresInDays: kotlin.Int? = null
 

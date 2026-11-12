@@ -33,8 +33,8 @@ import com.squareup.moshi.JsonClass
  *
  * @param from 
  * @param to 
- * @param amountDue What the change bills now; a negative amount is a credit
- * @param nextPaymentAttempt When the change is billed, in Unix seconds
+ * @param amountDue What the change adds to the next bill, before tax; a negative amount is a credit
+ * @param nextPaymentAttempt When the next bill is charged, in Unix seconds
  */
 
 
@@ -46,11 +46,11 @@ public data class TierChangePreview (
     @Json(name = "to")
     val to: TierChangePreview.To,
 
-    /* What the change bills now; a negative amount is a credit */
+    /* What the change adds to the next bill, before tax; a negative amount is a credit */
     @Json(name = "amountDue")
     val amountDue: Money,
 
-    /* When the change is billed, in Unix seconds */
+    /* When the next bill is charged, in Unix seconds */
     @Json(name = "nextPaymentAttempt")
     val nextPaymentAttempt: kotlin.Long?
 

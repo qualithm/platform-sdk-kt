@@ -23,22 +23,22 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.Space
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Set when the paid plan is cancelled at the end of its period
  *
- * @param `data` 
+ * @param endsAt ISO 8601 time the plan ends and the team moves to free
  */
 
 
-public data class GetSpaceResponse (
+public data class BillingSummaryCancellation (
 
-    @Json(name = "data")
-    val `data`: Space
+    /* ISO 8601 time the plan ends and the team moves to free */
+    @Json(name = "endsAt")
+    val endsAt: kotlin.String?
 
 ) {
 

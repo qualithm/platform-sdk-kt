@@ -19,7 +19,7 @@ fun main() {
         }
         val page = platform.call { api(::DevicesApi).listDevices(team.id, limit = 20) }
         for (device in page.`data`.items) {
-            println("${device.id}  ${device.spaceName}  ${device.name}")
+            println("${device.id}  ${device.scopeName}  ${device.name}")
         }
     } catch (error: PlatformError) {
         System.err.println("listdevices: ${error.message} (${error.code.value})")

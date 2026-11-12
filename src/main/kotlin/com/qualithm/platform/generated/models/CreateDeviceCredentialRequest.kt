@@ -31,7 +31,7 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param label Up to 64 characters
- * @param expiresAt A time in the future
+ * @param expiresAt A time in the future, within 30 days. Default 30 days from now.
  */
 
 
@@ -41,7 +41,7 @@ public data class CreateDeviceCredentialRequest (
     @Json(name = "label")
     val label: kotlin.String? = null,
 
-    /* A time in the future */
+    /* A time in the future, within 30 days. Default 30 days from now. */
     @Json(name = "expiresAt")
     val expiresAt: java.time.OffsetDateTime? = null
 
