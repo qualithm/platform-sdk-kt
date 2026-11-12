@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * Values: DE_FRA_A,SG_SIN_A,UNKNOWN_DEFAULT_OPEN_API
+ * Values: DE_FRA_A,SG_SIN_A,US_NYC_A,UNKNOWN_DEFAULT_OPEN_API
  */
 
 @JsonClass(generateAdapter = false)
@@ -41,6 +41,9 @@ public enum class ZoneId(public val value: kotlin.String) {
 
     @Json(name = "sg-sin-a")
     SG_SIN_A("sg-sin-a"),
+
+    @Json(name = "us-nyc-a")
+    US_NYC_A("us-nyc-a"),
 
     @Json(name = "unknown_default_open_api")
     UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");

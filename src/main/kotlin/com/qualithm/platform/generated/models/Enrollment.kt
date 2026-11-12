@@ -33,7 +33,6 @@ import com.squareup.moshi.JsonClass
  * @param id An enrollment ID: `enr_<zone>_…`; also accepts the legacy `enr_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceId Deprecated: use scopeId
  * @param label 
  * @param status 
  * @param claimedDeviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
@@ -57,11 +56,6 @@ public data class Enrollment (
     /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String,
-
-    /* Deprecated: use scopeId */
-    @Json(name = "spaceId")
-    @Deprecated(message = "This property is deprecated.")
-    val spaceId: kotlin.String,
 
     @Json(name = "label")
     val label: kotlin.String,

@@ -24,6 +24,7 @@
 package com.qualithm.platform.generated.models
 
 import com.qualithm.platform.generated.models.Credential
+import com.qualithm.platform.generated.models.GatewayEndpoint
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,6 +34,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param credential 
  * @param secret The bearer token (the MQTT password), shown only once
+ * @param broker The gateway the device connects to now; returned when a device renews
  */
 
 
@@ -43,7 +45,11 @@ public data class CredentialSecret (
 
     /* The bearer token (the MQTT password), shown only once */
     @Json(name = "secret")
-    val secret: kotlin.String
+    val secret: kotlin.String,
+
+    /* The gateway the device connects to now; returned when a device renews */
+    @Json(name = "broker")
+    val broker: GatewayEndpoint? = null
 
 ) {
 

@@ -133,7 +133,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * DELETE /v1/teams/{teamId}
-     * Delete the team with its spaces, devices and memberships
+     * Delete the team with its scopes, devices and memberships
      * 
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)
@@ -165,7 +165,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * DELETE /v1/teams/{teamId}
-     * Delete the team with its spaces, devices and memberships
+     * Delete the team with its scopes, devices and memberships
      * 
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param ifMatch The ETag you last read. The request is refused with 412 when the resource has changed since; omit it to apply the change regardless. (optional)

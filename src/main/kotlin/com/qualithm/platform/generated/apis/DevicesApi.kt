@@ -300,7 +300,6 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param scopeId Only the devices directly in this scope, not the scopes under it (optional)
-     * @param spaceId Deprecated: use scopeId (optional)
      * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -314,8 +313,8 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    public fun listDevices(teamId: kotlin.String, scopeId: kotlin.String? = null, spaceId: kotlin.String? = null, tag: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListDevicesResponse {
-        val localVarResponse = listDevicesWithHttpInfo(teamId = teamId, scopeId = scopeId, spaceId = spaceId, tag = tag, page = page, limit = limit, cursor = cursor)
+    public fun listDevices(teamId: kotlin.String, scopeId: kotlin.String? = null, tag: kotlin.String? = null, page: kotlin.Long? = null, limit: kotlin.Int? = null, cursor: kotlin.String? = null) : ListDevicesResponse {
+        val localVarResponse = listDevicesWithHttpInfo(teamId = teamId, scopeId = scopeId, tag = tag, page = page, limit = limit, cursor = cursor)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListDevicesResponse
@@ -338,7 +337,6 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param scopeId Only the devices directly in this scope, not the scopes under it (optional)
-     * @param spaceId Deprecated: use scopeId (optional)
      * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -349,8 +347,8 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    public fun listDevicesWithHttpInfo(teamId: kotlin.String, scopeId: kotlin.String?, spaceId: kotlin.String?, tag: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListDevicesResponse?> {
-        val localVariableConfig = listDevicesRequestConfig(teamId = teamId, scopeId = scopeId, spaceId = spaceId, tag = tag, page = page, limit = limit, cursor = cursor)
+    public fun listDevicesWithHttpInfo(teamId: kotlin.String, scopeId: kotlin.String?, tag: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : ApiResponse<ListDevicesResponse?> {
+        val localVariableConfig = listDevicesRequestConfig(teamId = teamId, scopeId = scopeId, tag = tag, page = page, limit = limit, cursor = cursor)
 
         return request<Unit, ListDevicesResponse>(
             localVariableConfig
@@ -362,22 +360,18 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
      *
      * @param teamId The team the request acts on
      * @param scopeId Only the devices directly in this scope, not the scopes under it (optional)
-     * @param spaceId Deprecated: use scopeId (optional)
      * @param tag Only devices carrying this tag, matched case-insensitively (optional)
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
      * @param cursor A previous page&#39;s &#x60;nextCursor&#x60;, to read the page after it (optional)
      * @return RequestConfig
      */
-    public fun listDevicesRequestConfig(teamId: kotlin.String, scopeId: kotlin.String?, spaceId: kotlin.String?, tag: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
+    public fun listDevicesRequestConfig(teamId: kotlin.String, scopeId: kotlin.String?, tag: kotlin.String?, page: kotlin.Long?, limit: kotlin.Int?, cursor: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (scopeId != null) {
                     put("scopeId", listOf(scopeId.toString()))
-                }
-                if (spaceId != null) {
-                    put("spaceId", listOf(spaceId.toString()))
                 }
                 if (tag != null) {
                     put("tag", listOf(tag.toString()))

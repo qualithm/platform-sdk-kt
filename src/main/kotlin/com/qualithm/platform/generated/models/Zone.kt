@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param id 
  * @param name 
- * @param `open` Whether the zone accepts new spaces in this environment
+ * @param `open` Whether the zone accepts new scopes in this environment
  * @param api The zone's regional API host
  * @param gateway 
  */
@@ -48,7 +48,7 @@ public data class Zone (
     @Json(name = "name")
     val name: kotlin.String,
 
-    /* Whether the zone accepts new spaces in this environment */
+    /* Whether the zone accepts new scopes in this environment */
     @Json(name = "open")
     val `open`: kotlin.Boolean,
 

@@ -34,7 +34,6 @@ import com.squareup.moshi.JsonClass
  * @param name 
  * @param enabled Whether its trigger fires
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
- * @param spaceId A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param payload 
  * @param template A template id to re-expand the chain from; exclusive with `payload`
  * @param params The template's slot values, keyed by slot name; used with `template`
@@ -53,10 +52,6 @@ public data class UpdateAutomationRequest (
     /* A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
     @Json(name = "scopeId")
     val scopeId: kotlin.String? = null,
-
-    /* A space ID: `scp_<zone>_…`; also accepts the legacy `spc_…` */
-    @Json(name = "spaceId")
-    val spaceId: kotlin.String? = null,
 
     @Json(name = "payload")
     val payload: UpdateAutomationRequestPayload? = null,
