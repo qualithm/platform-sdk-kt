@@ -31,16 +31,16 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param email The email of an existing account
+ * @param emails The addresses to invite, with or without an account
  * @param role 
  */
 
 
 public data class CreateTeamInviteRequest (
 
-    /* The email of an existing account */
-    @Json(name = "email")
-    val email: kotlin.String,
+    /* The addresses to invite, with or without an account */
+    @Json(name = "emails")
+    val emails: kotlin.collections.List<kotlin.String>,
 
     @Json(name = "role")
     val role: MemberRole
