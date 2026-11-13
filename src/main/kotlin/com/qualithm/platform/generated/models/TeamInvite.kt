@@ -31,38 +31,49 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id The invite's id: the invited membership's id
- * @param accountId An account ID: `acc_…`
+ * @param id An invite ID: `ivt_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
+ * @param teamName 
+ * @param email The invited address; only its account can accept
  * @param role 
- * @param status 
+ * @param invitedBy An account ID: `acc_…`
+ * @param inviterName 
+ * @param expiresAt When its link stops working
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
- * @param accountEmail 
- * @param accountName 
- * @param teamName Absent in the create response
  */
 
 
 public data class TeamInvite (
 
-    /* The invite's id: the invited membership's id */
+    /* An invite ID: `ivt_…` */
     @Json(name = "id")
     val id: kotlin.String,
-
-    /* An account ID: `acc_…` */
-    @Json(name = "accountId")
-    val accountId: kotlin.String,
 
     /* A team ID: `tem_…`; also accepts the legacy `tm_…` */
     @Json(name = "teamId")
     val teamId: kotlin.String,
 
+    @Json(name = "teamName")
+    val teamName: kotlin.String,
+
+    /* The invited address; only its account can accept */
+    @Json(name = "email")
+    val email: kotlin.String,
+
     @Json(name = "role")
     val role: MemberRole,
 
-    @Json(name = "status")
-    val status: TeamInvite.Status,
+    /* An account ID: `acc_…` */
+    @Json(name = "invitedBy")
+    val invitedBy: kotlin.String?,
+
+    @Json(name = "inviterName")
+    val inviterName: kotlin.String?,
+
+    /* When its link stops working */
+    @Json(name = "expiresAt")
+    val expiresAt: java.time.OffsetDateTime,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
@@ -70,30 +81,10 @@ public data class TeamInvite (
 
     /* UTC time, RFC 3339 */
     @Json(name = "updatedAt")
-    val updatedAt: java.time.OffsetDateTime,
-
-    @Json(name = "accountEmail")
-    val accountEmail: kotlin.String,
-
-    @Json(name = "accountName")
-    val accountName: kotlin.String,
-
-    /* Absent in the create response */
-    @Json(name = "teamName")
-    val teamName: kotlin.String? = null
+    val updatedAt: java.time.OffsetDateTime
 
 ) {
 
-    /**
-     * 
-     *
-     * Values: INVITED,UNKNOWN_DEFAULT_OPEN_API
-     */
-    @JsonClass(generateAdapter = false)
-    public enum class Status(public val value: kotlin.String) {
-        @Json(name = "invited") INVITED("invited"),
-        @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
-    }
 
 }
 

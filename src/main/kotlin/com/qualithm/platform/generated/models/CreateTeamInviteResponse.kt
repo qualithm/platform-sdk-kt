@@ -23,7 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
-import com.qualithm.platform.generated.models.TeamInvite
+import com.qualithm.platform.generated.models.TeamInviteResults
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
 public data class CreateTeamInviteResponse (
 
     @Json(name = "data")
-    val `data`: TeamInvite
+    val `data`: TeamInviteResults
 
 ) {
 

@@ -60,8 +60,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * POST /v1/teams/{teamId}/members
-     * Accept the caller&#39;s invite to the team
-     * 
+     * Accept an invite to the team
+     * Only the account whose email the invite names can accept it.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamMemberRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
@@ -94,8 +94,8 @@ public open class MembersApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * POST /v1/teams/{teamId}/members
-     * Accept the caller&#39;s invite to the team
-     * 
+     * Accept an invite to the team
+     * Only the account whose email the invite names can accept it.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamMemberRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
