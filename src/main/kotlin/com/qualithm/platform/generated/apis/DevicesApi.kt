@@ -402,7 +402,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * GET /v1/teams/{teamId}/device-states
      * List the live state of a team&#39;s devices
-     * By &#x60;deviceId&#x60;, ascending.
+     * By &#x60;deviceId&#x60;, ascending. A deleted device has no row.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
@@ -437,7 +437,7 @@ public open class DevicesApi(basePath: kotlin.String = defaultBasePath, client: 
     /**
      * GET /v1/teams/{teamId}/device-states
      * List the live state of a team&#39;s devices
-     * By &#x60;deviceId&#x60;, ascending.
+     * By &#x60;deviceId&#x60;, ascending. A deleted device has no row.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
      * @param limit Items per page, 1 to 100. Default 20, or 50 with &#x60;cursor&#x60;. (optional)
