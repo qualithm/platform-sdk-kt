@@ -27,10 +27,14 @@ import java.io.IOException
 import okhttp3.Call
 import okhttp3.HttpUrl
 
+import com.qualithm.platform.generated.models.AcceptInviteRequest
+import com.qualithm.platform.generated.models.AcceptInviteResponse
 import com.qualithm.platform.generated.models.ApiError
 import com.qualithm.platform.generated.models.CreateTeamInviteRequest
 import com.qualithm.platform.generated.models.CreateTeamInviteResponse
 import com.qualithm.platform.generated.models.ListTeamInvitesResponse
+import com.qualithm.platform.generated.models.LookupInviteResponse
+import com.qualithm.platform.generated.models.ResendTeamInviteResponse
 
 import com.squareup.moshi.Json
 
@@ -57,9 +61,87 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
     }
 
     /**
+     * POST /v1/invites/accept
+     * Accept the invite an invite link names
+     * Only the account whose email the invite names can accept it; anyone else gets &#x60;403&#x60; with &#x60;invite_email_mismatch&#x60;.
+     * @param acceptInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return AcceptInviteResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    public fun acceptInvite(acceptInviteRequest: AcceptInviteRequest, idempotencyKey: kotlin.String? = null) : AcceptInviteResponse {
+        val localVarResponse = acceptInviteWithHttpInfo(acceptInviteRequest = acceptInviteRequest, idempotencyKey = idempotencyKey)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AcceptInviteResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * POST /v1/invites/accept
+     * Accept the invite an invite link names
+     * Only the account whose email the invite names can accept it; anyone else gets &#x60;403&#x60; with &#x60;invite_email_mismatch&#x60;.
+     * @param acceptInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return ApiResponse<AcceptInviteResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    public fun acceptInviteWithHttpInfo(acceptInviteRequest: AcceptInviteRequest, idempotencyKey: kotlin.String?) : ApiResponse<AcceptInviteResponse?> {
+        val localVariableConfig = acceptInviteRequestConfig(acceptInviteRequest = acceptInviteRequest, idempotencyKey = idempotencyKey)
+
+        return request<AcceptInviteRequest, AcceptInviteResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation acceptInvite
+     *
+     * @param acceptInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return RequestConfig
+     */
+    public fun acceptInviteRequestConfig(acceptInviteRequest: AcceptInviteRequest, idempotencyKey: kotlin.String?) : RequestConfig<AcceptInviteRequest> {
+        val localVariableBody = acceptInviteRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v1/invites/accept",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * POST /v1/teams/{teamId}/invites
-     * Invite an account to the team by email
-     * 
+     * Invite email addresses to the team
+     * Each address gets an invite whose link expires after 7 days; only the account with that email can accept it. The team may send a limited number of invite emails per hour.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamInviteRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
@@ -92,8 +174,8 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * POST /v1/teams/{teamId}/invites
-     * Invite an account to the team by email
-     * 
+     * Invite email addresses to the team
+     * Each address gets an invite whose link expires after 7 days; only the account with that email can accept it. The team may send a limited number of invite emails per hour.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
      * @param createTeamInviteRequest 
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
@@ -139,10 +221,10 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * DELETE /v1/teams/{teamId}/invites/{inviteId}
-     * Revoke a pending invite
-     * 
+     * Withdraw a pending invite
+     * Its link stops working at once.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
-     * @param inviteId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
+     * @param inviteId An invite ID: &#x60;ivt_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -171,10 +253,10 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * DELETE /v1/teams/{teamId}/invites/{inviteId}
-     * Revoke a pending invite
-     * 
+     * Withdraw a pending invite
+     * Its link stops working at once.
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
-     * @param inviteId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
+     * @param inviteId An invite ID: &#x60;ivt_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -192,7 +274,7 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
      * To obtain the request config of the operation deleteTeamInvite
      *
      * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
-     * @param inviteId A member ID: &#x60;mbr_…&#x60;; also accepts the legacy &#x60;mem_…&#x60;
+     * @param inviteId An invite ID: &#x60;ivt_…&#x60;
      * @return RequestConfig
      */
     public fun deleteTeamInviteRequestConfig(teamId: kotlin.String, inviteId: kotlin.String) : RequestConfig<Unit> {
@@ -297,6 +379,164 @@ public open class InvitesApi(basePath: kotlin.String = defaultBasePath, client: 
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v1/teams/{teamId}/invites".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * POST /v1/invites/lookup
+     * Read the invite an invite link names
+     * Says whether the caller can accept it: only the account whose email it names can. Answers &#x60;404&#x60; with &#x60;invite_expired&#x60; once the link has expired.
+     * @param acceptInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return LookupInviteResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    public fun lookupInvite(acceptInviteRequest: AcceptInviteRequest, idempotencyKey: kotlin.String? = null) : LookupInviteResponse {
+        val localVarResponse = lookupInviteWithHttpInfo(acceptInviteRequest = acceptInviteRequest, idempotencyKey = idempotencyKey)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as LookupInviteResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * POST /v1/invites/lookup
+     * Read the invite an invite link names
+     * Says whether the caller can accept it: only the account whose email it names can. Answers &#x60;404&#x60; with &#x60;invite_expired&#x60; once the link has expired.
+     * @param acceptInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return ApiResponse<LookupInviteResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    public fun lookupInviteWithHttpInfo(acceptInviteRequest: AcceptInviteRequest, idempotencyKey: kotlin.String?) : ApiResponse<LookupInviteResponse?> {
+        val localVariableConfig = lookupInviteRequestConfig(acceptInviteRequest = acceptInviteRequest, idempotencyKey = idempotencyKey)
+
+        return request<AcceptInviteRequest, LookupInviteResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation lookupInvite
+     *
+     * @param acceptInviteRequest 
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return RequestConfig
+     */
+    public fun lookupInviteRequestConfig(acceptInviteRequest: AcceptInviteRequest, idempotencyKey: kotlin.String?) : RequestConfig<AcceptInviteRequest> {
+        val localVariableBody = acceptInviteRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v1/invites/lookup",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/invites/{inviteId}/resend
+     * Mail a pending invite again
+     * Issues a new link, which expires 7 days from now; the old link stops working. An expired invite can be resent until it is cleared.
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param inviteId An invite ID: &#x60;ivt_…&#x60;
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return ResendTeamInviteResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    public fun resendTeamInvite(teamId: kotlin.String, inviteId: kotlin.String, idempotencyKey: kotlin.String? = null) : ResendTeamInviteResponse {
+        val localVarResponse = resendTeamInviteWithHttpInfo(teamId = teamId, inviteId = inviteId, idempotencyKey = idempotencyKey)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ResendTeamInviteResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/invites/{inviteId}/resend
+     * Mail a pending invite again
+     * Issues a new link, which expires 7 days from now; the old link stops working. An expired invite can be resent until it is cleared.
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param inviteId An invite ID: &#x60;ivt_…&#x60;
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return ApiResponse<ResendTeamInviteResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    public fun resendTeamInviteWithHttpInfo(teamId: kotlin.String, inviteId: kotlin.String, idempotencyKey: kotlin.String?) : ApiResponse<ResendTeamInviteResponse?> {
+        val localVariableConfig = resendTeamInviteRequestConfig(teamId = teamId, inviteId = inviteId, idempotencyKey = idempotencyKey)
+
+        return request<Unit, ResendTeamInviteResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation resendTeamInvite
+     *
+     * @param teamId A team ID: &#x60;tem_…&#x60;; also accepts the legacy &#x60;tm_…&#x60;
+     * @param inviteId An invite ID: &#x60;ivt_…&#x60;
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return RequestConfig
+     */
+    public fun resendTeamInviteRequestConfig(teamId: kotlin.String, inviteId: kotlin.String, idempotencyKey: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v1/teams/{teamId}/invites/{inviteId}/resend".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"inviteId"+"}", encodeURIComponent(inviteId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
