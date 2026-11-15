@@ -64,6 +64,8 @@ public object SerializerHelper {
                 .withUnknownFallback(com.qualithm.platform.generated.models.DeviceCommand.Status.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.Enrollment.Status::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.Enrollment.Status::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.Enrollment.Status.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
+            .add(com.qualithm.platform.generated.models.Enrollment.LastFailure::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.Enrollment.LastFailure::class.java)
+                .withUnknownFallback(com.qualithm.platform.generated.models.Enrollment.LastFailure.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.HealthStatus.Status::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.HealthStatus.Status::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.HealthStatus.Status.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.HealthSubsystem::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.HealthSubsystem::class.java)
