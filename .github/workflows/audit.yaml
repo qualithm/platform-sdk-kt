@@ -16,6 +16,14 @@ on:
       - "**/libs.versions.toml"
       - "**/gradle.lockfile"
       - ".github/workflows/audit.yaml"
+  # A dependency change runs the advisory scan alone before it merges; it files no issue.
+  pull_request:
+    branches: [development, main]
+    paths:
+      - "**/*.gradle.kts"
+      - "**/libs.versions.toml"
+      - "**/gradle.lockfile"
+      - ".github/workflows/audit.yaml"
   workflow_dispatch: {}
 
 # A newer push supersedes an older one; schedules queue apart from pushes.
@@ -54,6 +62,7 @@ jobs:
         run: |
           "$RUNNER_TEMP/osv-scanner" scan source --recursive .
       - name: Create app token for pm issue filing
+        if: github.event_name != 'pull_request'
         id: app-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
@@ -61,14 +70,14 @@ jobs:
           private-key: ${{ secrets.PROJECTS_GH_APP_PRIVATE_KEY }}
           owner: qualithm
       - name: Report failure
-        if: steps.scan.outcome == 'failure'
+        if: github.event_name != 'pull_request' && (steps.scan.outcome == 'failure')
         uses: ./.github/actions/report-scan-failure
         with:
           mode: report
           title: "${{ github.event.repository.name }}: osv-scanner found a vulnerability"
           github-token: ${{ steps.app-token.outputs.token }}
       - name: Resolve stale failure issue
-        if: steps.scan.outcome == 'success'
+        if: github.event_name != 'pull_request' && (steps.scan.outcome == 'success')
         uses: ./.github/actions/report-scan-failure
         with:
           mode: resolve
@@ -80,6 +89,7 @@ jobs:
 
   gitleaks:
     name: Secret Scan
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -121,6 +131,7 @@ jobs:
         with:
           mode: report
           title: "${{ github.event.repository.name }}: gitleaks found a leaked secret"
+          severity: critical
           github-token: ${{ steps.app-token.outputs.token }}
       - name: Resolve stale failure issue
         if: steps.scan.outcome == 'success'
