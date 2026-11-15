@@ -34,10 +34,10 @@ import com.squareup.moshi.JsonClass
  * @param id An invoice ID: `inv_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param status 
- * @param total The invoice total; null until Stripe sets it
- * @param stripeInvoiceId The Stripe invoice this one mirrors; null when Stripe didn't send one
- * @param hostedUrl Stripe's page to view and pay the invoice; null until Stripe finalizes it
- * @param pdfUrl The invoice as a PDF; null until Stripe finalizes it
+ * @param total The invoice total; null until the billing provider sets it
+ * @param stripeInvoiceId Always null; removed in the next major release
+ * @param hostedUrl Always null; removed in the next major release. Open an invoice with `createInvoiceDocument`
+ * @param pdfUrl Always null; removed in the next major release. Open an invoice with `createInvoiceDocument`
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -56,19 +56,19 @@ public data class Invoice (
     @Json(name = "status")
     val status: kotlin.String,
 
-    /* The invoice total; null until Stripe sets it */
+    /* The invoice total; null until the billing provider sets it */
     @Json(name = "total")
     val total: Money?,
 
-    /* The Stripe invoice this one mirrors; null when Stripe didn't send one */
+    /* Always null; removed in the next major release */
     @Json(name = "stripeInvoiceId")
     val stripeInvoiceId: kotlin.String?,
 
-    /* Stripe's page to view and pay the invoice; null until Stripe finalizes it */
+    /* Always null; removed in the next major release. Open an invoice with `createInvoiceDocument` */
     @Json(name = "hostedUrl")
     val hostedUrl: kotlin.String?,
 
-    /* The invoice as a PDF; null until Stripe finalizes it */
+    /* Always null; removed in the next major release. Open an invoice with `createInvoiceDocument` */
     @Json(name = "pdfUrl")
     val pdfUrl: kotlin.String?,
 

@@ -28,6 +28,7 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 
 import com.qualithm.platform.generated.models.ApiError
+import com.qualithm.platform.generated.models.CreateInvoiceDocumentResponse
 import com.qualithm.platform.generated.models.GetBillingSummaryResponse
 import com.qualithm.platform.generated.models.ListInvoicesResponse
 import com.qualithm.platform.generated.models.PreviewTierChangeRequest
@@ -55,6 +56,86 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
         public val defaultBasePath: String by lazy {
             System.getProperties().getProperty(ApiClient.BASE_URL_KEY, "http://localhost")
         }
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/invoices/{invoiceId}/document
+     * Get the link to an invoice&#39;s document, generating it on first request
+     * 
+     * @param teamId The team the request acts on
+     * @param invoiceId An invoice ID: &#x60;inv_…&#x60;
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return CreateInvoiceDocumentResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    public fun createInvoiceDocument(teamId: kotlin.String, invoiceId: kotlin.String, idempotencyKey: kotlin.String? = null) : CreateInvoiceDocumentResponse {
+        val localVarResponse = createInvoiceDocumentWithHttpInfo(teamId = teamId, invoiceId = invoiceId, idempotencyKey = idempotencyKey)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CreateInvoiceDocumentResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/invoices/{invoiceId}/document
+     * Get the link to an invoice&#39;s document, generating it on first request
+     * 
+     * @param teamId The team the request acts on
+     * @param invoiceId An invoice ID: &#x60;inv_…&#x60;
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return ApiResponse<CreateInvoiceDocumentResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    public fun createInvoiceDocumentWithHttpInfo(teamId: kotlin.String, invoiceId: kotlin.String, idempotencyKey: kotlin.String?) : ApiResponse<CreateInvoiceDocumentResponse?> {
+        val localVariableConfig = createInvoiceDocumentRequestConfig(teamId = teamId, invoiceId = invoiceId, idempotencyKey = idempotencyKey)
+
+        return request<Unit, CreateInvoiceDocumentResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation createInvoiceDocument
+     *
+     * @param teamId The team the request acts on
+     * @param invoiceId An invoice ID: &#x60;inv_…&#x60;
+     * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
+     * @return RequestConfig
+     */
+    public fun createInvoiceDocumentRequestConfig(teamId: kotlin.String, invoiceId: kotlin.String, idempotencyKey: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+        idempotencyKey?.apply { localVariableHeaders["Idempotency-Key"] = this.toString() }
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v1/teams/{teamId}/invoices/{invoiceId}/document".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"invoiceId"+"}", encodeURIComponent(invoiceId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
     }
 
     /**
