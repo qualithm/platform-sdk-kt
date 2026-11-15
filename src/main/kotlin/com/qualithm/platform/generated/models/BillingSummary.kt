@@ -27,6 +27,7 @@ import com.qualithm.platform.generated.models.BillingSummaryAddons
 import com.qualithm.platform.generated.models.BillingSummaryCancellation
 import com.qualithm.platform.generated.models.BillingSummaryLimitGrace
 import com.qualithm.platform.generated.models.BillingSummaryLimits
+import com.qualithm.platform.generated.models.BillingSummarySlaCredit
 import com.qualithm.platform.generated.models.BillingSummaryUpcomingInvoice
 import com.qualithm.platform.generated.models.BillingSummaryUsage
 import com.qualithm.platform.generated.models.Money
@@ -42,10 +43,11 @@ import com.squareup.moshi.JsonClass
  * @param limitGrace 
  * @param limits 
  * @param usage 
- * @param monthlyTotal What the next invoice will charge, after discounts and credit; the plan price with add-ons when `estimated` is true
+ * @param monthlyTotal What the next renewal will charge before tax, after the discount that still applies; zero for a plan set to end. A plan change mid-period adds its proration to that bill, which this leaves out. The plan price with add-ons when `estimated` is true
  * @param upcomingInvoice 
- * @param estimated True when Stripe couldn't be read, so `monthlyTotal` is the plan price
+ * @param estimated True when Polar couldn't be read, so `monthlyTotal` is the plan price
  * @param cancellation 
+ * @param slaCredit 
  * @param addons 
  */
 
@@ -68,19 +70,22 @@ public data class BillingSummary (
     @Json(name = "usage")
     val usage: BillingSummaryUsage,
 
-    /* What the next invoice will charge, after discounts and credit; the plan price with add-ons when `estimated` is true */
+    /* What the next renewal will charge before tax, after the discount that still applies; zero for a plan set to end. A plan change mid-period adds its proration to that bill, which this leaves out. The plan price with add-ons when `estimated` is true */
     @Json(name = "monthlyTotal")
     val monthlyTotal: Money,
 
     @Json(name = "upcomingInvoice")
     val upcomingInvoice: BillingSummaryUpcomingInvoice?,
 
-    /* True when Stripe couldn't be read, so `monthlyTotal` is the plan price */
+    /* True when Polar couldn't be read, so `monthlyTotal` is the plan price */
     @Json(name = "estimated")
     val estimated: kotlin.Boolean,
 
     @Json(name = "cancellation")
     val cancellation: BillingSummaryCancellation?,
+
+    @Json(name = "slaCredit")
+    val slaCredit: BillingSummarySlaCredit?,
 
     @Json(name = "addons")
     val addons: BillingSummaryAddons
