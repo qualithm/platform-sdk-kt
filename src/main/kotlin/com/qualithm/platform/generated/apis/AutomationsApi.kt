@@ -36,6 +36,10 @@ import com.qualithm.platform.generated.models.GetAutomationResponse
 import com.qualithm.platform.generated.models.ListAutomationRunsResponse
 import com.qualithm.platform.generated.models.ListAutomationsResponse
 import com.qualithm.platform.generated.models.ListDeviceAutomationTemplatesResponse
+import com.qualithm.platform.generated.models.TestAutomationRequest
+import com.qualithm.platform.generated.models.TestAutomationResponse
+import com.qualithm.platform.generated.models.TestDraftAutomationRequest
+import com.qualithm.platform.generated.models.TestDraftAutomationResponse
 import com.qualithm.platform.generated.models.TriggerAutomationResponse
 import com.qualithm.platform.generated.models.UpdateAutomationRequest
 import com.qualithm.platform.generated.models.UpdateAutomationResponse
@@ -717,6 +721,163 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v1/teams/{teamId}/devices/{deviceId}/automation-templates".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"deviceId"+"}", encodeURIComponent(deviceId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/automations/{automationId}/test
+     * Test an automation against a reading without running it
+     * Evaluates the saved trigger and chain against the device&#39;s latest reading, or a sample. Nothing is run, recorded or counted against quota.
+     * @param teamId The team the request acts on
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
+     * @param testAutomationRequest 
+     * @return TestAutomationResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    public fun testAutomation(teamId: kotlin.String, automationId: kotlin.String, testAutomationRequest: TestAutomationRequest) : TestAutomationResponse {
+        val localVarResponse = testAutomationWithHttpInfo(teamId = teamId, automationId = automationId, testAutomationRequest = testAutomationRequest)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as TestAutomationResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/automations/{automationId}/test
+     * Test an automation against a reading without running it
+     * Evaluates the saved trigger and chain against the device&#39;s latest reading, or a sample. Nothing is run, recorded or counted against quota.
+     * @param teamId The team the request acts on
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
+     * @param testAutomationRequest 
+     * @return ApiResponse<TestAutomationResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    public fun testAutomationWithHttpInfo(teamId: kotlin.String, automationId: kotlin.String, testAutomationRequest: TestAutomationRequest) : ApiResponse<TestAutomationResponse?> {
+        val localVariableConfig = testAutomationRequestConfig(teamId = teamId, automationId = automationId, testAutomationRequest = testAutomationRequest)
+
+        return request<TestAutomationRequest, TestAutomationResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation testAutomation
+     *
+     * @param teamId The team the request acts on
+     * @param automationId An automation ID: &#x60;aut_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;aut_…&#x60;
+     * @param testAutomationRequest 
+     * @return RequestConfig
+     */
+    public fun testAutomationRequestConfig(teamId: kotlin.String, automationId: kotlin.String, testAutomationRequest: TestAutomationRequest) : RequestConfig<TestAutomationRequest> {
+        val localVariableBody = testAutomationRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v1/teams/{teamId}/automations/{automationId}/test".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"automationId"+"}", encodeURIComponent(automationId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/automations/test
+     * Test an unsaved automation against a reading without running it
+     * Evaluates the trigger and chain against the device&#39;s latest reading, or a sample. Nothing is run, recorded or counted against quota.
+     * @param teamId The team the request acts on
+     * @param testDraftAutomationRequest 
+     * @return TestDraftAutomationResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    public fun testDraftAutomation(teamId: kotlin.String, testDraftAutomationRequest: TestDraftAutomationRequest) : TestDraftAutomationResponse {
+        val localVarResponse = testDraftAutomationWithHttpInfo(teamId = teamId, testDraftAutomationRequest = testDraftAutomationRequest)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as TestDraftAutomationResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * POST /v1/teams/{teamId}/automations/test
+     * Test an unsaved automation against a reading without running it
+     * Evaluates the trigger and chain against the device&#39;s latest reading, or a sample. Nothing is run, recorded or counted against quota.
+     * @param teamId The team the request acts on
+     * @param testDraftAutomationRequest 
+     * @return ApiResponse<TestDraftAutomationResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    public fun testDraftAutomationWithHttpInfo(teamId: kotlin.String, testDraftAutomationRequest: TestDraftAutomationRequest) : ApiResponse<TestDraftAutomationResponse?> {
+        val localVariableConfig = testDraftAutomationRequestConfig(teamId = teamId, testDraftAutomationRequest = testDraftAutomationRequest)
+
+        return request<TestDraftAutomationRequest, TestDraftAutomationResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation testDraftAutomation
+     *
+     * @param teamId The team the request acts on
+     * @param testDraftAutomationRequest 
+     * @return RequestConfig
+     */
+    public fun testDraftAutomationRequestConfig(teamId: kotlin.String, testDraftAutomationRequest: TestDraftAutomationRequest) : RequestConfig<TestDraftAutomationRequest> {
+        val localVariableBody = testDraftAutomationRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v1/teams/{teamId}/automations/test".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
