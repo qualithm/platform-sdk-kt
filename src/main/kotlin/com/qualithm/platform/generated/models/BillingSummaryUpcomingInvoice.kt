@@ -30,12 +30,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The next invoice from Stripe; null on the free plan or when estimated
+ * The next renewal from Polar, before tax and without add-ons, which Polar doesn't bill; null on the free plan, for a plan set to end, or when estimated
  *
  * @param lines 
  * @param subtotal The sum of the lines, before discounts
- * @param discount What coupons and promotion codes take off
- * @param credit What the team's credit balance covers
+ * @param discount What the subscription's discount takes off
+ * @param credit Credit applied to the renewal; zero, since SLA credits arrive as a discount
  * @param periodEnd ISO 8601 time the period the invoice bills ends
  */
 
@@ -49,11 +49,11 @@ public data class BillingSummaryUpcomingInvoice (
     @Json(name = "subtotal")
     val subtotal: Money,
 
-    /* What coupons and promotion codes take off */
+    /* What the subscription's discount takes off */
     @Json(name = "discount")
     val discount: Money,
 
-    /* What the team's credit balance covers */
+    /* Credit applied to the renewal; zero, since SLA credits arrive as a discount */
     @Json(name = "credit")
     val credit: Money,
 
