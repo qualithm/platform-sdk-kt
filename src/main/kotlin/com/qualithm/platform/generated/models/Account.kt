@@ -33,6 +33,9 @@ import com.squareup.moshi.JsonClass
  * @param id An account ID: `acc_…`
  * @param email 
  * @param name 
+ * @param termsVersion The current Terms of Service version. Ask the person to accept when it differs from `termsAcceptedVersion`.
+ * @param termsAcceptedVersion The terms version the person last accepted, or null
+ * @param termsAcceptedAt UTC time, RFC 3339
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -49,6 +52,18 @@ public data class Account (
 
     @Json(name = "name")
     val name: kotlin.String,
+
+    /* The current Terms of Service version. Ask the person to accept when it differs from `termsAcceptedVersion`. */
+    @Json(name = "termsVersion")
+    val termsVersion: kotlin.String,
+
+    /* The terms version the person last accepted, or null */
+    @Json(name = "termsAcceptedVersion")
+    val termsAcceptedVersion: kotlin.String?,
+
+    /* UTC time, RFC 3339 */
+    @Json(name = "termsAcceptedAt")
+    val termsAcceptedAt: java.time.OffsetDateTime?,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
