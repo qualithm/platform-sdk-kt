@@ -23,6 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
+import com.qualithm.platform.generated.models.EnrollmentLastFailureScope
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -38,6 +39,9 @@ import com.squareup.moshi.JsonClass
  * @param claimedDeviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
  * @param claimedAt UTC time, RFC 3339
  * @param expiresAt UTC time, RFC 3339
+ * @param lastFailure Why the latest rejected claim of this code failed, when the team can act on it: `device_already_claimed` means a device presented the code after it was claimed. The claim response stays the generic `401`.
+ * @param lastFailureScope 
+ * @param lastFailureAt UTC time, RFC 3339
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -75,6 +79,17 @@ public data class Enrollment (
     @Json(name = "expiresAt")
     val expiresAt: java.time.OffsetDateTime,
 
+    /* Why the latest rejected claim of this code failed, when the team can act on it: `device_already_claimed` means a device presented the code after it was claimed. The claim response stays the generic `401`. */
+    @Json(name = "lastFailure")
+    val lastFailure: Enrollment.LastFailure?,
+
+    @Json(name = "lastFailureScope")
+    val lastFailureScope: EnrollmentLastFailureScope?,
+
+    /* UTC time, RFC 3339 */
+    @Json(name = "lastFailureAt")
+    val lastFailureAt: java.time.OffsetDateTime?,
+
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")
     val createdAt: java.time.OffsetDateTime,
@@ -95,6 +110,16 @@ public data class Enrollment (
         @Json(name = "pending") PENDING("pending"),
         @Json(name = "claimed") CLAIMED("claimed"),
         @Json(name = "revoked") REVOKED("revoked"),
+        @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+    }
+    /**
+     * Why the latest rejected claim of this code failed, when the team can act on it: `device_already_claimed` means a device presented the code after it was claimed. The claim response stays the generic `401`.
+     *
+     * Values: DEVICE_ALREADY_CLAIMED,UNKNOWN_DEFAULT_OPEN_API
+     */
+    @JsonClass(generateAdapter = false)
+    public enum class LastFailure(public val value: kotlin.String) {
+        @Json(name = "device_already_claimed") DEVICE_ALREADY_CLAIMED("device_already_claimed"),
         @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
     }
 
