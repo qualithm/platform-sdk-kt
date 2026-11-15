@@ -36,6 +36,7 @@ import com.squareup.moshi.JsonClass
  * @param payload 
  * @param template A template id to expand the chain from; exclusive with `payload`
  * @param params The template's slot values, keyed by slot name; used with `template`
+ * @param enabled Whether its trigger fires; absent creates it turned on
  */
 
 
@@ -57,7 +58,11 @@ public data class CreateAutomationRequest (
 
     /* The template's slot values, keyed by slot name; used with `template` */
     @Json(name = "params")
-    val params: kotlin.Any? = null
+    val params: kotlin.Any? = null,
+
+    /* Whether its trigger fires; absent creates it turned on */
+    @Json(name = "enabled")
+    val enabled: kotlin.Boolean? = null
 
 ) {
 

@@ -34,6 +34,7 @@ import com.qualithm.platform.generated.models.CreateAutomationRunResponse
 import com.qualithm.platform.generated.models.CreateAutomationTriggerSecretResponse
 import com.qualithm.platform.generated.models.GetAutomationResponse
 import com.qualithm.platform.generated.models.ListAutomationRunsResponse
+import com.qualithm.platform.generated.models.ListAutomationTemplatesResponse
 import com.qualithm.platform.generated.models.ListAutomationsResponse
 import com.qualithm.platform.generated.models.ListDeviceAutomationTemplatesResponse
 import com.qualithm.platform.generated.models.TestAutomationRequest
@@ -552,6 +553,79 @@ public open class AutomationsApi(basePath: kotlin.String = defaultBasePath, clie
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v1/teams/{teamId}/automations/{automationId}/runs".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())).replace("{"+"automationId"+"}", encodeURIComponent(automationId.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /v1/teams/{teamId}/automation-templates
+     * List every automation template and whether the team&#39;s devices can use it
+     * 
+     * @param teamId The team the request acts on
+     * @return ListAutomationTemplatesResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    public fun listAutomationTemplates(teamId: kotlin.String) : ListAutomationTemplatesResponse {
+        val localVarResponse = listAutomationTemplatesWithHttpInfo(teamId = teamId)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ListAutomationTemplatesResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /v1/teams/{teamId}/automation-templates
+     * List every automation template and whether the team&#39;s devices can use it
+     * 
+     * @param teamId The team the request acts on
+     * @return ApiResponse<ListAutomationTemplatesResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    public fun listAutomationTemplatesWithHttpInfo(teamId: kotlin.String) : ApiResponse<ListAutomationTemplatesResponse?> {
+        val localVariableConfig = listAutomationTemplatesRequestConfig(teamId = teamId)
+
+        return request<Unit, ListAutomationTemplatesResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation listAutomationTemplates
+     *
+     * @param teamId The team the request acts on
+     * @return RequestConfig
+     */
+    public fun listAutomationTemplatesRequestConfig(teamId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/v1/teams/{teamId}/automation-templates".replace("{"+"teamId"+"}", encodeURIComponent(teamId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
