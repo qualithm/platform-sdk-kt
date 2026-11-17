@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Set while a post-downgrade over-limit grace period runs
+ * Set while a downgrade's grace period keeps the previous plan's longer retention window. After `endsAt`, data older than the current plan's window is deleted
  *
  * @param endsAt ISO 8601 time
  */

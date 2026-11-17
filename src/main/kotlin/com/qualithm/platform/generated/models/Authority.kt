@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A certificate authority device certificates chain to: platform-managed or brought by the team.
  *
  * @param id A device authority ID: `dca_…`; also accepts the legacy `auth_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`

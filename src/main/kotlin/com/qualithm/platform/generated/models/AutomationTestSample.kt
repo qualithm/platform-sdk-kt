@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A reading to test against in place of the device's latest.
  *
  * @param metrics The metrics the sample reports
  * @param topic The topic the sample stands for; the trigger's own when absent

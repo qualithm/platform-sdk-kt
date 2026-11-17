@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A backend the platform needs to serve.
  *
  * Values: DATASTORE,TELEMETRY_STORE,EVENT_BUS,UNKNOWN_DEFAULT_OPEN_API
  */

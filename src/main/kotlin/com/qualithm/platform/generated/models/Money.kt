@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * An amount of money in a currency's minor units.
  *
  * @param amount The amount in minor units, e.g. cents
  * @param currency An ISO 4217 currency code

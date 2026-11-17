@@ -31,20 +31,12 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param devices 
- * @param registered 
  * @param events 
  * @param automations 
  */
 
 
 public data class BillingSummaryUsage (
-
-    @Json(name = "devices")
-    val devices: BillingUsageDimension,
-
-    @Json(name = "registered")
-    val registered: BillingUsageDimension,
 
     @Json(name = "events")
     val events: BillingUsageDimension,

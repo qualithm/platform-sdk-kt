@@ -35,9 +35,6 @@ import com.squareup.moshi.JsonClass
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param status 
  * @param total The invoice total; null until the billing provider sets it
- * @param stripeInvoiceId Always null; removed in the next major release
- * @param hostedUrl Always null; removed in the next major release. Open an invoice with `createInvoiceDocument`
- * @param pdfUrl Always null; removed in the next major release. Open an invoice with `createInvoiceDocument`
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  */
@@ -59,18 +56,6 @@ public data class Invoice (
     /* The invoice total; null until the billing provider sets it */
     @Json(name = "total")
     val total: Money?,
-
-    /* Always null; removed in the next major release */
-    @Json(name = "stripeInvoiceId")
-    val stripeInvoiceId: kotlin.String?,
-
-    /* Always null; removed in the next major release. Open an invoice with `createInvoiceDocument` */
-    @Json(name = "hostedUrl")
-    val hostedUrl: kotlin.String?,
-
-    /* Always null; removed in the next major release. Open an invoice with `createInvoiceDocument` */
-    @Json(name = "pdfUrl")
-    val pdfUrl: kotlin.String?,
 
     /* UTC time, RFC 3339 */
     @Json(name = "createdAt")

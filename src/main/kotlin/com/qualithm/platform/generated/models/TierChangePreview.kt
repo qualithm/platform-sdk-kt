@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * What a tier change would cost, before it is confirmed.
  *
  * @param from 
  * @param to 

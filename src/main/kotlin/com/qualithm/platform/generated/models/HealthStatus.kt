@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The composite health verdict. Sent with 200 when `ok` and 503 when `down`.
  *
  * @param status 
  * @param subsystem The first subsystem that failed its probe; set only when `down`
