@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A member's role in a team.
  *
  * Values: OWNER,MANAGER,VIEWER,UNKNOWN_DEFAULT_OPEN_API
  */

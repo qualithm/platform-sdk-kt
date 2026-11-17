@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The link to an invoice's document.
  *
  * @param status `generating` while the invoice is built; ask again in a few seconds
  * @param url The invoice to view or download; null while generating

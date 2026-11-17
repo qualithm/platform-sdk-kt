@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A device's credential. The secret or key material is never returned after it is issued.
  *
  * @param id A credential ID: `crd_<zone>_…`; also accepts the legacy `cred_…`
  * @param deviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`

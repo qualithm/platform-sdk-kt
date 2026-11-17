@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One comparison the test made against the reading.
  *
  * @param index The chain step compared; null for the trigger
  * @param metric 

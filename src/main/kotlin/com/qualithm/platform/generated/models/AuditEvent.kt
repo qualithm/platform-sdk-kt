@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One immutable audit-trail record.
  *
  * @param id An audit event ID: `aud_…`; also accepts the legacy `evt_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`

@@ -28,12 +28,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One metered dimension's usage this month against its limit.
  *
  * @param used 
  * @param limit 
- * @param throttled True while this dimension is throttled: devices' new events are refused, or automation runs are recorded as `limited`, until the month resets. Read from the live count the platform enforces, so it can turn true before the hourly `used` reaches `limit`. Always false for devices
- * @param buffer Never set: usage past `limit` throttles with no buffer. Removed in the next major release
+ * @param throttled True while this dimension is throttled: devices' new events are refused, or automation runs are recorded as `limited`, until the month resets. Read from the live count the platform enforces, so it can turn true before the hourly `used` reaches `limit`
  */
 
 
@@ -45,14 +44,9 @@ public data class BillingUsageDimension (
     @Json(name = "limit")
     val limit: kotlin.Long,
 
-    /* True while this dimension is throttled: devices' new events are refused, or automation runs are recorded as `limited`, until the month resets. Read from the live count the platform enforces, so it can turn true before the hourly `used` reaches `limit`. Always false for devices */
+    /* True while this dimension is throttled: devices' new events are refused, or automation runs are recorded as `limited`, until the month resets. Read from the live count the platform enforces, so it can turn true before the hourly `used` reaches `limit` */
     @Json(name = "throttled")
-    val throttled: kotlin.Boolean,
-
-    /* Never set: usage past `limit` throttles with no buffer. Removed in the next major release */
-    @Json(name = "buffer")
-    @Deprecated(message = "This property is deprecated.")
-    val buffer: kotlin.Long? = null
+    val throttled: kotlin.Boolean
 
 ) {
 

@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A chain step that halts the run when its condition does not hold.
  *
  * @param kind 
  * @param config The trigger or step's own settings, shaped by its type

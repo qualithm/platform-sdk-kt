@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A group of devices in one zone. Scopes nest; each device belongs to exactly one.
  *
  * @param id A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`

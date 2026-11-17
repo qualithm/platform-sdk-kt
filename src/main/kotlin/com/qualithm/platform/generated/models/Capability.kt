@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Something a device declares it can do or report.
  *
  * @param id A capability ID: `cap_<zone>_…`; also accepts the legacy `cap_…`
  * @param deviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`

@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One team the caller is an active member of, and their role in it.
  *
  * @param id A member ID: `mbr_…`; also accepts the legacy `mem_…`
  * @param accountId An account ID: `acc_…`

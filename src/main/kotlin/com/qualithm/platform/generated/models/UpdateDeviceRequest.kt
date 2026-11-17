@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param name 
  * @param scopeId A scope in the device's zone; a device stays in the zone it was claimed in
- * @param parked A parked device can't connect and doesn't count against the plan; its credentials and history stay
+ * @param parked A parked device can't connect or write; its credentials and history stay, so unparking it brings it back
  * @param tags Replaces the device's tags; `[]` clears them. Stored lowercased
  */
 
@@ -46,7 +46,7 @@ public data class UpdateDeviceRequest (
     @Json(name = "scopeId")
     val scopeId: kotlin.String? = null,
 
-    /* A parked device can't connect and doesn't count against the plan; its credentials and history stay */
+    /* A parked device can't connect or write; its credentials and history stay, so unparking it brings it back */
     @Json(name = "parked")
     val parked: kotlin.Boolean? = null,
 

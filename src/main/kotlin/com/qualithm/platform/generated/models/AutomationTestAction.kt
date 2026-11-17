@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * An action the automation would take; the test takes none. A signing secret is never shown.
  *
  * @param index 
  * @param type 
