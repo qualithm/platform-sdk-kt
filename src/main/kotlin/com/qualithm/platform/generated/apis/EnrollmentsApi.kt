@@ -58,7 +58,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * POST /v1/teams/{teamId}/enrollments
-     * Create a claim code for a device to enroll into a scope
+     * Create a claim code that lets a device add itself to a scope
      * 
      * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
@@ -92,7 +92,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * POST /v1/teams/{teamId}/enrollments
-     * Create a claim code for a device to enroll into a scope
+     * Create a claim code that lets a device add itself to a scope
      * 
      * @param teamId The team the request acts on
      * @param createEnrollmentRequest 
@@ -139,10 +139,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * DELETE /v1/teams/{teamId}/enrollments/{enrollmentId}
-     * Revoke a pending enrollment
+     * Revoke a pending claim code
      * 
      * @param teamId The team the request acts on
-     * @param enrollmentId An enrollment ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
+     * @param enrollmentId A claim code ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -171,10 +171,10 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * DELETE /v1/teams/{teamId}/enrollments/{enrollmentId}
-     * Revoke a pending enrollment
+     * Revoke a pending claim code
      * 
      * @param teamId The team the request acts on
-     * @param enrollmentId An enrollment ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
+     * @param enrollmentId A claim code ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -192,7 +192,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
      * To obtain the request config of the operation deleteEnrollment
      *
      * @param teamId The team the request acts on
-     * @param enrollmentId An enrollment ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
+     * @param enrollmentId A claim code ID: &#x60;enr_&lt;zone&gt;_…&#x60;; also accepts the legacy &#x60;enr_…&#x60;
      * @return RequestConfig
      */
     public fun deleteEnrollmentRequestConfig(teamId: kotlin.String, enrollmentId: kotlin.String) : RequestConfig<Unit> {
@@ -213,7 +213,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * GET /v1/teams/{teamId}/enrollments
-     * List the workspace&#39;s enrollments
+     * List the team&#39;s claim codes
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
@@ -248,7 +248,7 @@ public open class EnrollmentsApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * GET /v1/teams/{teamId}/enrollments
-     * List the workspace&#39;s enrollments
+     * List the team&#39;s claim codes
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)

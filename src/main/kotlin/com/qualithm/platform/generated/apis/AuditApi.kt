@@ -56,7 +56,7 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * GET /v1/teams/{teamId}/audit-events
-     * List the workspace&#39;s audit trail, newest first
+     * List the team&#39;s activity, newest first
      * Newest first, by &#x60;occurredAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
@@ -91,7 +91,7 @@ public open class AuditApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * GET /v1/teams/{teamId}/audit-events
-     * List the workspace&#39;s audit trail, newest first
+     * List the team&#39;s activity, newest first
      * Newest first, by &#x60;occurredAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
