@@ -56,7 +56,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * GET /v1/teams/{teamId}/usage
-     * Get the workspace&#39;s device and space counts and its plan quota
+     * Get the team&#39;s device and scope counts and its plan quota
      * 
      * @param teamId The team the request acts on
      * @return GetUsageResponse
@@ -88,7 +88,7 @@ public open class UsageApi(basePath: kotlin.String = defaultBasePath, client: Ca
 
     /**
      * GET /v1/teams/{teamId}/usage
-     * Get the workspace&#39;s device and space counts and its plan quota
+     * Get the team&#39;s device and scope counts and its plan quota
      * 
      * @param teamId The team the request acts on
      * @return ApiResponse<GetUsageResponse?>
