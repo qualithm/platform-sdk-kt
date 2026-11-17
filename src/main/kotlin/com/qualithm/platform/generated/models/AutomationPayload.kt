@@ -31,7 +31,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * An automation's trigger and chain.
  *
  * @param trigger 
  * @param chain Ordered condition and action steps; at least one action

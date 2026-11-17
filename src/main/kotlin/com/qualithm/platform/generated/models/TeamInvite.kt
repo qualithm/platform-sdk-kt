@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A pending invite to a team, addressed to an email
  *
  * @param id An invite ID: `ivt_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`

@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * What starts the automation's chain.
  *
  * @param type 
  * @param config The trigger or step's own settings, shaped by its type

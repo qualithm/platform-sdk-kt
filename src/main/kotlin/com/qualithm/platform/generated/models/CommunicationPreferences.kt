@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Which marketing emails the account receives. A preference never set reads as `true`.
  *
  * @param blogArticles 
  * @param educationResources 

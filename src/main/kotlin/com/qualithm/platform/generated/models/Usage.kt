@@ -32,10 +32,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The team's device and scope counts, and its plan limits and usage this month.
  *
  * @param deviceTotal 
- * @param deviceMax The tier's device limit
  * @param scopeTotal 
  * @param tier 
  * @param month The month usage counts over: `YYYY-MM`, UTC
@@ -50,10 +49,6 @@ public data class Usage (
 
     @Json(name = "deviceTotal")
     val deviceTotal: kotlin.Long,
-
-    /* The tier's device limit */
-    @Json(name = "deviceMax")
-    val deviceMax: kotlin.Long,
 
     @Json(name = "scopeTotal")
     val scopeTotal: kotlin.Long,

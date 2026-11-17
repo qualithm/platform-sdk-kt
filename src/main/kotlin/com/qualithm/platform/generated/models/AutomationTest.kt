@@ -36,7 +36,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * What an automation would do with a reading. Nothing is run, recorded or counted.
  *
  * @param matched Whether the automation would fire now: its trigger matches and no condition halts
  * @param device 

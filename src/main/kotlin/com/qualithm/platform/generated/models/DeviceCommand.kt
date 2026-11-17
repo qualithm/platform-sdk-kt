@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One command delivery to a device.
  *
  * @param id A command ID: `cmd_<zone>_…`; also accepts the legacy `cmd_…`
  * @param deviceId A device ID: `dvc_<zone>_…`; also accepts the legacy `dev_…`
