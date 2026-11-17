@@ -28,9 +28,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Set while a downgrade's grace period keeps the previous plan's longer retention window. After `endsAt`, data older than the current plan's window is deleted
+ * Set while a downgrade's grace period keeps more history than the current plan does. After `endsAt`, history the current plan doesn't keep is deleted
  *
  * @param endsAt ISO 8601 time
+ * @param retentionDays The days of history the grace keeps until `endsAt`
  */
 
 
@@ -38,7 +39,11 @@ public data class BillingSummaryLimitGrace (
 
     /* ISO 8601 time */
     @Json(name = "endsAt")
-    val endsAt: kotlin.String
+    val endsAt: kotlin.String,
+
+    /* The days of history the grace keeps until `endsAt` */
+    @Json(name = "retentionDays")
+    val retentionDays: kotlin.Long
 
 ) {
 
