@@ -31,7 +31,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param id An enrollment ID: `enr_<zone>_…`; also accepts the legacy `enr_…`
+ * @param id A claim code ID: `enr_<zone>_…`; also accepts the legacy `enr_…`
  * @param teamId A team ID: `tem_…`; also accepts the legacy `tm_…`
  * @param scopeId A scope ID: `scp_<zone>_…`; also accepts the legacy `spc_…`
  * @param label 
@@ -49,7 +49,7 @@ import com.squareup.moshi.JsonClass
 
 public data class Enrollment (
 
-    /* An enrollment ID: `enr_<zone>_…`; also accepts the legacy `enr_…` */
+    /* A claim code ID: `enr_<zone>_…`; also accepts the legacy `enr_…` */
     @Json(name = "id")
     val id: kotlin.String,
 

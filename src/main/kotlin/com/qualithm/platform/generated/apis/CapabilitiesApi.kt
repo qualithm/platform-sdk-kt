@@ -80,7 +80,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
 
     /**
      * GET /v1/teams/{teamId}/capabilities
-     * List the capabilities of the workspace&#39;s devices
+     * List the capabilities of the team&#39;s devices
      * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
      * @param scopeId Only the devices in this scope and every scope under it (optional)
@@ -119,7 +119,7 @@ public open class CapabilitiesApi(basePath: kotlin.String = defaultBasePath, cli
 
     /**
      * GET /v1/teams/{teamId}/capabilities
-     * List the capabilities of the workspace&#39;s devices
+     * List the capabilities of the team&#39;s devices
      * By &#x60;key&#x60;, then &#x60;id&#x60;, ascending.
      * @param teamId The team the request acts on
      * @param scopeId Only the devices in this scope and every scope under it (optional)

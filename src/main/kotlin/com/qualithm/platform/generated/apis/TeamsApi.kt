@@ -60,7 +60,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * POST /v1/teams
      * Create a team with the caller as owner
-     * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller&#39;s workspace switches to the new team.
+     * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller switches to the new team.
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return CreateTeamResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -92,7 +92,7 @@ public open class TeamsApi(basePath: kotlin.String = defaultBasePath, client: Ca
     /**
      * POST /v1/teams
      * Create a team with the caller as owner
-     * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller&#39;s workspace switches to the new team.
+     * The platform names the team; rename it with &#x60;updateTeam&#x60;. The caller switches to the new team.
      * @param idempotencyKey A unique key for this request. A retry with the same key and body returns the first response instead of acting again; keys last 24 hours. (optional)
      * @return ApiResponse<CreateTeamResponse?>
      * @throws IllegalStateException If the request is not correctly configured
