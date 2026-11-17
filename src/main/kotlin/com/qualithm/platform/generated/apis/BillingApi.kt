@@ -140,7 +140,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /v1/teams/{teamId}/billing/summary
-     * Get the workspace&#39;s plan, usage, next bill and add-ons
+     * Get the team&#39;s plan, usage, next bill and add-ons
      * 
      * @param teamId The team the request acts on
      * @return GetBillingSummaryResponse
@@ -172,7 +172,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /v1/teams/{teamId}/billing/summary
-     * Get the workspace&#39;s plan, usage, next bill and add-ons
+     * Get the team&#39;s plan, usage, next bill and add-ons
      * 
      * @param teamId The team the request acts on
      * @return ApiResponse<GetBillingSummaryResponse?>
@@ -213,7 +213,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /v1/teams/{teamId}/invoices
-     * List the workspace&#39;s invoices
+     * List the team&#39;s invoices
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
@@ -248,7 +248,7 @@ public open class BillingApi(basePath: kotlin.String = defaultBasePath, client: 
 
     /**
      * GET /v1/teams/{teamId}/invoices
-     * List the workspace&#39;s invoices
+     * List the team&#39;s invoices
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)

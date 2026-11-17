@@ -296,7 +296,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
 
     /**
      * GET /v1/teams/{teamId}/dashboards
-     * List the workspace&#39;s dashboards
+     * List the team&#39;s dashboards
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
@@ -331,7 +331,7 @@ public open class DashboardsApi(basePath: kotlin.String = defaultBasePath, clien
 
     /**
      * GET /v1/teams/{teamId}/dashboards
-     * List the workspace&#39;s dashboards
+     * List the team&#39;s dashboards
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)

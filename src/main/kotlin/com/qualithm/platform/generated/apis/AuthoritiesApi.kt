@@ -213,7 +213,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * GET /v1/teams/{teamId}/authorities
-     * List the workspace&#39;s certificate authorities
+     * List the team&#39;s certificate authorities
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
@@ -248,7 +248,7 @@ public open class AuthoritiesApi(basePath: kotlin.String = defaultBasePath, clie
 
     /**
      * GET /v1/teams/{teamId}/authorities
-     * List the workspace&#39;s certificate authorities
+     * List the team&#39;s certificate authorities
      * Newest first, by &#x60;createdAt&#x60; then &#x60;id&#x60;.
      * @param teamId The team the request acts on
      * @param page Page number, from 1. Default 1. Ignored with &#x60;cursor&#x60;. (optional)
