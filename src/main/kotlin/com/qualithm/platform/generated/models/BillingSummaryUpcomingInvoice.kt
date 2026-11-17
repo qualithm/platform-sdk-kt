@@ -30,7 +30,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The next renewal from Polar, before tax and without add-ons, which Polar doesn't bill; null on the free plan, for a plan set to end, or when estimated
+ * The next renewal from Polar, before tax; null on the free plan, for a plan set to end, or when estimated
  *
  * @param lines 
  * @param subtotal The sum of the lines, before discounts

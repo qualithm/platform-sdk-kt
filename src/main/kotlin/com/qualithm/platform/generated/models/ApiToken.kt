@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * An API token's metadata. The secret is never listed.
  *
  * @param id An API token ID: `tok_…`
  * @param accountId An account ID: `acc_…`

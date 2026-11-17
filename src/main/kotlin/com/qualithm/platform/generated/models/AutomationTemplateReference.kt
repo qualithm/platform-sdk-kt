@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The template and slot values a template-built automation was expanded from.
  *
  * @param id 
  * @param version 

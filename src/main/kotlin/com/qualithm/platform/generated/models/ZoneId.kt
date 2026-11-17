@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A device zone: where a scope's devices connect and their data lives.
  *
  * Values: DE_FRA_A,SG_SIN_A,US_NYC_A,UNKNOWN_DEFAULT_OPEN_API
  */

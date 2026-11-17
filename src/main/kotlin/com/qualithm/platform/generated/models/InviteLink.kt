@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The invite a link names, and whether the caller may accept it
  *
  * @param invite 
  * @param forCaller Whether the signed-in account's email is the invited address, so it can accept

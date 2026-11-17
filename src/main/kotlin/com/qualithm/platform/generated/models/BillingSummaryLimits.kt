@@ -30,25 +30,18 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param devices 
- * @param registeredDevices The ceiling on active plus parked devices
- * @param events 
- * @param automations 
+ * @param events Events a month before new events throttle
+ * @param automations Automation runs a month before runs are limited
  */
 
 
 public data class BillingSummaryLimits (
 
-    @Json(name = "devices")
-    val devices: kotlin.Long,
-
-    /* The ceiling on active plus parked devices */
-    @Json(name = "registeredDevices")
-    val registeredDevices: kotlin.Long,
-
+    /* Events a month before new events throttle */
     @Json(name = "events")
     val events: kotlin.Long,
 
+    /* Automation runs a month before runs are limited */
     @Json(name = "automations")
     val automations: kotlin.Long
 

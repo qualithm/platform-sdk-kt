@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A membership row, without the account and team context
  *
  * @param id A member ID: `mbr_…`; also accepts the legacy `mem_…`
  * @param accountId An account ID: `acc_…`

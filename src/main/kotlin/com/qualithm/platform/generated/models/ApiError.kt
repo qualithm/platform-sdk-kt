@@ -29,10 +29,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The body of every error response.
  *
  * @param message 
- * @param code 
+ * @param code A stable machine code. Branch on it, never on `message`; decode an unknown value to a fallback.
  * @param requestId The `Request-Id` this response carried; quote it
  * @param details Each field that failed validation. Validation errors only.
  */
@@ -43,6 +43,7 @@ public data class ApiError (
     @Json(name = "message")
     val message: kotlin.String,
 
+    /* A stable machine code. Branch on it, never on `message`; decode an unknown value to a fallback. */
     @Json(name = "code")
     val code: kotlin.String,
 

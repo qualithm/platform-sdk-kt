@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The environment's public endpoints.
  *
  * @param api The global API host
  * @param zones Every zone, open zones first

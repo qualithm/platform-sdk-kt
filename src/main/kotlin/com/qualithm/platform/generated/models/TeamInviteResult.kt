@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * What inviting one address did
  *
  * @param email 
  * @param result `sent`: a new invite was mailed. `already_member`: the address's account is in the team. `already_invited`: a pending invite exists; resend it instead

@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Where a device connects: a zone's MQTT gateway.
  *
  * @param host 
  * @param port 

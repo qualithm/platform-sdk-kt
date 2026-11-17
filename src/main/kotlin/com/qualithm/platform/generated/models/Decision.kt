@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One choice Qualithm made on the builder's behalf.
  *
  * @param key Stable identifier for the decision, e.g. `zone`
  * @param label The decision's name, for people, e.g. `Zone`
