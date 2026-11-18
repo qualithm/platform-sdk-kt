@@ -36,6 +36,7 @@ import com.squareup.moshi.JsonClass
  * @param certificatePem The signed device certificate, shown only once
  * @param caCertificatePem The issuing CA's certificate
  * @param broker 
+ * @param apiUrl The base URL of the device's zone API, where the device sends its renewals and certificate requests
  */
 
 
@@ -53,7 +54,11 @@ public data class IssuedCertificate (
     val caCertificatePem: kotlin.String,
 
     @Json(name = "broker")
-    val broker: GatewayEndpoint
+    val broker: GatewayEndpoint,
+
+    /* The base URL of the device's zone API, where the device sends its renewals and certificate requests */
+    @Json(name = "apiUrl")
+    val apiUrl: kotlin.String
 
 ) {
 
