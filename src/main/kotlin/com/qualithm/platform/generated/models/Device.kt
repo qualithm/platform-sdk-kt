@@ -40,6 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param createdAt UTC time, RFC 3339
  * @param updatedAt UTC time, RFC 3339
  * @param parkedAt UTC time, RFC 3339
+ * @param parkedReason Why the device is parked: `member` for a park that holds until a member unparks the device, `idle` when it had no activity for 30 days. A development credential lives at most 30 days, so an idle-parked device usually needs a new credential before it can connect. Null while the device isn't parked
  * @param capabilitiesDeclared Whether the device's latest session declared its capabilities before sending data; null until a session has done either
  * @param virtual Whether the device declared itself virtual at claim: it runs on a host rather than a board, and its readings count toward the team's monthly events like any device's
  * @param tags Operator-set tags, lowercased and sorted. A capability reference with this tag matches every capability on the device
@@ -81,6 +82,10 @@ public data class Device (
     @Json(name = "parkedAt")
     val parkedAt: java.time.OffsetDateTime? = null,
 
+    /* Why the device is parked: `member` for a park that holds until a member unparks the device, `idle` when it had no activity for 30 days. A development credential lives at most 30 days, so an idle-parked device usually needs a new credential before it can connect. Null while the device isn't parked */
+    @Json(name = "parkedReason")
+    val parkedReason: Device.ParkedReason? = null,
+
     /* Whether the device's latest session declared its capabilities before sending data; null until a session has done either */
     @Json(name = "capabilitiesDeclared")
     val capabilitiesDeclared: kotlin.Boolean? = null,
@@ -105,6 +110,17 @@ public data class Device (
 
 ) {
 
+    /**
+     * Why the device is parked: `member` for a park that holds until a member unparks the device, `idle` when it had no activity for 30 days. A development credential lives at most 30 days, so an idle-parked device usually needs a new credential before it can connect. Null while the device isn't parked
+     *
+     * Values: MEMBER,IDLE,UNKNOWN_DEFAULT_OPEN_API
+     */
+    @JsonClass(generateAdapter = false)
+    public enum class ParkedReason(public val value: kotlin.String) {
+        @Json(name = "member") MEMBER("member"),
+        @Json(name = "idle") IDLE("idle"),
+        @Json(name = "unknown_default_open_api") UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+    }
     /**
      * 
      *
