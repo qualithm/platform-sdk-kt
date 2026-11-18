@@ -57,7 +57,7 @@ public open class HealthApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * GET /healthz
      * Check that the platform can serve
-     * Probes the datastore, the readings store and the event bus. Answers with a bare &#x60;HealthStatus&#x60;, not the envelope: 200 with &#x60;status: ok&#x60;, or 503 with &#x60;status: down&#x60; and the first failing &#x60;subsystem&#x60;.
+     * Probes the datastore, the readings store and the event bus. Requests share one probe pass, and its verdict answers for 3 seconds, so a change can take that long to show. Answers with a bare &#x60;HealthStatus&#x60;, not the envelope: 200 with &#x60;status: ok&#x60;, or 503 with &#x60;status: down&#x60; and the first failing &#x60;subsystem&#x60;.
      * @return HealthStatus
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -88,7 +88,7 @@ public open class HealthApi(basePath: kotlin.String = defaultBasePath, client: C
     /**
      * GET /healthz
      * Check that the platform can serve
-     * Probes the datastore, the readings store and the event bus. Answers with a bare &#x60;HealthStatus&#x60;, not the envelope: 200 with &#x60;status: ok&#x60;, or 503 with &#x60;status: down&#x60; and the first failing &#x60;subsystem&#x60;.
+     * Probes the datastore, the readings store and the event bus. Requests share one probe pass, and its verdict answers for 3 seconds, so a change can take that long to show. Answers with a bare &#x60;HealthStatus&#x60;, not the envelope: 200 with &#x60;status: ok&#x60;, or 503 with &#x60;status: down&#x60; and the first failing &#x60;subsystem&#x60;.
      * @return ApiResponse<HealthStatus?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception

@@ -26,6 +26,7 @@ package com.qualithm.platform.generated.models
 import com.qualithm.platform.generated.models.BillingSummaryLimitGrace
 import com.qualithm.platform.generated.models.BillingSummaryLimits
 import com.qualithm.platform.generated.models.BillingSummaryUsage
+import com.qualithm.platform.generated.models.UsageConnectedDevices
 import com.qualithm.platform.generated.models.UsagePaymentFailed
 
 import com.squareup.moshi.Json
@@ -42,6 +43,7 @@ import com.squareup.moshi.JsonClass
  * @param limits 
  * @param usage 
  * @param paymentFailed 
+ * @param connectedDevices 
  */
 
 
@@ -70,7 +72,10 @@ public data class Usage (
     val usage: BillingSummaryUsage,
 
     @Json(name = "paymentFailed")
-    val paymentFailed: UsagePaymentFailed?
+    val paymentFailed: UsagePaymentFailed?,
+
+    @Json(name = "connectedDevices")
+    val connectedDevices: UsageConnectedDevices?
 
 ) {
 
