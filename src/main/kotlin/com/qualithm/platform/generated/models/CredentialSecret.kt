@@ -35,6 +35,7 @@ import com.squareup.moshi.JsonClass
  * @param credential 
  * @param secret The bearer token (the MQTT password), shown only once
  * @param broker The gateway the device connects to now; returned when a device renews
+ * @param apiUrl The base URL of the device's zone API, where the device sends its renewals and certificate requests; returned when a device renews
  */
 
 
@@ -49,7 +50,11 @@ public data class CredentialSecret (
 
     /* The gateway the device connects to now; returned when a device renews */
     @Json(name = "broker")
-    val broker: GatewayEndpoint? = null
+    val broker: GatewayEndpoint? = null,
+
+    /* The base URL of the device's zone API, where the device sends its renewals and certificate requests; returned when a device renews */
+    @Json(name = "apiUrl")
+    val apiUrl: kotlin.String? = null
 
 ) {
 
