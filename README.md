@@ -70,11 +70,29 @@ on a team's resources take its `teamId`:
 ```kotlin
 import com.qualithm.platform.generated.apis.AutomationsApi
 
-val automations =
-    platform.call { api(::AutomationsApi).listAutomations(teamId, page = 1, limit = 50) }
+val automations = platform.call { api(::AutomationsApi).listAutomations(teamId, limit = 50) }
 ```
 
 Calls block the calling thread. On Android, make them off the main thread.
+
+### Page through a list
+
+A list returns `items` and a `nextCursor`. Pass the cursor back to read the next page. A `null`
+cursor means you have every item:
+
+```kotlin
+import com.qualithm.platform.generated.apis.AutomationsApi
+import com.qualithm.platform.generated.models.Automation
+
+val automations = mutableListOf<Automation>()
+var cursor: String? = null
+do {
+    val page =
+        platform.call { api(::AutomationsApi).listAutomations(teamId, limit = 50, cursor = cursor) }
+    automations += page.data.items
+    cursor = page.data.nextCursor
+} while (cursor != null)
+```
 
 ### Error Handling
 
