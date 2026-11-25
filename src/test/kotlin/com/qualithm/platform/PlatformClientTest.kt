@@ -59,12 +59,14 @@ class PlatformClientTest {
         val stub = Stub(body = """{"data":{"current":1,"items":[],"last":1}}""")
         val platform = client(stub)
 
-        val page = platform.call { api(::DevicesApi).listDevices(teamId, page = 2, limit = 10) }
+        val page = platform.call {
+            api(::DevicesApi).listDevices(teamId, limit = 10, cursor = "c1")
+        }
 
         assertTrue(page.`data`.items.isEmpty())
         val request = stub.requests.single()
         assertEquals(
-            "https://api.qualithm.com/v1/teams/$teamId/devices?page=2&limit=10",
+            "https://api.qualithm.com/v1/teams/$teamId/devices?limit=10&cursor=c1",
             request.url.toString(),
         )
         assertEquals("Bearer qmt_test", request.header("Authorization"))
