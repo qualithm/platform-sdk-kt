@@ -24,6 +24,7 @@
 package com.qualithm.platform.generated.models
 
 import com.qualithm.platform.generated.models.Decision
+import com.qualithm.platform.generated.models.DeviceAttention
 import com.qualithm.platform.generated.models.DeviceCheck
 
 import com.squareup.moshi.Json
@@ -46,6 +47,7 @@ import com.squareup.moshi.JsonClass
  * @param tags Operator-set tags, lowercased and sorted. A capability reference with this tag matches every capability on the device
  * @param level 
  * @param checks 
+ * @param attention 
  * @param decisions What Qualithm decided when the device was claimed: at most six, most consequential first. Returned by getDevice; empty for a device created without a claim.
  */
 
@@ -103,6 +105,9 @@ public data class Device (
 
     @Json(name = "checks")
     val checks: kotlin.collections.List<DeviceCheck>? = null,
+
+    @Json(name = "attention")
+    val attention: DeviceAttention? = null,
 
     /* What Qualithm decided when the device was claimed: at most six, most consequential first. Returned by getDevice; empty for a device created without a claim. */
     @Json(name = "decisions")
