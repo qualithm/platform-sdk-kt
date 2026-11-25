@@ -74,6 +74,8 @@ public object SerializerHelper {
                 .withUnknownFallback(com.qualithm.platform.generated.models.Device.ParkedReason.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.Device.Level::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.Device.Level::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.Device.Level.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
+            .add(com.qualithm.platform.generated.models.DeviceAttention.State::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.DeviceAttention.State::class.java)
+                .withUnknownFallback(com.qualithm.platform.generated.models.DeviceAttention.State.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.DeviceCheck.Id::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.DeviceCheck.Id::class.java)
                 .withUnknownFallback(com.qualithm.platform.generated.models.DeviceCheck.Id.UNKNOWN_DEFAULT_OPEN_API).nullSafe())
             .add(com.qualithm.platform.generated.models.DeviceCommand.Source::class.java, EnumJsonAdapter.create(com.qualithm.platform.generated.models.DeviceCommand.Source::class.java)
