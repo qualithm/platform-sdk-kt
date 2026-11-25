@@ -23,6 +23,7 @@
 
 package com.qualithm.platform.generated.models
 
+import com.qualithm.platform.generated.models.DeviceStatePrimary
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -35,6 +36,7 @@ import com.squareup.moshi.JsonClass
  * @param online Whether the device was seen within the offline window
  * @param lastSeenAt When the device was last seen
  * @param metrics The device's current metrics
+ * @param primary 
  */
 
 
@@ -58,7 +60,10 @@ public data class DeviceState (
 
     /* The device's current metrics */
     @Json(name = "metrics")
-    val metrics: kotlin.collections.Map<kotlin.String, java.math.BigDecimal>
+    val metrics: kotlin.collections.Map<kotlin.String, java.math.BigDecimal>,
+
+    @Json(name = "primary")
+    val primary: DeviceStatePrimary?
 
 ) {
 
