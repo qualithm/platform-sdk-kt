@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param name 
  * @param scopeId A scope in the device's zone; a device stays in the zone it was claimed in
- * @param parked Parking holds until a member unparks the device: it can't connect or write meanwhile, and its credentials and history stay. Parking an idle-parked device makes it a member's park. An idle park lifts when the device next connects in its zone with a valid credential
+ * @param parked Parking holds until a member unparks the device: it can't connect or write meanwhile, but it can renew its credentials, so they and its history stay. Parking an idle-parked device makes it a member's park. An idle park lifts when the device next connects in its zone with a valid credential
  * @param tags Replaces the device's tags; `[]` clears them. Stored lowercased
  */
 
@@ -46,7 +46,7 @@ public data class UpdateDeviceRequest (
     @Json(name = "scopeId")
     val scopeId: kotlin.String? = null,
 
-    /* Parking holds until a member unparks the device: it can't connect or write meanwhile, and its credentials and history stay. Parking an idle-parked device makes it a member's park. An idle park lifts when the device next connects in its zone with a valid credential */
+    /* Parking holds until a member unparks the device: it can't connect or write meanwhile, but it can renew its credentials, so they and its history stay. Parking an idle-parked device makes it a member's park. An idle park lifts when the device next connects in its zone with a valid credential */
     @Json(name = "parked")
     val parked: kotlin.Boolean? = null,
 
