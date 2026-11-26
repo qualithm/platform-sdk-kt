@@ -29,7 +29,7 @@ file covers what they can't. CI is generated from `dx/ci-templates/kotlin-lib.ya
   the script after a spec change, never edit the output by hand, and leave it outside the lint,
   coverage and error rules here.
 - `.github/workflows/` is generated from `dx/ci-templates/`; change the template and run the dx
-  sync, never edit it here. `CI Required` and `PR Title` are required.
+  sync, never edit it here. Required checks: `CI Required`, `PR Title`, `Decision Citations`.
 
 ## Releases
 
